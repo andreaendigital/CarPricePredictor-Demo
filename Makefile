@@ -69,7 +69,7 @@ setup:
 	@echo "🧪 Installing test dependencies..."
 	@pip install pytest pytest-cov black flake8 requests
 	@echo "📚 Installing documentation dependencies..."
-	@pip install mkdocs-material mkdocs-git-revision-date-localized-plugin pymdown-extensions
+	@pip install mkdocs-material mkdocs-git-revision-date-localized-plugin pymdown-extensions click
 	@echo "🔒 Installing pre-commit hooks..."
 	@pip install pre-commit
 	@pre-commit install
