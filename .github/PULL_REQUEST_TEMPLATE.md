@@ -18,16 +18,11 @@
 - [ ] 🟢 Low
 
 ### 🎯 What does this PR do?
-```
-[Describe your changes here - replace this text]
-```
+<!-- Describe your changes here -->
+
 
 ### 🔗 Related Issues
-```
-Closes #XXX
-Fixes #XXX
-Related to #XXX
-```
+<!-- Link related issues: Closes #XXX, Fixes #XXX, Related to #XXX -->
 
 ---
 
@@ -103,19 +98,15 @@ python frontend/app.py # Port 3000
 <summary>📷 Click to view screenshots</summary>
 
 ### Before Changes
-```
-[Drag and drop screenshot here or paste image URL]
-```
+<!-- Drag and drop screenshot here or paste image URL -->
+
 
 ### After Changes  
-```
-[Drag and drop screenshot here or paste image URL]
-```
+<!-- Drag and drop screenshot here or paste image URL -->
+
 
 ### Demo Video (Optional)
-```
-[Paste video link or GIF URL here]
-```
+<!-- Paste video link or GIF URL here -->
 
 </details>
 
@@ -139,7 +130,7 @@ python frontend/app.py # Port 3000
 
 ## 🔍 Review Information
 
-**Reviewer:** `@username`
+**Reviewer:** @<!-- username -->
 
 **Estimated Review Time:** 
 - [ ] ⏱️ 5-10 minutes
@@ -157,8 +148,7 @@ python frontend/app.py # Port 3000
 <details>
 <summary>📝 Additional Notes</summary>
 
-```
-[Add any additional context, concerns, or notes for reviewers here]
-```
+<!-- Add any additional context, concerns, or notes for reviewers here -->
+
 
 </details>
