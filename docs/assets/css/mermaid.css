@@ -1,0 +1,28 @@
+/* Mermaid diagram styling for MkDocs Material theme */
+
+.mermaid {
+    text-align: center;
+    margin: 1em 0;
+}
+
+/* Ensure diagrams are responsive */
+.mermaid svg {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Dark mode support */
+[data-md-color-scheme="slate"] .mermaid {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+[data-md-color-scheme="slate"] .mermaid svg {
+    background: transparent;
+}
+
+/* Light mode - default styling */
+[data-md-color-scheme="default"] .mermaid svg {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
