@@ -87,11 +87,11 @@ test:
 	@echo "🧪 Running Full Test Suite..."
 	@echo "============================="
 	@echo "📊 Backend Tests:"
-	@cd backend && python -m pytest ../tests/test_backend.py -v --cov=. --cov-report=term-missing
+	@cd backend && python3 -m pytest ../tests/test_backend.py -v --cov=. --cov-report=term-missing
 	@echo "\n🎨 Frontend Tests:"
-	@cd frontend && python -m pytest tests/ -v --cov=. --cov-report=term-missing
+	@cd frontend && python3 -m pytest tests/ -v --cov=. --cov-report=term-missing
 	@echo "\n🔗 Integration Tests:"
-	@python -m pytest tests/test_integration.py -v
+	@python3 -m pytest tests/test_integration.py -v
 	@echo "\n✅ All tests completed!"
 
 docs:
