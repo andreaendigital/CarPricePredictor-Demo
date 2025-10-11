@@ -1,0 +1,395 @@
+[
+    {
+        "brand_model": "Toyota Corolla",
+        "model_year": 2018,
+        "kilometers_driven": 60000,
+        "fuel_type": "Petrol",
+        "transmission": "Manual",
+        "owner_type": "First",
+        "mileage": 18.5,
+        "engine": 1496,
+        "power": 90,
+        "seats": 5,
+        "clean_title": 1,
+        "age": 7,
+        "precio": 15000,
+        "id": 1
+    },
+    {
+        "brand_model": "Toyota Corolla",
+        "model_year": 2018,
+        "kilometers_driven": 60000,
+        "fuel_type": "Petrol",
+        "transmission": "Manual",
+        "owner_type": "First",
+        "mileage": 18.5,
+        "engine": 1496,
+        "power": 90,
+        "seats": 5,
+        "clean_title": 1,
+        "age": 7,
+        "precio": 15000,
+        "id": 2
+    },
+    {
+        "brand_model": "Toyota Corolla",
+        "model_year": 2018,
+        "kilometers_driven": 60000,
+        "fuel_type": "Petrol",
+        "transmission": "Manual",
+        "owner_type": "First",
+        "mileage": 18.5,
+        "engine": 1496,
+        "power": 90,
+        "seats": 5,
+        "clean_title": 1,
+        "age": 7,
+        "precio": 15000,
+        "id": 3
+    },
+    {
+        "brand_model": "Toyota Corolla",
+        "model_year": 2018,
+        "kilometers_driven": 60000,
+        "fuel_type": "Petrol",
+        "transmission": "Manual",
+        "owner_type": "First",
+        "mileage": 18.5,
+        "engine": 1496,
+        "power": 90,
+        "seats": 5,
+        "clean_title": 1,
+        "age": 7,
+        "precio": 15000,
+        "id": 4
+    },
+    {
+        "brand_model": "Toyota Corolla",
+        "model_year": 2018,
+        "kilometers_driven": 60000,
+        "fuel_type": "Petrol",
+        "transmission": "Manual",
+        "owner_type": "First",
+        "mileage": 18.5,
+        "engine": 1496,
+        "power": 90,
+        "seats": 5,
+        "clean_title": 1,
+        "age": 7,
+        "precio": 15000,
+        "id": 5
+    },
+    {
+        "brand_model": "Toyota Corolla",
+        "model_year": 2018,
+        "kilometers_driven": 60000,
+        "fuel_type": "Petrol",
+        "transmission": "Manual",
+        "owner_type": "First",
+        "mileage": 18.5,
+        "engine": 1496,
+        "power": 90,
+        "seats": 5,
+        "clean_title": 1,
+        "age": 7,
+        "precio": 15000,
+        "id": 6
+    },
+    {
+        "model_year": 2020,
+        "age": 5,
+        "fuel_type": "Gasoline",
+        "transmission": "Automatic",
+        "clean_title": 1,
+        "precio": 25000000,
+        "id": 7
+    },
+    {
+        "model_year": 2020,
+        "age": 5,
+        "fuel_type": "Gasoline",
+        "transmission": "Automatic",
+        "clean_title": 1,
+        "precio": 25000000,
+        "id": 8
+    },
+    {
+        "model_year": 2020,
+        "age": 4,
+        "fuel_type": "Gasoline",
+        "transmission": "Automatic",
+        "clean_title": "Yes",
+        "precio": 25000000,
+        "id": 9
+    },
+    {
+        "model_year": 2020,
+        "age": 4,
+        "fuel_type": "Gasoline",
+        "transmission": "Automatic",
+        "clean_title": 1,
+        "precio": 25000000,
+        "id": 10
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 11
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 12
+    },
+    {
+        "model_year": 2020,
+        "age": 4,
+        "fuel_type": "Gasoline",
+        "transmission": "Automatic",
+        "clean_title": 1,
+        "precio": 25000000,
+        "id": 13
+    },
+    {
+        "model_year": 2020,
+        "age": 3,
+        "fuel_type": "Gasoline",
+        "transmission": "Automatic",
+        "clean_title": 1,
+        "precio": 25000000,
+        "id": 14
+    },
+    {
+        "model_year": 2020,
+        "age": 3,
+        "fuel_type": "Gasoline",
+        "transmission": "Automatic",
+        "clean_title": 0,
+        "precio": 25000000,
+        "id": 15
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 16
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 17
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 18
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 19
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 20
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 21
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 22
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 23
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 24
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 25
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 26
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 27
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 28
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 29
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 30
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 31
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 32
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 33
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 34
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 35
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 36
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 37
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 38
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 39
+    }
+]
