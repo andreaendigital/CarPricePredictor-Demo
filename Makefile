@@ -1,18 +1,20 @@
-.PHONY: help dev dev-python dev-docker run-dev test setup docs docs-serve docs-build docs-deploy clean pre-commit
+.PHONY: help dev dev-python dev-docker run-dev test setup docs docs-serve docs-build docs-deploy clean pre-commit setup-legacy test-migration
 
 help:
 	@echo "🚗 Car Price Prediction Platform - Unified Development"
 	@echo "Available commands:"
+	@echo "  setup       - 🚀 Modern setup (pyproject.toml)"
 	@echo "  dev         - 🎯 Smart launcher (interactive choice)"
 	@echo "  dev-python  - 🐍 Python development (start-local.sh)"
 	@echo "  dev-docker  - 🐳 Docker development (docker-compose)"
 	@echo "  test        - 🧪 Run full test suite"
-	@echo "  setup       - 📦 One-time environment setup"
 	@echo "  docs        - 📚 Documentation development server"
 	@echo "  docs-build  - 📝 Build documentation site"
 	@echo "  docs-deploy - 🚀 Deploy docs to GitHub Pages"
 	@echo "  clean       - 🧹 Clean build artifacts"
 	@echo "  pre-commit  - 🔒 Run pre-commit on all files"
+	@echo "  setup-legacy - 📦 Legacy setup (requirements.txt)"
+	@echo "  test-migration - 🧪 Test new pyproject.toml setup"
 	@echo "  run-dev     - 🐳 Legacy docker command (deprecated)"
 
 dev:
@@ -33,27 +35,33 @@ dev:
 dev-python:
 	@echo "🐍 Starting Python Development Environment..."
 	@echo "============================================="
-	@if [ ! -f "start-local.sh" ]; then \
-		echo "❌ start-local.sh not found"; \
+	@echo "🧪 Running full test verification before startup..."
+	@make test || (echo "❌ Tests failed - fix issues before starting" && exit 1)
+	@echo "✅ All tests passed - starting services..."
+	@if [ ! -f "scripts/start-local.sh" ]; then \
+		echo "❌ scripts/start-local.sh not found"; \
 		exit 1; \
 	fi
-	@chmod +x start-local.sh
-	@./start-local.sh
+	@chmod +x scripts/start-local.sh
+	@./scripts/start-local.sh
 
 dev-docker:
 	@echo "🐳 Starting Docker Development Environment..."
 	@echo "============================================"
+	@echo "🧪 Running full test verification before build..."
+	@make test || (echo "❌ Tests failed - fix issues before building" && exit 1)
+	@echo "✅ All tests passed - building and starting containers..."
 	@if ! command -v docker >/dev/null 2>&1; then \
 		echo "❌ Docker not installed"; \
 		exit 1; \
 	fi
-	@if [ ! -f "docker-compose.dev.yml" ]; then \
-		echo "❌ docker-compose.dev.yml not found"; \
+	@if [ ! -f "config/docker-compose.dev.yml" ]; then \
+		echo "❌ config/docker-compose.dev.yml not found"; \
 		exit 1; \
 	fi
-	@docker-compose -f docker-compose.dev.yml up -d
-	@./docker-status.sh
-	@docker-compose -f docker-compose.dev.yml logs -f
+	@docker-compose -f config/docker-compose.dev.yml up -d
+	@./scripts/docker-status.sh
+	@docker-compose -f config/docker-compose.dev.yml logs -f
 
 setup:
 	@echo "📦 Setting up Car Price Prediction Platform..."
@@ -62,26 +70,17 @@ setup:
 	@python3 --version || (echo "❌ Python3 not found" && exit 1)
 	@echo "🔍 Checking pip..."
 	@pip --version || (echo "❌ pip not found" && exit 1)
-	@echo "📦 Installing backend dependencies..."
-	@cd backend && pip install -r requirements.txt
-	@echo "📦 Installing frontend dependencies..."
-	@cd frontend && pip install -r requirements.txt
-	@echo "🧪 Installing test dependencies..."
-	@pip install pytest pytest-cov black flake8 requests
-	@echo "📚 Installing documentation dependencies..."
-	@pip install mkdocs-material mkdocs-git-revision-date-localized-plugin pymdown-extensions click
+	@echo "🚀 Installing project with all dependencies (pyproject.toml)..."
+	@pip install -e .[dev]
 	@echo "🔒 Installing pre-commit hooks..."
-	@pip install pre-commit
-	@pre-commit install
+	@pre-commit install --config config/.pre-commit-config.yaml
 	@echo "✅ Setup complete! Available commands:"
 	@echo "   • make dev     - Start development environment"
 	@echo "   • make test    - Run test suite"
 	@echo "   • make docs    - Start documentation server"
 	@echo "   • Pre-commit hooks active - quality checks on every commit"
+	@echo "   • Modern pyproject.toml configuration active 🎯"
 
-run-dev:
-	@echo "⚠️  'make run-dev' is deprecated. Use 'make dev-docker' instead."
-	@make dev-docker
 
 test:
 	@echo "🧪 Running Full Test Suite..."
@@ -103,7 +102,7 @@ docs:
 	fi
 	@echo "🌐 Documentation server: http://localhost:8000"
 	@echo "🔄 Auto-reload enabled for live editing"
-	@mkdocs serve
+	@mkdocs serve --config-file config/mkdocs.yml
 
 docs-build:
 	@echo "📝 Building Documentation Site..."
@@ -112,7 +111,7 @@ docs-build:
 		echo "📦 Installing MkDocs..."; \
 		pip install mkdocs-material mkdocs-git-revision-date-localized-plugin pymdown-extensions; \
 	fi
-	@mkdocs build --clean --strict
+	@mkdocs build --clean --strict --config-file config/mkdocs.yml
 	@echo "✅ Documentation built in ./site directory"
 
 docs-deploy:
@@ -125,7 +124,7 @@ docs-deploy:
 	@echo "⚠️  This will deploy to GitHub Pages"
 	@read -p "Continue? [y/N]: " confirm; \
 	if [ "$$confirm" = "y" ] || [ "$$confirm" = "Y" ]; then \
-		mkdocs gh-deploy --clean; \
+		mkdocs gh-deploy --clean --config-file config/mkdocs.yml; \
 		echo "✅ Documentation deployed!"; \
 	else \
 		echo "👋 Deployment cancelled"; \
@@ -143,7 +142,7 @@ clean:
 	@echo "🗑️  Removing documentation build..."
 	@rm -rf site/ 2>/dev/null || true
 	@echo "🗑️  Removing project Docker containers..."
-	@docker-compose -f docker-compose.dev.yml down 2>/dev/null || true
+	@docker-compose -f config/docker-compose.dev.yml down 2>/dev/null || true
 	@docker rmi p11-backend p11-frontend p11-docs carprice-backend 2>/dev/null || true
 	@echo "✅ Cleanup completed!"
 
@@ -153,7 +152,39 @@ pre-commit:
 	@if ! command -v pre-commit >/dev/null 2>&1; then \
 		echo "📦 Installing pre-commit..."; \
 		pip install pre-commit; \
-		pre-commit install; \
+		pre-commit install --config config/.pre-commit-config.yaml; \
 	fi
-	@pre-commit run --all-files
+	@pre-commit run --all-files --config config/.pre-commit-config.yaml
 	@echo "✅ Pre-commit checks completed!"
+
+setup-legacy:
+	@echo "📦 Legacy Setup (requirements.txt files)..."
+	@echo "==========================================="
+	@echo "⚠️  Using legacy requirements.txt files"
+	@echo "🔍 Checking Python..."
+	@python3 --version || (echo "❌ Python3 not found" && exit 1)
+	@echo "🔍 Checking pip..."
+	@pip --version || (echo "❌ pip not found" && exit 1)
+	@echo "📦 Installing backend dependencies..."
+	@cd backend && pip install -r requirements.txt
+	@echo "📦 Installing frontend dependencies..."
+	@cd frontend && pip install -r requirements.txt
+	@echo "🧪 Installing test dependencies..."
+	@pip install pytest pytest-cov black flake8 requests
+	@echo "📚 Installing documentation dependencies..."
+	@pip install mkdocs-material mkdocs-git-revision-date-localized-plugin pymdown-extensions click
+	@echo "🔒 Installing pre-commit hooks..."
+	@pip install pre-commit
+	@pre-commit install --config config/.pre-commit-config.yaml
+	@echo "✅ Legacy setup complete!"
+
+test-migration:
+	@echo "🧪 Testing pyproject.toml Migration..."
+	@echo "===================================="
+	@echo "🔍 Validating pyproject.toml..."
+	@python3 -c "import tomllib; f=open('pyproject.toml','rb'); tomllib.load(f); print('✅ pyproject.toml is valid')" 2>/dev/null || python3 -c "import tomli; f=open('pyproject.toml','rb'); tomli.load(f); print('✅ pyproject.toml is valid')" 2>/dev/null || echo "⚠️  Install tomli: pip install tomli"
+	@echo "🚀 Testing new setup..."
+	@pip install -e .[test] --quiet
+	@echo "🧪 Running test suite..."
+	@python3 -m pytest tests/test_backend.py -v --tb=short
+	@echo "✅ Migration test completed successfully!"

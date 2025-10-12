@@ -231,8 +231,8 @@ sequenceDiagram
                 <li>🔗 <strong>Access Point:</strong> http://localhost:5004/docs-menu</li>
                 <li>🧪 <strong>Testing:</strong> Interactive API testing</li>
             </ul>
-            
-            
+
+
             **Available Documentation Formats:**
             - **Swagger UI** (`/docs/`) - Interactive API testing
             - **ReDoc** (`/redoc`) - Professional dark theme documentation
@@ -291,4 +291,3 @@ sequenceDiagram
     ├── Port 5002 exposure     # API port configuration
     └── Production server      # Optimized runtime
 ```
-

@@ -477,7 +477,7 @@ flowchart LR
      => CACHED [4/5] RUN pip install --no-cache-dir -r requirements.txt                                                                                  0.0s
      => [5/5] COPY . .                                                                                                                                   0.0s
      => [linux/arm64] generating sbom using docker.io/docker/buildkit-syft-scanner:stable-1                                                              1.3s
-     => exporting to image                                                                                                                               0.2s 
+     => exporting to image                                                                                                                               0.2s
      => => exporting layers                                                                                                                              0.1s
      => => exporting manifest sha256:98037ec82618f6f07a05e724b47ce441e95bbbd72a2d9454deab6f0155365588                                                    0.0s
      => => exporting config sha256:27300202db219eb09b9ff2ef7c89ea73c46c5c4b0bc22048d573e3a05a4abb7a                                                      0.0s
@@ -487,7 +487,7 @@ flowchart LR
      => => unpacking to docker.io/library/carprice-backend:latest                                                                                        0.0s
 
     View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/6hq448um1oo8i9axdq2jypuwo
-    
+
     ✅ Image built successfully with security features:
     • 🛡️ SBOM (Software Bill of Materials) generated
     • 🔒 Provenance attestation created
@@ -507,13 +507,13 @@ flowchart LR
     ```markdown
     # 🚗 Car Price Prediction Platform - Pull Request
     ## 📋 PR Summary
-    **SCRUM Ticket:** SCRUM-XXX  
+    **SCRUM Ticket:** SCRUM-XXX
     **Type:** [ ] Feature [ ] Bug Fix [ ] Enhancement
     ### 🎯 What does this PR do?
     <!-- Brief description of changes -->
     ## 🧪 Testing Checklist
     - [ ] Backend tests pass
-    - [ ] Frontend tests pass  
+    - [ ] Frontend tests pass
     - [ ] Integration tests pass
     - [ ] Code formatting checked
     ## 🔧 Technical Changes

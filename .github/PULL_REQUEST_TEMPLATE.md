@@ -4,9 +4,9 @@
 
 **SCRUM Ticket:** `SCRUM-XXX`
 
-**Type:** 
+**Type:**
 - [ ] 🎨 Frontend
-- [ ] 🚀 Backend  
+- [ ] 🚀 Backend
 - [ ] 🔄 Full-Stack
 - [ ] 🐛 Bug Fix
 - [ ] ✨ Enhancement
@@ -33,7 +33,7 @@
 # Backend Test
 python backend/app.py  # Port 5002
 
-# Frontend Test  
+# Frontend Test
 python frontend/app.py # Port 3000
 ```
 
@@ -101,7 +101,7 @@ python frontend/app.py # Port 3000
 <!-- Drag and drop screenshot here or paste image URL -->
 
 
-### After Changes  
+### After Changes
 <!-- Drag and drop screenshot here or paste image URL -->
 
 
@@ -132,9 +132,9 @@ python frontend/app.py # Port 3000
 
 **Reviewer:** @<!-- username -->
 
-**Estimated Review Time:** 
+**Estimated Review Time:**
 - [ ] ⏱️ 5-10 minutes
-- [ ] ⏲️ 15-30 minutes  
+- [ ] ⏲️ 15-30 minutes
 - [ ] ⏰ 30+ minutes
 
 **🌐 Test URLs:**

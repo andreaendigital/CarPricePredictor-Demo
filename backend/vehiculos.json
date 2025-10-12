@@ -427,5 +427,203 @@
         "clean_title": 1,
         "precio": 25000000,
         "id": 43
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 44
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 45
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 46
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 47
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 48
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 49
+    },
+    {
+        "model_year": 2020,
+        "age": 4,
+        "fuel_type": "Gasoline",
+        "transmission": "Automatic",
+        "clean_title": 1,
+        "precio": 25000000,
+        "id": 50
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 51
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 52
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 53
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 54
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 55
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 56
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 57
+    },
+    {
+        "model_year": 2020,
+        "age": 4,
+        "fuel_type": "Gasoline",
+        "transmission": "Automatic",
+        "clean_title": 1,
+        "precio": 25000000,
+        "id": 58
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 59
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 60
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 61
+    },
+    {
+        "model_year": 2020,
+        "age": 4,
+        "fuel_type": "Gasoline",
+        "transmission": "Automatic",
+        "clean_title": 1,
+        "precio": 25000000,
+        "id": 62
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 63
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 64
+    },
+    {
+        "model_year": 2020,
+        "age": 4,
+        "fuel_type": "Gasoline",
+        "transmission": "Automatic",
+        "clean_title": 1,
+        "precio": 25000000,
+        "id": 65
     }
 ]

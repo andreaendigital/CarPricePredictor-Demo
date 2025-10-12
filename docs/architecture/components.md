@@ -297,7 +297,7 @@ def test_valoractual_endpoint():
     assert response.status_code == 200
     assert 'current_market_value' in response.json
 
-# test_logic_unit.py  
+# test_logic_unit.py
 def test_get_current_value():
     """Test business logic calculations"""
     result = get_current_value(sample_car_data)

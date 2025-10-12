@@ -2,10 +2,12 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Copy pyproject.toml from root and install dependencies
+COPY pyproject.toml .
+RUN pip install --no-cache-dir -e .[frontend]
 
-COPY . .
+# Copy frontend code
+COPY frontend/ .
 
 EXPOSE 3000
 

@@ -10,6 +10,7 @@
 - **Future Price Forecasting** - AI-powered depreciation modeling for investment decisions
 - **Marketplace Integration** - Complete vehicle listing and price recommendation system
 - **Professional Documentation** - Multiple API documentation formats for different stakeholders
+- **Modern Configuration** - TOML (Tom's Obvious Minimal Language) unified project setup
 
 ## 🏗️ Architecture Overview
 
@@ -26,10 +27,22 @@
 ├── 🚀 backend/           # ML API Services (Port 5002/5004)
 │   ├── 🤖 modelo/        # Trained XGBoost ML model
 │   ├── 📊 app.py         # Lightweight ML API
-│   ├── 📚 app_swagger.py # Enterprise Swagger API
-│   └── 📖 Documentation  # Professional API docs
+│   └── 📚 app_swagger.py # Enterprise Swagger API
 │
-└── 📋 Documentation      # Project documentation
+├── 📁 scripts/           # Development & utility scripts
+│   ├── 🐍 start-local.sh # Python development startup
+│   ├── 🐳 docker-status.sh # Docker health checks
+│   └── 📊 dev-status.sh   # Service status checker
+│
+├── 📁 config/            # Configuration files
+│   ├── 🐳 docker-compose.dev.yml # Docker development
+│   ├── 📚 mkdocs.yml      # Documentation config
+│   ├── 🔒 .pre-commit-config.yaml # Code quality
+│   └── 🐳 .dockerignore   # Docker ignore rules
+│
+└── 📋 docs/              # Project documentation
+    ├── 📁 development/    # Development documentation
+    └── 📁 backend/       # API documentation
 ```
 
 ## 🚀 Quick Start Guide
@@ -486,21 +499,43 @@ make clean         # Clean environment when needed
 ### 🆘 Need Help?
 
 ```bash
-make help          # Show all available commands
-./dev-status.sh    # Check service status
-make clean         # Reset environment
+make help                    # Show all available commands
+./scripts/dev-status.sh      # Check service status
+make clean                   # Reset environment
 ```
 
 ### ✅ What `make setup` Does
 
 - ✅ Validates Python 3.9+ and pip
-- ✅ Installs backend dependencies (Flask, XGBoost, ML libraries)
-- ✅ Installs frontend dependencies (Flask, Flasgger)
-- ✅ Installs testing tools (pytest, coverage, black, flake8)
-- ✅ Installs documentation tools (MkDocs, Material theme)
-- ✅ Prepares complete development environment
+- ✅ Installs all dependencies from **pyproject.toml** (TOML format)
+- ✅ Unified configuration using Tom's Obvious Minimal Language
+- ✅ Backend dependencies (Flask, XGBoost, ML libraries)
+- ✅ Frontend dependencies (Flask, Flasgger)
+- ✅ Testing tools (pytest, coverage, black, flake8)
+- ✅ Documentation tools (MkDocs, Material theme)
+- ✅ Modern Python project standards (PEP 518/621)
 
 **🎯 One command, complete setup, ready to develop!**
+
+### 🚀 Modern Configuration (v1.1.0)
+
+**TOML Migration Completed** - The project now uses modern Python configuration:
+
+```bash
+# Single command setup (replaces 3 separate requirements.txt files)
+make setup  # Uses pyproject.toml (TOML format)
+```
+
+**Benefits:**
+- ⚡ **3x Faster Setup** - One command vs three
+- 🎯 **Centralized Config** - All dependencies in pyproject.toml
+- 🛠️ **Tool Integration** - Black, pytest, flake8 configured in TOML
+- 📊 **Modern Standards** - PEP 518/621 compliant
+
+**Migration Documentation:**
+- [MIGRATION_README.md](MIGRATION_README.md) - Complete migration details and implementation summary
+- [CHANGELOG.md](docs/development/CHANGELOG.md) - Version history and evolution
+- [pyproject.toml](pyproject.toml) - TOML configuration file (Tom's Obvious Minimal Language)
 
 ### ⚡ Quick Commands
 

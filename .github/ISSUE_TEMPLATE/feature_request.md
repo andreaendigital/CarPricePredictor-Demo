@@ -42,5 +42,5 @@ assignees: ''
 - [ ] Integration tests
 - [ ] Manual testing scenarios
 
-**Priority:** [ ] High [ ] Medium [ ] Low  
+**Priority:** [ ] High [ ] Medium [ ] Low
 **Estimated Effort:** [ ] Small [ ] Medium [ ] Large
