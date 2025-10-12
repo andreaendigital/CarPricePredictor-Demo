@@ -77,3 +77,8 @@ coverage.xml
 # Duplicate files
 *.copy
 *copy.*
+
+# Documentation build artifacts
+site/
+config/site/
+mkdocs-temp.yml

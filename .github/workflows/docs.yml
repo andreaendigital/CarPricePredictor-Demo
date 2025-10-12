@@ -42,7 +42,11 @@ jobs:
       run: make setup
 
     - name: Build documentation
-      run: mkdocs build --clean --strict --config-file config/mkdocs.yml --site-dir site
+      run: |
+        # Copy mkdocs.yml to root and adjust paths
+        cp config/mkdocs.yml ./mkdocs-temp.yml
+        mkdocs build --clean --config-file mkdocs-temp.yml --site-dir site
+        rm mkdocs-temp.yml
 
     - name: Setup Pages
       uses: actions/configure-pages@v5

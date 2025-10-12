@@ -102,7 +102,7 @@ docs:
 	fi
 	@echo "🌐 Documentation server: http://localhost:8000"
 	@echo "🔄 Auto-reload enabled for live editing"
-	@mkdocs serve --config-file config/mkdocs.yml
+	@cp config/mkdocs.yml ./mkdocs-temp.yml && mkdocs serve --config-file mkdocs-temp.yml; rm -f mkdocs-temp.yml
 
 docs-build:
 	@echo "📝 Building Documentation Site..."
@@ -111,7 +111,7 @@ docs-build:
 		echo "📦 Installing MkDocs..."; \
 		pip install mkdocs-material mkdocs-git-revision-date-localized-plugin pymdown-extensions; \
 	fi
-	@mkdocs build --clean --strict --config-file config/mkdocs.yml
+	@cp config/mkdocs.yml ./mkdocs-temp.yml && mkdocs build --clean --strict --config-file mkdocs-temp.yml && rm -f mkdocs-temp.yml
 	@echo "✅ Documentation built in ./site directory"
 
 docs-deploy:
