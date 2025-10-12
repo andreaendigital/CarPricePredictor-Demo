@@ -58,3 +58,22 @@ logs/
 # Temporary files
 *.tmp
 *.temp
+
+# Build artifacts and generated files
+*.egg-info/
+car_price_predictor.egg-info/
+
+# Coverage reports
+.coverage
+coverage.xml
+*.coverage
+
+# Test artifacts
+.pytest_cache/
+
+# Requirements files (replaced by pyproject.toml)
+# requirements.txt files are now handled by pyproject.toml
+
+# Duplicate files
+*.copy
+*copy.*

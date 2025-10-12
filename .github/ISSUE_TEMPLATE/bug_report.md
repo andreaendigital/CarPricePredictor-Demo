@@ -23,8 +23,8 @@ assignees: ''
 3. Step 3
 
 ## 🌐 Environment
-- **OS:** 
-- **Python Version:** 
+- **OS:**
+- **Python Version:**
 - **Browser:** (if frontend issue)
 - **Service:** Backend (Port 5002) / Frontend (Port 3000)
 
