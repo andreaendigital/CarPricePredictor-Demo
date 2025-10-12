@@ -3,6 +3,8 @@ site_description: Next-Generation AI-Powered Automotive Valuation & Market Intel
 site_author: Enterprise AI Solutions Team
 site_url: https://andreaendigital.github.io/CarPricePredictor-MLOps-Demo/
 
+docs_dir: ../docs
+
 repo_name: andreaendigital/CarPricePredictor-MLOps-Demo
 repo_url: https://github.com/andreaendigital/CarPricePredictor-MLOps-Demo
 
