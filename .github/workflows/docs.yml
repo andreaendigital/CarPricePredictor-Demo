@@ -5,7 +5,7 @@ on:
     branches: [ main, 'SCRUM-*' ]
     paths:
       - 'docs/**'
-      - 'mkdocs.yml'
+      - 'config/mkdocs.yml'
       - '.github/workflows/docs.yml'
   workflow_dispatch:
 
@@ -42,7 +42,11 @@ jobs:
       run: make setup
 
     - name: Build documentation
-      run: make docs-build
+      run: |
+        # Copy mkdocs.yml to root and adjust paths
+        cp config/mkdocs.yml ./mkdocs-temp.yml
+        mkdocs build --clean --config-file mkdocs-temp.yml --site-dir site
+        rm mkdocs-temp.yml
 
     - name: Setup Pages
       uses: actions/configure-pages@v5
