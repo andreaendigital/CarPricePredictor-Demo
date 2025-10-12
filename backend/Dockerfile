@@ -2,12 +2,12 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Copy pyproject.toml from parent directory and install dependencies
-COPY ../pyproject.toml .
+# Copy pyproject.toml and install dependencies
+COPY pyproject.toml .
 RUN pip install --no-cache-dir -e .[backend]
 
-# Copy backend code (current directory since context is ./backend)
-COPY . .
+# Copy backend code
+COPY backend/ .
 
 EXPOSE 5002
 

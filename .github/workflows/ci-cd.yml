@@ -96,7 +96,8 @@ jobs:
     - name: Build and push Backend
       uses: docker/build-push-action@v6
       with:
-        context: ./backend
+        context: .
+        file: ./backend/Dockerfile
         platforms: linux/amd64,linux/arm64
         push: true
         tags: ${{ steps.meta-backend.outputs.tags }}
@@ -109,7 +110,8 @@ jobs:
     - name: Build and push Frontend
       uses: docker/build-push-action@v6
       with:
-        context: ./frontend
+        context: .
+        file: ./frontend/Dockerfile
         platforms: linux/amd64,linux/arm64
         push: true
         tags: ${{ steps.meta-frontend.outputs.tags }}

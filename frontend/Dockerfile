@@ -2,12 +2,12 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Copy pyproject.toml from parent directory and install dependencies
-COPY ../pyproject.toml .
+# Copy pyproject.toml and install dependencies
+COPY pyproject.toml .
 RUN pip install --no-cache-dir -e .[frontend]
 
-# Copy frontend code (current directory since context is ./frontend)
-COPY . .
+# Copy frontend code
+COPY frontend/ .
 
 EXPOSE 3000
 
