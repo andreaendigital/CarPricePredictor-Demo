@@ -42,7 +42,7 @@ jobs:
       run: make setup
 
     - name: Build documentation
-      run: make docs-build
+      run: mkdocs build --clean --strict --config-file config/mkdocs.yml --site-dir site
 
     - name: Setup Pages
       uses: actions/configure-pages@v5
