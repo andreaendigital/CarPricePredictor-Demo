@@ -117,7 +117,8 @@ def precio_actual():
         return jsonify({"error": str(e)}), 400
 
 
-# === Endpoint 2: predicción futura ===
+# Second Endpoint, This is a GET for a future price
+
 @app.route("/prediccion_futura", methods=["GET"])
 def prediccion_futura():
     try:
