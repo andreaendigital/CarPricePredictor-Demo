@@ -73,6 +73,7 @@ def home():
 
 # First Endpoint GET - Get for current car price
 
+
 @app.route("/precio_actual", methods=["GET"])
 def precio_actual():
     try:
