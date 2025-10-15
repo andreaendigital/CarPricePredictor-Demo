@@ -8,40 +8,83 @@
 
 - **Real-time ML Predictions** - Instant vehicle valuations using XGBoost algorithms
 - **Future Price Forecasting** - AI-powered depreciation modeling for investment decisions
-- **Professional Documentation** - Multiple API documentation formats for different stakeholders
+- **Professional Documentation** - API documentation for different stakeholders
 - **Modern Configuration** - TOML (Tom's Obvious Minimal Language) unified project setup
 
 ## Architecture Overview
 
 ```
-📁 Car Price Prediction Platform
-├── frontend/          # Modern Web Interface (Port 3000)
-│   ├── templates/     # Professional HTML5 templates
-│   ├── static/        # CSS3 animations & JavaScript
-│   ├── api/           # Flask blueprints & routing
-│   ├── config/       # Application configuration
-│   ├── logic/         # Business logic layer
-│   └── tests/         # Unit & integration tests
+Car Price Prediction Demo
+├── frontend/             # Modern Web Interface (Port 3000)
+│   ├── api/              # Flask blueprints & routing
+│   │   ├── __init__.py
+│   │   └── routes.py
+│   ├── config/           # Application configuration
+│   │   ├── __init__.py
+│   │   └── settings.py
+│   ├── logic/            # Business logic layer
+│   │   ├── __init__.py
+│   │   ├── data_processor.py
+│   │   └── predictor.py
+│   ├── static/           # CSS3 animations & JavaScript
+│   │   ├── css/
+│   │   └── js/
+│   ├── templates/        # Professional HTML5 templates
+│   │   ├── index.html
+│   │   └── layout.html
+│   ├── tests/            # Unit & integration tests
+│   │   ├── test_api_endpoints.py
+│   │   └── test_logic_unit.py
+│   ├── app.py            # Frontend Flask application
+│   └── Dockerfile       # Frontend containerization
 │
-├── backend/           # ML API Services (Port 5002/5004)
-│   ├── modelo/        # Trained XGBoost ML model
-│   ├── app.py         # Lightweight ML API
-│   └── app_swagger.py # Enterprise Swagger API
+├── backend/              # ML API Services (Port 5002/5004)
+│   ├── modelo/           # Trained XGBoost ML model
+│   │   └── modelo.joblib
+│   ├── app.py            # Lightweight ML API
+│   ├── app_swagger.py    # Enterprise Swagger API
+│   ├── vehiculos.json    # Vehicle data storage
+│   └── Dockerfile       # Backend containerization
 │
-├── scripts/           # Development & utility scripts
-│   ├── start-local.sh # Python development startup
+├── tests/                # Integration & E2E tests
+│   ├── test_backend.py   # Backend API testing
+│   ├── test_integration.py # End-to-end testing
+│   └── README.md         # Testing documentation
+│
+├── scripts/              # Development & utility scripts
+│   ├── start-local.sh   # Python development startup
 │   ├── docker-status.sh # Docker health checks
-│   └── dev-status.sh   # Service status checker
+│   └── dev-status.sh    # Service status checker
 │
-├── config/            # Configuration files
+├── config/               # Configuration files
 │   ├── docker-compose.dev.yml # Docker development
-│   ├── mkdocs.yml      # Documentation config
+│   ├── mkdocs.yml        # Documentation config
 │   ├── .pre-commit-config.yaml # Code quality
-│   └── .dockerignore   # Docker ignore rules
+│   └── .dockerignore     # Docker ignore rules
 │
-└── docs/              # Project documentation
-    ├── development/    # Development documentation
-    └── backend/       # API documentation
+├── docs/                 # Project documentation
+│   ├── api/              # API documentation
+│   │   └── endpoints.md
+│   ├── architecture/     # Architecture documentation
+│   │   └── components.md
+│   ├── assets/           # Documentation assets
+│   │   ├── css/, images/, js/
+│   ├── backend/          # Backend documentation
+│   │   └── readme_swagger.md
+│   ├── development/      # Development documentation
+│   │   ├── CHANGELOG.md
+│   │   └── TEST_RESULTS.md
+│   └── index.md          # Main documentation
+│
+├── .github/              # GitHub workflows & templates
+│   ├── workflows/        # CI/CD pipelines
+│   │   ├── ci-cd.yml
+│   │   └── docs.yml
+│   └── ISSUE_TEMPLATE/   # Issue templates
+│
+├── pyproject.toml        # Modern Python configuration (TOML)
+├── Makefile             # Development commands
+└── README.MD            # Project documentation
 ```
 
 ## Quick Start Guide
@@ -50,8 +93,8 @@
 
 ```bash
 # Clone repository and navigate to project
-git clone <repository-url>
-cd p1.1
+git clone hhttps://github.com/andreaendigital/CarPricePredictor-Demo.git
+cd CarPricePredictor-Demo
 
 # Complete environment setup (one-time)
 make setup
@@ -329,23 +372,6 @@ flowchart TD
 ```
 
 
-
-### Command Quick Reference
-
-| Command            | Flow                             | Result                   |
-| ------------------ | -------------------------------- | ------------------------ |
-| `make setup`       | Validate → Install → Ready       | Complete dev environment |
-| `make dev`         | Choose → Launch → Services       | Interactive launcher     |
-| `make dev-python`  | Check → Start → Hot reload       | Local Python services    |
-| `make dev-docker`  | Check → Build → Health           | Containerized services   |
-| `make test`        | Backend → Frontend → Integration | Quality validation       |
-| `make docs`        | Install → Serve → Live edit      | Documentation server     |
-| `make docs-build`  | Check → Build → Static           | Production docs          |
-| `make docs-deploy` | Confirm → Deploy → Live          | GitHub Pages             |
-| `make clean`       | Python → Tests → Docker          | Fresh environment        |
-
-
-
 ```mermaid
 graph LR
     A["🆕 New Developer"] --> B["make setup"]
@@ -362,6 +388,23 @@ graph LR
     style C fill:#f3e5f5
     style E fill:#fff3e0
 ```
+
+
+### Command Quick Reference
+
+| Command            | Flow                             | Result                   |
+| ------------------ | -------------------------------- | ------------------------ |
+| `make setup`       | Validate → Install → Ready       | Complete dev environment |
+| `make dev`         | Choose → Launch → Services       | Interactive launcher     |
+| `make dev-python`  | Check → Start → Hot reload       | Local Python services    |
+| `make dev-docker`  | Check → Build → Health           | Containerized services   |
+| `make test`        | Backend → Frontend → Integration | Quality validation       |
+| `make docs`        | Install → Serve → Live edit      | Documentation server     |
+| `make docs-build`  | Check → Build → Static           | Production docs          |
+| `make docs-deploy` | Confirm → Deploy → Live          | GitHub Pages             |
+| `make clean`       | Python → Tests → Docker          | Fresh environment        |
+
+
 
 
 ## Project Achievements
