@@ -22,7 +22,7 @@ api = Api(
 )
 
 
-# Professional Documentation Routes
+# Documentation Routes
 @app.route("/")
 def index():
     """Redirect to documentation menu"""
@@ -31,135 +31,14 @@ def index():
     return redirect("/docs-menu")
 
 
-@app.route("/redoc")
-def redoc():
-    """ReDoc - Professional dark theme documentation"""
-    return """
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>🚗 Car Price Prediction API - Professional Documentation</title>
-        <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <style>
-            body {
-                margin: 0; padding: 0;
-                background: #263238;
-                font-family: 'Inter', sans-serif;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="redoc-container"></div>
-        <script src="https://cdn.jsdelivr.net/npm/redoc@2.0.0/bundles/redoc.standalone.js"></script>
-        <script>
-            Redoc.init('/swagger.json', {
-                theme: {
-                    colors: {
-                        primary: {
-                            main: '#667eea'
-                        }
-                    },
-                    typography: {
-                        fontFamily: 'Inter, sans-serif',
-                        code: {
-                            fontFamily: 'Monaco, Consolas, monospace'
-                        }
-                    }
-                }
-            }, document.getElementById('redoc-container'));
-        </script>
-    </body>
-    </html>
-    """
-
-
-@app.route("/rapidoc")
-def rapidoc():
-    """RapiDoc - Modern interactive documentation"""
-    return """
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Car Price Prediction API - RapiDoc</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <script type="module" src="https://unpkg.com/rapidoc/dist/rapidoc-min.js"></script>
-    </head>
-    <body>
-        <rapi-doc
-            spec-url="/swagger.json"
-            theme="dark"
-            bg-color="#14191f"
-            text-color="#aec2e0"
-            header-color="#197278"
-            primary-color="#f76707"
-            render-style="read"
-            show-header="true"
-            allow-try="true"
-            allow-server-selection="false"
-            show-info="true"
-            show-components="true"
-        >
-        </rapi-doc>
-    </body>
-    </html>
-    """
-
-
-@app.route("/elements")
-def elements():
-    """Stoplight Elements - Professional API documentation"""
-    return """
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Car Price Prediction API - Elements</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://unpkg.com/@stoplight/elements/styles.min.css">
-    </head>
-    <body>
-        <elements-api
-            apiDescriptionUrl="/swagger.json"
-            router="hash"
-            layout="sidebar"
-            hideInternal="true"
-        />
-        <script src="https://unpkg.com/@stoplight/elements/web-components.min.js"></script>
-    </body>
-    </html>
-    """
-
-
-@app.route("/scalar")
-def scalar():
-    """Scalar - Modern beautiful API documentation"""
-    return """
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Car Price Prediction API - Scalar</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-    </head>
-    <body>
-        <script id="api-reference" data-url="/swagger.json"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@scalar/api-reference"></script>
-    </body>
-    </html>
-    """
-
-
 @app.route("/docs-menu")
 def docs_menu():
-    """Documentation menu with all available options"""
+    """Documentation menu with available options"""
     return """
     <!DOCTYPE html>
     <html>
     <head>
-        <title>Car Price Prediction API - Documentation Hub</title>
+        <title>Car Price Prediction API - Documentation</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
@@ -168,13 +47,14 @@ def docs_menu():
                 background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
                 margin: 0; padding: 40px; min-height: 100vh;
             }
-            .container { max-width: 800px; margin: 0 auto; }
+            .container { max-width: 600px; margin: 0 auto; }
             h1 { color: white; text-align: center; margin-bottom: 40px; font-size: 2.5em; }
-            .docs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+            .docs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
             .doc-card {
                 background: white; border-radius: 12px; padding: 30px;
                 box-shadow: 0 8px 32px rgba(0,0,0,0.1);
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
+                text-align: center;
             }
             .doc-card:hover {
                 transform: translateY(-5px);
@@ -201,32 +81,73 @@ def docs_menu():
             <div class="docs-grid">
                 <div class="doc-card">
                     <h3>Swagger UI <span class="badge">Interactive</span></h3>
-                    <p>Interactive API documentation with "Try it out" functionality.
-                    Perfect for testing endpoints directly in the browser.</p>
+                    <p>Interactive API documentation with "Try it out" functionality. Perfect for testing endpoints directly in the browser.</p>
                     <a href="/docs/" class="doc-link">Open Swagger UI</a>
                 </div>
                 <div class="doc-card">
-                    <h3>ReDoc <span class="badge">Beautiful</span></h3>
-                    <p>Professional dark theme documentation with clean HTTP status codes and beautiful typography.</p>
+                    <h3>ReDoc <span class="badge">Professional</span></h3>
+                    <p>Professional documentation with clean design and beautiful typography. Perfect for reading and understanding the API.</p>
                     <a href="/redoc" class="doc-link">Open ReDoc</a>
-                </div>
-                <div class="doc-card">
-                    <h3>RapiDoc <span class="badge">Modern</span></h3>
-                    <p>Modern interactive documentation with customizable themes and advanced features.</p>
-                    <a href="/rapidoc" class="doc-link">Open RapiDoc</a>
-                </div>
-                <div class="doc-card">
-                    <h3>Elements <span class="badge">Professional</span></h3>
-                    <p>Stoplight Elements provides enterprise-grade API documentation with sidebar navigation.</p>
-                    <a href="/elements" class="doc-link">Open Elements</a>
-                </div>
-                <div class="doc-card">
-                    <h3>Scalar <span class="badge">Elegant</span></h3>
-                    <p>Modern, elegant API documentation with beautiful design and smooth interactions.</p>
-                    <a href="/scalar" class="doc-link">Open Scalar</a>
                 </div>
             </div>
         </div>
+    </body>
+    </html>
+    """
+
+
+@app.route("/redoc")
+def redoc():
+    """ReDoc - Professional documentation"""
+    return """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>🚗 Car Price Prediction API - Documentation</title>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+              rel="stylesheet">
+        <style>
+            body { margin: 0; font-family: 'Inter', -apple-system, sans-serif; }
+            .redoc-wrap {
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="redoc-container"></div>
+        <script src="https://cdn.jsdelivr.net/npm/redoc@2.0.0/bundles/redoc.standalone.js"></script>
+        <script>
+            Redoc.init('/swagger.json', {
+                scrollYOffset: 60,
+                theme: {
+                    colors: {
+                        primary: { main: '#2563eb' },
+                        success: { main: '#10b981' },
+                        warning: { main: '#f59e0b' },
+                        error: { main: '#ef4444' },
+                        text: { primary: '#1f2937' }
+                    },
+                    typography: {
+                        fontSize: '14px',
+                        lineHeight: '1.6',
+                        fontFamily: 'Inter, -apple-system, sans-serif',
+                        headings: { 
+                            fontFamily: 'Inter, -apple-system, sans-serif', 
+                            fontWeight: '600' 
+                        },
+                        code: { 
+                            fontSize: '13px', 
+                            fontFamily: 'Monaco, Consolas, monospace' 
+                        }
+                    },
+                    sidebar: { width: '280px', backgroundColor: '#f8fafc' },
+                    rightPanel: { backgroundColor: '#1e293b', width: '40%' }
+                }
+            }, document.getElementById('redoc-container'));
+        </script>
     </body>
     </html>
     """
