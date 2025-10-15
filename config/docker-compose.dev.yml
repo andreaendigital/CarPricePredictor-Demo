@@ -1,8 +1,12 @@
+name: carprice-predictor
+
 services:
   backend:
     build:
       context: ..
       dockerfile: backend/Dockerfile
+    image: carprice-ml-backend:dev
+    container_name: carprice-predictor-backend
     ports:
       - "5002:5002"
     volumes:
@@ -22,6 +26,8 @@ services:
     build:
       context: ..
       dockerfile: backend/Dockerfile
+    image: carprice-api-docs:dev
+    container_name: carprice-predictor-docs
     ports:
       - "5004:5004"
     volumes:
@@ -41,6 +47,8 @@ services:
     build:
       context: ..
       dockerfile: frontend/Dockerfile
+    image: carprice-web-frontend:dev
+    container_name: carprice-predictor-frontend
     ports:
       - "3000:3000"
     volumes:

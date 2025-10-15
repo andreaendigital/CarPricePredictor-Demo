@@ -88,7 +88,7 @@ test:
 	@echo "📊 Backend Tests:"
 	@cd backend && python3 -m pytest ../tests/test_backend.py -v --cov=. --cov-report=term-missing
 	@echo "\n🎨 Frontend Tests:"
-	@cd frontend && python3 -m pytest tests/ -v --cov=. --cov-report=term-missing
+	@cd frontend && python3 -m pytest ../tests/test_frontend.py -v --cov=. --cov-report=term-missing
 	@echo "\n🔗 Integration Tests:"
 	@python3 -m pytest tests/test_integration.py -v
 	@echo "\n✅ All tests completed!"
@@ -141,9 +141,12 @@ clean:
 	@rm -rf .pytest_cache/ .coverage htmlcov/ 2>/dev/null || true
 	@echo "🗑️  Removing documentation build..."
 	@rm -rf site/ 2>/dev/null || true
-	@echo "🗑️  Removing project Docker containers..."
-	@docker-compose -f config/docker-compose.dev.yml down 2>/dev/null || true
-	@docker rmi p11-backend p11-frontend p11-docs carprice-backend 2>/dev/null || true
+	@echo "🗑️  Stopping and removing Docker containers..."
+	@docker-compose -f config/docker-compose.dev.yml down --volumes --remove-orphans 2>/dev/null || true
+	@echo "🗑️  Removing project Docker images..."
+	@docker rmi carprice-ml-backend:dev carprice-web-frontend:dev carprice-api-docs:dev 2>/dev/null || true
+	@echo "🗑️  Removing dangling Docker images..."
+	@docker image prune -f 2>/dev/null || true
 	@echo "✅ Cleanup completed!"
 
 pre-commit:

@@ -228,17 +228,15 @@ sequenceDiagram
             <p>Comprehensive API documentation with 5 professional formats: Swagger UI, ReDoc, RapiDoc, Elements, and Scalar. Interactive testing capabilities with enterprise-grade styling.</p>
             <ul>
                 <li>📚 <strong>Port:</strong> 5004</li>
-                <li>🔗 <strong>Access Point:</strong> http://localhost:5004/docs-menu</li>
+                <li>🔗 <strong>Swagger UI:</strong> http://localhost:5004/docs/</li>
+                <li>📚 <strong>ReDoc:</strong> http://localhost:5004/redoc</li>
                 <li>🧪 <strong>Testing:</strong> Interactive API testing</li>
             </ul>
 
 
             **Available Documentation Formats:**
             - **Swagger UI** (`/docs/`) - Interactive API testing
-            - **ReDoc** (`/redoc`) - Professional dark theme documentation
-            - **RapiDoc** (`/rapidoc`) - Modern interactive documentation
-            - **Elements** (`/elements`) - Enterprise-grade documentation
-            - **Scalar** (`/scalar`) - Elegant modern documentation
+            - **ReDoc** (`/redoc`) - Professional documentation
         </div>
     </div>
 

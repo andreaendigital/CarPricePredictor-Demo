@@ -1,19 +1,13 @@
 # 🚗 Car Price Prediction API - Professional Documentation
 
-## 📋 Documentation Hub - Main Access Point
+## 📋 API Documentation
 
-**🎯 Primary Entry Point:** [Documentation Menu](http://localhost:5004/docs-menu)
-
-Access our comprehensive API documentation through multiple professional interfaces:
+Access our API documentation through two streamlined interfaces:
 
 | Documentation Type | URL | Description |
 |-------------------|-----|-------------|
-| **📋 Documentation Hub** | `/docs-menu` | **Main menu with all documentation options** |
 | **🔧 Swagger UI** | `/docs/` | Interactive API testing interface |
-| **🎨 ReDoc** | `/redoc` | Professional dark theme documentation |
-| **⚡ RapiDoc** | `/rapidoc` | Modern interactive documentation |
-| **💼 Elements** | `/elements` | Enterprise-grade Stoplight documentation |
-| **✨ Scalar** | `/scalar` | Elegant modern API documentation |
+| **🎨 ReDoc** | `/redoc` | Professional documentation with dark theme |
 
 ## 🚀 Quick Start
 
@@ -29,7 +23,8 @@ python app_swagger.py
 
 ### 3. Access Documentation
 ```
-http://localhost:5004/docs-menu
+Swagger UI: http://localhost:5004/docs/
+ReDoc:      http://localhost:5004/redoc
 ```
 
 ## 📊 API Endpoints Overview
@@ -69,16 +64,14 @@ http://localhost:5004/docs-menu
 ## 🎨 Documentation Features
 
 ### Professional Styling
-- **Dark Theme Support** (ReDoc, RapiDoc)
-- **Interactive Testing** (Swagger UI, RapiDoc)
-- **Enterprise Design** (Elements, Scalar)
-- **Responsive Layout** (All formats)
+- **Dark Theme Support** (ReDoc)
+- **Interactive Testing** (Swagger UI)
+- **Responsive Layout** (Both formats)
 
 ### Advanced Features
-- **Try It Out** functionality
-- **Code examples** in multiple languages
-- **Professional typography**
-- **Comprehensive API schemas**
+- **Try It Out** functionality (Swagger UI)
+- **Professional typography** (ReDoc)
+- **Comprehensive API schemas** (Both formats)
 
 ## 🔧 Development
 
@@ -116,4 +109,6 @@ curl -X POST http://localhost:5004/api/vehicles/publicar_vehiculo \
 
 ---
 
-**🎯 Start Here:** Visit [Documentation Menu](http://localhost:5004/docs-menu) to explore all available documentation formats and choose your preferred interface.
+**🎯 Access Points:**
+- **Interactive Testing:** [Swagger UI](http://localhost:5004/docs/)
+- **Professional Docs:** [ReDoc](http://localhost:5004/redoc)

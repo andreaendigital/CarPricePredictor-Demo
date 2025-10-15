@@ -4,75 +4,312 @@
 
 {% block content %}
 <div class="container">
+    <!-- Application Header -->
     <div class="header">
-        <div class="car-3d">
-            <div class="car-body">
-                <div class="car-top"></div>
-                <div class="car-windshield"></div>
-                <div class="car-side"></div>
-                <div class="car-wheel wheel-front"></div>
-                <div class="car-wheel wheel-rear"></div>
-            </div>
-        </div>
-        <h1>Car Price Predictor</h1>
+        <h1>🚗 Car Price Predictor</h1>
+        <p>Get accurate vehicle valuations using advanced ML algorithms</p>
     </div>
 
-    <div class="section">
-        <h2>Car Details</h2>
-        <form id="carForm">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="model_year">Model Year:</label>
-                    <input type="number" id="model_year" name="model_year" min="1990" max="2024" value="2020" required>
-                </div>
+    <!-- Tab Navigation System -->
+    <div class="tab-container">
+        <!-- Hidden Radio Buttons for Tab State -->
+        <input type="radio" id="tab1" name="tabs"
+               {{ 'checked' if not active_tab or active_tab == 'tab1' else '' }}>
+        <input type="radio" id="tab2" name="tabs"
+               {{ 'checked' if active_tab == 'tab2' else '' }}>
+        <input type="radio" id="tab3" name="tabs"
+               {{ 'checked' if active_tab == 'tab3' else '' }}>
 
-                <div class="form-group">
-                    <label for="age">Age (years):</label>
-                    <input type="number" id="age" name="age" min="0" max="50" value="4" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="fuel_type">Fuel Type:</label>
-                    <select id="fuel_type" name="fuel_type" required>
-                        <option value="Gasoline">Gasoline</option>
-                        <option value="Diesel">Diesel</option>
-                        <option value="Hybrid">Hybrid</option>
-                        <option value="Electric">Electric</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="transmission">Transmission:</label>
-                    <select id="transmission" name="transmission" required>
-                        <option value="Automatic">Automatic</option>
-                        <option value="Manual">Manual</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="clean_title">Clean Title:</label>
-                    <select id="clean_title" name="clean_title" required>
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="button-row">
-                <button type="button" onclick="getCurrentValue()">Get Current Value</button>
-                <button type="button" onclick="getPredictions()">Get Future Price (12 months)</button>
-                <button type="button" onclick="publishVehicle()" style="background: linear-gradient(135deg, #28a745, #20c997);">Publish Vehicle</button>
-            </div>
-        </form>
-
-        <div id="requestData"></div>
-
-        <div class="results-row">
-            <div id="currentValue"></div>
-            <div id="predictions"></div>
+        <!-- Tab Labels -->
+        <div class="tab-labels">
+            <label for="tab1" class="tab-label">📊 Current Price</label>
+            <label for="tab2" class="tab-label">📈 Future Price</label>
+            <label for="tab3" class="tab-label">🏪 Publish Vehicle</label>
         </div>
 
-        <div id="publishResult" style="margin-top: 20px;"></div>
+        <!-- Tab 1: Current Price Prediction -->
+        <div id="content1" class="tab-content">
+            <div class="form-container">
+                <h2>Current Price Prediction</h2>
+                <form method="POST" action="/predict">
+                    <!-- Vehicle Basic Information -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="model_year">Model Year:</label>
+                            <input type="number"
+                                   id="model_year"
+                                   name="model_year"
+                                   min="1990"
+                                   max="2024"
+                                   value="{{ car_data.model_year if car_data else 2020 }}"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age (years):</label>
+                            <input type="number"
+                                   id="age"
+                                   name="age"
+                                   min="0"
+                                   max="50"
+                                   value="{{ car_data.age if car_data else 4 }}"
+                                   required>
+                        </div>
+                    </div>
+
+                    <!-- Vehicle Specifications -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fuel_type">Fuel Type:</label>
+                            <select id="fuel_type" name="fuel_type" required>
+                                <option value="Gasoline"
+                                        {{ 'selected' if car_data and car_data.fuel_type == 'Gasoline' else '' }}>Gasoline</option>
+                                <option value="Diesel"
+                                        {{ 'selected' if car_data and car_data.fuel_type == 'Diesel' else '' }}>Diesel</option>
+                                <option value="Hybrid"
+                                        {{ 'selected' if car_data and car_data.fuel_type == 'Hybrid' else '' }}>Hybrid</option>
+                                <option value="Electric"
+                                        {{ 'selected' if car_data and car_data.fuel_type == 'Electric' else '' }}>Electric</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="transmission">Transmission:</label>
+                            <select id="transmission" name="transmission" required>
+                                <option value="Automatic"
+                                        {{ 'selected' if car_data and car_data.transmission == 'Automatic' else '' }}>Automatic</option>
+                                <option value="Manual"
+                                        {{ 'selected' if car_data and car_data.transmission == 'Manual' else '' }}>Manual</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Vehicle Condition -->
+                    <div class="form-group">
+                        <label for="clean_title">Clean Title:</label>
+                        <select id="clean_title" name="clean_title" required>
+                            <option value="1"
+                                    {{ 'selected' if car_data and car_data.clean_title == 1 else '' }}>Yes</option>
+                            <option value="0"
+                                    {{ 'selected' if car_data and car_data.clean_title == 0 else '' }}>No</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-predict">Get Current Price</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tab 2: Future Price Prediction -->
+        <div id="content2" class="tab-content">
+            <div class="form-container">
+                <h2>Future Price Prediction (12 months)</h2>
+                <form method="POST" action="/predict_future">
+                    <!-- Vehicle Basic Information -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="future_model_year">Model Year:</label>
+                            <input type="number"
+                                   id="future_model_year"
+                                   name="model_year"
+                                   min="1990"
+                                   max="2024"
+                                   value="{{ car_data.model_year if car_data else 2020 }}"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label for="future_age">Age (years):</label>
+                            <input type="number"
+                                   id="future_age"
+                                   name="age"
+                                   min="0"
+                                   max="50"
+                                   value="{{ car_data.age if car_data else 4 }}"
+                                   required>
+                        </div>
+                    </div>
+
+                    <!-- Vehicle Specifications -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="future_fuel_type">Fuel Type:</label>
+                            <select id="future_fuel_type" name="fuel_type" required>
+                                <option value="Gasoline">Gasoline</option>
+                                <option value="Diesel">Diesel</option>
+                                <option value="Hybrid">Hybrid</option>
+                                <option value="Electric">Electric</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="future_transmission">Transmission:</label>
+                            <select id="future_transmission" name="transmission" required>
+                                <option value="Automatic">Automatic</option>
+                                <option value="Manual">Manual</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Vehicle Condition -->
+                    <div class="form-group">
+                        <label for="future_clean_title">Clean Title:</label>
+                        <select id="future_clean_title" name="clean_title" required>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-predict">Get Future Price</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Tab 3: Vehicle Publishing -->
+        <div id="content3" class="tab-content">
+            <div class="form-container">
+                <h2>Publish Vehicle for Sale</h2>
+                <form method="POST" action="/publish">
+                    <!-- Vehicle Basic Information -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="publish_model_year">Model Year:</label>
+                            <input type="number"
+                                   id="publish_model_year"
+                                   name="model_year"
+                                   min="1990"
+                                   max="2024"
+                                   value="{{ vehicle_data.model_year if vehicle_data else 2020 }}"
+                                   required>
+                        </div>
+                        <div class="form-group">
+                            <label for="publish_age">Age (years):</label>
+                            <input type="number"
+                                   id="publish_age"
+                                   name="age"
+                                   min="0"
+                                   max="50"
+                                   value="{{ vehicle_data.age if vehicle_data else 4 }}"
+                                   required>
+                        </div>
+                    </div>
+
+                    <!-- Vehicle Specifications -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="publish_fuel_type">Fuel Type:</label>
+                            <select id="publish_fuel_type" name="fuel_type" required>
+                                <option value="Gasoline">Gasoline</option>
+                                <option value="Diesel">Diesel</option>
+                                <option value="Hybrid">Hybrid</option>
+                                <option value="Electric">Electric</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="publish_transmission">Transmission:</label>
+                            <select id="publish_transmission" name="transmission" required>
+                                <option value="Automatic">Automatic</option>
+                                <option value="Manual">Manual</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Vehicle Condition and Pricing -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="publish_clean_title">Clean Title:</label>
+                            <select id="publish_clean_title" name="clean_title" required>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="precio">Listing Price ($):</label>
+                            <input type="number"
+                                   id="precio"
+                                   name="precio"
+                                   min="1000"
+                                   step="100"
+                                   value="{{ vehicle_data.precio if vehicle_data else 25000 }}"
+                                   required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-predict">Publish Vehicle</button>
+                </form>
+            </div>
+        </div>
     </div>
+
+    <!-- Results Display Section -->
+
+    <!-- Current Price Prediction Results -->
+    {% if result %}
+    <div class="result-container success">
+        <h3>🎯 Current Price Prediction</h3>
+        <div class="result-value">${{ "%.2f"|format(result.precio_actual_estimado) }}</div>
+        <div class="result-details">
+            <p><strong>Vehicle:</strong>
+               {{ result.datos.model_year }} {{ result.datos.fuel_type }} {{ result.datos.transmission }}</p>
+            <p><strong>Age:</strong> {{ result.datos.age }} years</p>
+            <p><strong>Clean Title:</strong>
+               {{ "Yes" if result.datos.clean_title == 1 else "No" }}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Future Price Prediction Results -->
+    {% if future_result %}
+    <div class="result-container success">
+        <h3>📈 Future Price Prediction</h3>
+        <div class="result-comparison">
+            <div class="price-item">
+                <span class="price-label">Current Price:</span>
+                <span class="price-value">${{ "%.2f"|format(future_result.precio_actual_estimado) }}</span>
+            </div>
+            <div class="price-item">
+                <span class="price-label">Future Price ({{ future_result.meses }} months):</span>
+                <span class="price-value">${{ "%.2f"|format(future_result.precio_estimado_futuro) }}</span>
+            </div>
+        </div>
+        <div class="result-details">
+            <p><strong>Depreciation:</strong>
+               ${{ "%.2f"|format(future_result.precio_actual_estimado - future_result.precio_estimado_futuro) }}
+               over {{ future_result.meses }} months</p>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Vehicle Publishing Results -->
+    {% if publish_result %}
+    <div class="result-container success">
+        <h3>✅ Vehicle Published Successfully!</h3>
+        <div class="result-details">
+            <p><strong>Vehicle ID:</strong> #{{ publish_result.vehiculo_id }}</p>
+            <p><strong>Your Listing Price:</strong>
+               ${{ "%.2f"|format(publish_result.precio_publicado) }}</p>
+            <p><strong>ML Recommended Price:</strong>
+               ${{ "%.2f"|format(publish_result.precio_recomendado_modelo) }}</p>
+            <p><strong>Price Difference:</strong>
+               {% set diff = publish_result.precio_publicado - publish_result.precio_recomendado_modelo %}
+               {% if diff > 0 %}
+                   +${{ "%.2f"|format(diff) }} ({{ "%.1f"|format((diff/publish_result.precio_recomendado_modelo)*100) }}% above recommended)
+               {% elif diff < 0 %}
+                   -${{ "%.2f"|format(-diff) }} ({{ "%.1f"|format((-diff/publish_result.precio_recomendado_modelo)*100) }}% below recommended)
+               {% else %}
+                   Matches recommended price
+               {% endif %}
+            </p>
+            <p><strong>Status:</strong> {{ publish_result.message }}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Error Display -->
+    {% if error %}
+    <div class="result-container error">
+        <h3>⚠️ Error</h3>
+        <p>{{ error }}</p>
+        <p><em>Please check your input and try again. If the problem persists,
+           the backend service may be unavailable.</em></p>
+    </div>
+    {% endif %}
+
 </div>
 {% endblock %}
