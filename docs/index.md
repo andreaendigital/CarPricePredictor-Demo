@@ -76,7 +76,7 @@ Car price prediction web application using machine learning to estimate vehicle 
             <p>High-performance REST API service handling prediction requests with enterprise security. CORS-enabled microservices architecture for seamless integration.</p>
             <ul>
                 <li>🚀 <strong>Port:</strong> 5002</li>
-                <li>🔌 <strong>Endpoints:</strong> /precio_actual, /prediccion_futura</li>
+                <li>🔌 <strong>Endpoints:</strong> /current_value_market, /future_prediction</li>
                 <li>🛡️ <strong>Security:</strong> CORS-enabled, enterprise-grade</li>
                 <li>⚡ <strong>Performance:</strong> Sub-100ms response time</li>
             </ul>
@@ -252,10 +252,10 @@ graph LR
     collected 5 items
 
     ../tests/test_backend.py::test_home_endpoint PASSED                     [ 20%]
-    ../tests/test_backend.py::test_precio_actual_endpoint PASSED            [ 40%]
-    ../tests/test_backend.py::test_precio_actual_missing_params PASSED      [ 60%]
-    ../tests/test_backend.py::test_prediccion_futura_endpoint PASSED        [ 80%]
-    ../tests/test_backend.py::test_publicar_vehiculo_endpoint PASSED        [100%]
+    ../tests/test_backend.py::test_current_value_market_endpoint PASSED            [ 40%]
+    ../tests/test_backend.py::test_current_value_market_missing_params PASSED      [ 60%]
+    ../tests/test_backend.py::test_future_prediction_endpoint PASSED        [ 80%]
+    ../tests/test_backend.py::test_publish_car_endpoint PASSED        [100%]
 
     ---------- coverage: platform darwin, python 3.9.13-final-0 ----------
     Name             Stmts   Miss  Cover   Missing
@@ -363,10 +363,10 @@ graph LR
     collected 5 items
 
     ../tests/test_backend.py::test_home_endpoint [32mPASSED[0m                      [33m[ 20%][0m
-    ../tests/test_backend.py::test_precio_actual_endpoint [32mPASSED[0m             [33m[ 40%][0m
-    ../tests/test_backend.py::test_precio_actual_missing_params [32mPASSED[0m       [33m[ 60%][0m
-    ../tests/test_backend.py::test_prediccion_futura_endpoint [32mPASSED[0m         [33m[ 80%][0m
-    ../tests/test_backend.py::test_publicar_vehiculo_endpoint [32mPASSED[0m         [33m[100%][0m
+    ../tests/test_backend.py::test_current_value_market_endpoint [32mPASSED[0m             [33m[ 40%][0m
+    ../tests/test_backend.py::test_current_value_market_missing_params [32mPASSED[0m       [33m[ 60%][0m
+    ../tests/test_backend.py::test_future_prediction_endpoint [32mPASSED[0m         [33m[ 80%][0m
+    ../tests/test_backend.py::test_publish_car_endpoint [32mPASSED[0m         [33m[100%][0m
 
     =============================== warnings summary ===============================
     XGBoost model compatibility warnings...

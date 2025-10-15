@@ -243,7 +243,7 @@
     {% if result %}
     <div class="result-container success">
         <h3>🎯 Current Price Prediction</h3>
-        <div class="result-value">${{ "%.2f"|format(result.precio_actual_estimado) }}</div>
+        <div class="result-value">${{ "%.2f"|format(result.current_value_market_estimado) }}</div>
         <div class="result-details">
             <p><strong>Vehicle:</strong>
                {{ result.datos.model_year }} {{ result.datos.fuel_type }} {{ result.datos.transmission }}</p>
@@ -261,7 +261,7 @@
         <div class="result-comparison">
             <div class="price-item">
                 <span class="price-label">Current Price:</span>
-                <span class="price-value">${{ "%.2f"|format(future_result.precio_actual_estimado) }}</span>
+                <span class="price-value">${{ "%.2f"|format(future_result.current_value_market_estimado) }}</span>
             </div>
             <div class="price-item">
                 <span class="price-label">Future Price ({{ future_result.meses }} months):</span>
@@ -270,7 +270,7 @@
         </div>
         <div class="result-details">
             <p><strong>Depreciation:</strong>
-               ${{ "%.2f"|format(future_result.precio_actual_estimado - future_result.precio_estimado_futuro) }}
+               ${{ "%.2f"|format(future_result.current_value_market_estimado - future_result.precio_estimado_futuro) }}
                over {{ future_result.meses }} months</p>
         </div>
     </div>

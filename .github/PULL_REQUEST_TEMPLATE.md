@@ -73,9 +73,9 @@ python frontend/app.py # Port 3000
 ## 🌐 Application Testing
 
 ### Backend Testing (Port 5002)
-- [ ] `/precio_actual` endpoint working
-- [ ] `/prediccion_futura` endpoint working
-- [ ] `/publicar_vehiculo` endpoint working
+- [ ] `/current_value_market` endpoint working
+- [ ] `/future_prediction` endpoint working
+- [ ] `/publish_car` endpoint working
 - [ ] Error responses proper
 - [ ] CORS headers present
 
