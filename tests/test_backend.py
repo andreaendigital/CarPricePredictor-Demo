@@ -1,14 +1,25 @@
 import pytest
 import sys
 import os
+import tempfile
+import shutil
 
 # Add backend to path and set up environment
 backend_dir = os.path.join(os.path.dirname(__file__), "..", "backend")
 sys.path.append(backend_dir)
 
+# Create temporary file for testing to avoid modifying the real vehiculos.json
+temp_db = tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False)
+original_db = os.path.join(backend_dir, "vehiculos.json")
+if os.path.exists(original_db):
+    shutil.copy2(original_db, temp_db.name)
+else:
+    temp_db.write("[]")
+temp_db.close()
+
 # Set environment variables before importing app
 os.environ["MODEL_PATH"] = os.path.join(backend_dir, "modelo", "modelo.joblib")
-os.environ["DB_PATH"] = os.path.join(backend_dir, "vehiculos.json")
+os.environ["DB_PATH"] = temp_db.name
 
 # Change to backend directory for relative paths
 original_cwd = os.getcwd()
@@ -81,3 +92,10 @@ def test_publicar_vehiculo_endpoint(client):
     data = response.get_json()
     assert "vehiculo_id" in data
     assert "precio_recomendado_modelo" in data
+
+
+def teardown_module():
+    """Clean up temporary file after tests"""
+    temp_file = os.environ.get("DB_PATH")
+    if temp_file and os.path.exists(temp_file):
+        os.unlink(temp_file)

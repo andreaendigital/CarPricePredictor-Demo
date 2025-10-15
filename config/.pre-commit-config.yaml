@@ -21,3 +21,19 @@ repos:
       - id: flake8
         args: [--max-line-length=127, --max-complexity=10]
         files: ^(backend|frontend|tests)/.*\.py$
+
+  - repo: local
+    hooks:
+      - id: pytest-backend
+        name: Backend Tests
+        entry: bash -c 'PYTHONPATH=backend python3 -m pytest tests/test_backend.py -v --tb=short --disable-warnings --no-cov'
+        language: system
+        files: ^(backend|tests)/.*\.py$
+        pass_filenames: false
+
+      - id: pytest-frontend
+        name: Frontend Tests
+        entry: python3 -m pytest tests/test_frontend.py -v --tb=short
+        language: system
+        files: ^(frontend|tests)/.*\.py$
+        pass_filenames: false
