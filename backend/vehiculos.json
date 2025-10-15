@@ -769,5 +769,14 @@
         "precio": 25000000,
         "transmission": "Automatic",
         "id": 81
+    },
+    {
+        "age": 4,
+        "clean_title": 1,
+        "fuel_type": "Gasoline",
+        "model_year": 2020,
+        "precio": 25000000,
+        "transmission": "Automatic",
+        "id": 82
     }
 ]

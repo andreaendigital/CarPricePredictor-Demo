@@ -134,13 +134,13 @@ def redoc():
                         fontSize: '14px',
                         lineHeight: '1.6',
                         fontFamily: 'Inter, -apple-system, sans-serif',
-                        headings: { 
-                            fontFamily: 'Inter, -apple-system, sans-serif', 
-                            fontWeight: '600' 
+                        headings: {
+                            fontFamily: 'Inter, -apple-system, sans-serif',
+                            fontWeight: '600'
                         },
-                        code: { 
-                            fontSize: '13px', 
-                            fontFamily: 'Monaco, Consolas, monospace' 
+                        code: {
+                            fontSize: '13px',
+                            fontFamily: 'Monaco, Consolas, monospace'
                         }
                     },
                     sidebar: { width: '280px', backgroundColor: '#f8fafc' },
