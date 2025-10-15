@@ -20,6 +20,7 @@ if [ "$BACKEND_STATUS" -eq 1 ] && [ "$DOCS_STATUS" -eq 1 ] && [ "$FRONTEND_STATU
     echo "   • 🚀 Backend API: http://localhost:5002"
     echo "   • 📚 API Documentation: http://localhost:5004/docs-menu"
     echo "   • 📖 Swagger UI: http://localhost:5004/docs/"
+    echo "   • 📕 ReDoc: http://localhost:5004/redoc"
     echo ""
     echo "🛠️  Development Commands:"
     echo "   • docker-compose -f config/docker-compose.dev.yml logs -f  - View logs"

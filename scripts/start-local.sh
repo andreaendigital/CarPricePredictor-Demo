@@ -28,25 +28,12 @@ cleanup() {
 # Set trap to cleanup on Ctrl+C
 trap cleanup SIGINT
 
-# Install Backend Requirements
-echo "📦 Installing Backend Requirements..."
-cd backend
-if [ -f "requirements.txt" ]; then
-    pip install -r requirements.txt
-else
-    echo "⚠️  requirements.txt not found in backend/"
-fi
-cd ..
+# Install Dependencies from pyproject.toml
+echo "📦 Installing Backend Dependencies..."
+pip install -e ".[backend]"
 
-# Install Frontend Requirements
-echo "📦 Installing Frontend Requirements..."
-cd frontend
-if [ -f "requirements.txt" ]; then
-    pip install -r requirements.txt
-else
-    pip install flask
-fi
-cd ..
+echo "📦 Installing Frontend Dependencies..."
+pip install -e ".[frontend]"
 
 echo ""
 
@@ -88,6 +75,7 @@ echo "   • 🎨 Web Application: http://localhost:3000"
 echo "   • 🚀 Backend API: http://localhost:5002"
 echo "   • 📚 API Documentation: http://localhost:5004/docs-menu"
 echo "   • 📖 Swagger UI: http://localhost:5004/docs/"
+echo "   • 📕 ReDoc: http://localhost:5004/redoc"
 echo ""
 echo "🛠️  Development Commands:"
 echo "   • make test        - Run full test suite"
