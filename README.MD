@@ -1,53 +1,52 @@
-# 🚗 Car Price Prediction Platform - Enterprise MLOps Solution
+# Car Price Prediction Platform - Enterprise MLOps Solution
 
-## 📋 Project Overview
+## Project Overview
 
-**Professional full-stack machine learning platform** for automotive price prediction and vehicle marketplace management. Built with enterprise-grade architecture, comprehensive API documentation, and modern web technologies.
+**Professional full-stack machine learning platform** for automotive price prediction. Built with enterprise-grade architecture, comprehensive API documentation, and modern web technologies.
 
-### 🎯 Business Value
+### Business Value
 
 - **Real-time ML Predictions** - Instant vehicle valuations using XGBoost algorithms
 - **Future Price Forecasting** - AI-powered depreciation modeling for investment decisions
-- **Marketplace Integration** - Complete vehicle listing and price recommendation system
 - **Professional Documentation** - Multiple API documentation formats for different stakeholders
 - **Modern Configuration** - TOML (Tom's Obvious Minimal Language) unified project setup
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 ```
 📁 Car Price Prediction Platform
-├── 🎨 frontend/          # Modern Web Interface (Port 3000)
-│   ├── 🖥️  templates/     # Professional HTML5 templates
-│   ├── 🎨 static/        # CSS3 animations & JavaScript
-│   ├── 🔧 api/           # Flask blueprints & routing
-│   ├── ⚙️  config/       # Application configuration
-│   ├── 🧠 logic/         # Business logic layer
-│   └── 🧪 tests/         # Unit & integration tests
+├── frontend/          # Modern Web Interface (Port 3000)
+│   ├── templates/     # Professional HTML5 templates
+│   ├── static/        # CSS3 animations & JavaScript
+│   ├── api/           # Flask blueprints & routing
+│   ├── config/       # Application configuration
+│   ├── logic/         # Business logic layer
+│   └── tests/         # Unit & integration tests
 │
-├── 🚀 backend/           # ML API Services (Port 5002/5004)
-│   ├── 🤖 modelo/        # Trained XGBoost ML model
-│   ├── 📊 app.py         # Lightweight ML API
-│   └── 📚 app_swagger.py # Enterprise Swagger API
+├── backend/           # ML API Services (Port 5002/5004)
+│   ├── modelo/        # Trained XGBoost ML model
+│   ├── app.py         # Lightweight ML API
+│   └── app_swagger.py # Enterprise Swagger API
 │
-├── 📁 scripts/           # Development & utility scripts
-│   ├── 🐍 start-local.sh # Python development startup
-│   ├── 🐳 docker-status.sh # Docker health checks
-│   └── 📊 dev-status.sh   # Service status checker
+├── scripts/           # Development & utility scripts
+│   ├── start-local.sh # Python development startup
+│   ├── docker-status.sh # Docker health checks
+│   └── dev-status.sh   # Service status checker
 │
-├── 📁 config/            # Configuration files
-│   ├── 🐳 docker-compose.dev.yml # Docker development
-│   ├── 📚 mkdocs.yml      # Documentation config
-│   ├── 🔒 .pre-commit-config.yaml # Code quality
-│   └── 🐳 .dockerignore   # Docker ignore rules
+├── config/            # Configuration files
+│   ├── docker-compose.dev.yml # Docker development
+│   ├── mkdocs.yml      # Documentation config
+│   ├── .pre-commit-config.yaml # Code quality
+│   └── .dockerignore   # Docker ignore rules
 │
-└── 📋 docs/              # Project documentation
-    ├── 📁 development/    # Development documentation
-    └── 📁 backend/       # API documentation
+└── docs/              # Project documentation
+    ├── development/    # Development documentation
+    └── backend/       # API documentation
 ```
 
-## 🚀 Quick Start Guide
+## Quick Start Guide
 
-### 🎯 One-Command Setup
+### One-Command Setup
 
 ```bash
 # Clone repository and navigate to project
@@ -61,7 +60,7 @@ make setup
 make dev
 ```
 
-### 📋 Prerequisites
+### Prerequisites
 
 - **Python 3.9+** (automatically validated)
 - **pip** (automatically validated)
@@ -72,15 +71,15 @@ make dev
 
 After running `make dev`, access:
 
-- **🎨 Web Application**: `http://localhost:3000`
-- **🚀 Backend API**: `http://localhost:5002`
-- **📚 API Documentation**: `http://localhost:5004/docs-menu`
-- **📖 Swagger UI**: `http://localhost:5004/docs/`
-- **📝 Project Documentation**: `make docs` → `http://localhost:8000`
+- **Web Application**: `http://localhost:3000`
+- **Backend API**: `http://localhost:5002`
+- **API Documentation**: `http://localhost:5004/docs-menu`
+- **Swagger UI**: `http://localhost:5004/docs/`
+- **Project Documentation**: `make docs` → `http://localhost:8000`
 
-## 📊 API Endpoints
+## API Endpoints
 
-### 🔍 Price Prediction Services
+### Price Prediction Services
 
 | Endpoint             | Method | Description                 | Parameters                                            |
 | -------------------- | ------ | --------------------------- | ----------------------------------------------------- |
@@ -103,7 +102,7 @@ curl -X POST http://localhost:5002/publicar_vehiculo \
   -d '{"model_year": 2020, "age": 4, "fuel_type": "Gasoline", "transmission": "Automatic", "clean_title": 1, "precio": 25000000}'
 ```
 
-## 🛠️ Technical Stack
+## Technical Stack
 
 ### Backend Technologies
 
@@ -125,52 +124,43 @@ curl -X POST http://localhost:5002/publicar_vehiculo \
 
 - **Swagger UI** - Interactive API testing
 - **ReDoc** - Professional dark theme documentation
-- **RapiDoc** - Modern interactive documentation
-- **Stoplight Elements** - Enterprise-grade documentation
-- **Scalar** - Elegant modern API documentation
 
-## 🎨 Professional Features
+## Professional Features
 
-### 🖥️ Frontend Capabilities
+### Frontend Capabilities
 
-- **Responsive Design** - Mobile-first approach
 - **Professional Animations** - CSS3 transitions and effects
 - **Real-time Validation** - Form validation and error handling
 - **Modern UI Components** - Cards, gradients, and professional typography
-- **Cross-browser Compatibility** - Tested across major browsers
 
-### 🚀 Backend Capabilities
+### Backend Capabilities
 
 - **ML Model Integration** - Production-ready XGBoost model
 - **Professional API Design** - RESTful architecture with proper HTTP status codes
-- **Comprehensive Documentation** - Multiple documentation formats
 - **Error Handling** - Robust error handling and validation
 - **CORS Support** - Cross-origin requests enabled
 
-## 📈 Machine Learning Model
+## Machine Learning Model
 
 ### Model Specifications
 
 - **Algorithm**: XGBoost (Extreme Gradient Boosting)
 - **Features**: model_year, age, fuel_type, transmission, clean_title
 - **Output**: Price prediction in local currency
-- **Accuracy**: Production-ready model with depreciation modeling
 
 ### Prediction Types
 
 1. **Current Market Value** - Real-time price estimation
 2. **Future Price Forecasting** - Depreciation-based future value prediction
-3. **Price Recommendations** - Marketplace listing price suggestions
 
-## 🔧 Development Workflow
+## Development Workflow
 
 ### Branch Strategy (SCRUM Methodology)
 
-- **SCRUM-57**: Frontend development and UI/UX
-- **SCRUM-58**: Backend API development
-- **SCRUM-74**: Documentation and project setup
+- **SCRUM-95**: Frontend development and UI/UX
+- **SCRUM-57** **SCRUM-58** : Backend API development
+- **SCRUM-92**: Documentation and project setup
 - **SCRUM-88**: Advanced backend with Swagger integration
-- **SCRUM-89**: Unified full-stack solution (Current)
 
 ### Quality Assurance
 
@@ -181,7 +171,7 @@ curl -X POST http://localhost:5002/publicar_vehiculo \
 - **Documentation** - Live documentation development (`make docs`)
 - **CI/CD Integration** - Same commands locally and in pipeline
 
-## 🧪 Testing Strategy
+## Testing Strategy
 
 ### Test Suite Overview
 
@@ -198,8 +188,7 @@ Our comprehensive testing strategy ensures code quality and reliability across a
 
 - **API Endpoint Tests**: `frontend/tests/test_api_endpoints.py`
   - Tests POST `/valoractual` and `/predictions` endpoints
-  - Validates JSON response structure and data types
-  - Ensures proper error handling
+  - Validates JSON structure and error handling
 - **Logic Unit Tests**: `frontend/tests/test_logic_unit.py`
   - Tests business logic functions in isolation
   - Validates price calculation algorithms
@@ -225,7 +214,7 @@ Our comprehensive testing strategy ensures code quality and reliability across a
 - **pytest-cov**: Test coverage reporting
 - **Coverage Reports**: XML format for CI/CD integration
 
-## 🚀 CI/CD Pipeline
+## CI/CD Pipeline
 
 ### GitHub Actions Workflow
 
@@ -233,7 +222,7 @@ Our automated pipeline ensures code quality and enables continuous deployment:
 
 #### **Pipeline Stages**
 
-**1. 🧪 Test & Quality Stage**
+**1. Test & Quality Stage**
 
 - **Triggers**: Push to `main`, `develop`, `feature/*`, `SCRUM-*` branches
 - **Matrix Testing**: Python 3.9 and 3.11
@@ -250,7 +239,7 @@ Our automated pipeline ensures code quality and enables continuous deployment:
   - Frontend unit tests with coverage
   - Integration tests with service health checks
 
-**2. 🐳 Build Images Stage** _(Active)_
+**2. Build Images Stage** _(Active)_
 
 - **Purpose**: Docker containerization for deployment
 - **Images**: Backend and Frontend containers
@@ -258,14 +247,14 @@ Our automated pipeline ensures code quality and enables continuous deployment:
 - **Triggers**: Only on push events (not pull requests)
 - **Tags**: Uses commit SHA for versioning
 
-**3. 🚀 Deploy to Development**
+**3. Deploy to Development**
 
 - **Triggers**: `develop` branch or `SCRUM-*` branches
 - **Environment**: Development staging
 - **Purpose**: Testing new features before production
 - **Dependencies**: Requires successful test and build stages
 
-**4. 🌟 Deploy to Production**
+**4. Deploy to Production**
 
 - **Triggers**: Only `main` branch
 - **Environment**: Production
@@ -275,7 +264,7 @@ Our automated pipeline ensures code quality and enables continuous deployment:
 #### **Pipeline Configuration**
 
 ```yaml
-name: 🚗 Car Price Prediction CI/CD
+name: Car Price Prediction CI/CD
 triggers: [main, develop, feature/*, SCRUM-*]
 matrix: [Python 3.9, Python 3.11]
 stages: [Test & Quality → Build → Deploy]
@@ -308,56 +297,7 @@ stages: [Test & Quality → Build → Deploy]
 
 ## 🛠️ Development Workflow
 
-### 📦 Complete Command Reference
-
-| Command           | Purpose           | Description                                        |
-| ----------------- | ----------------- | -------------------------------------------------- |
-| `make setup`      | 🎯 **Start Here** | One-time environment setup                         |
-| `make dev`        | 🚀 Development    | Smart launcher (Python/Docker choice)              |
-| `make test`       | 🧪 Quality        | Full test suite (Backend + Frontend + Integration) |
-| `make docs`       | 📚 Documentation  | Live documentation server                          |
-| `make clean`      | 🧹 Maintenance    | Clean all build artifacts                          |
-| `make pre-commit` | 🔒 Quality        | Run pre-commit on all files                        |
-
-### 🎯 Development Options
-
-#### 🐍 Python Development (Recommended)
-
-```bash
-make dev-python    # Local services, fast startup
-```
-
-- **Fast startup** - Direct Python execution
-- **Hot reload** - Instant code changes
-- **3 services**: Backend (5002), Docs (5004), Frontend (3000)
-- **Best for**: Active development, debugging
-
-#### 🐳 Docker Development (Production-like)
-
-```bash
-make dev-docker    # Containerized services
-```
-
-- **Isolated environment** - Container-based
-- **Health checks** - Service dependency management
-- **Production parity** - Same as deployment
-- **Best for**: Testing, deployment validation
-
-### 🧪 Quality Assurance
-
-```bash
-make test          # Same tests as CI/CD pipeline
-make pre-commit    # Run pre-commit checks on all files
-make clean         # Fresh environment
-```
-
-### 📚 Documentation Development
-
-```bash
-make docs          # Live editing at http://localhost:8000
-make docs-build    # Static site generation
-make docs-deploy   # Deploy to GitHub Pages
-```
+````
 
 ## 📋 Makefile Commands Visual Guide
 
@@ -386,23 +326,7 @@ flowchart TD
     style F fill:#fff3e0
     style H fill:#e8f5e8
     style M fill:#ffebee
-```
-
-### 🎯 Command Quick Reference
-
-| Command            | Flow                                      | Result                   |
-| ------------------ | ----------------------------------------- | ------------------------ |
-| `make setup`       | 🔍 Validate → 📦 Install → ✅ Ready       | Complete dev environment |
-| `make dev`         | 🎯 Choose → 🚀 Launch → 🌐 Services       | Interactive launcher     |
-| `make dev-python`  | ✅ Check → 🐍 Start → 🔥 Hot reload       | Local Python services    |
-| `make dev-docker`  | 🐳 Check → 🏗️ Build → 🏥 Health           | Containerized services   |
-| `make test`        | 📊 Backend → 🎨 Frontend → 🔗 Integration | Quality validation       |
-| `make docs`        | 📚 Install → 🌐 Serve → 🔄 Live edit      | Documentation server     |
-| `make docs-build`  | 🔍 Check → 🏗️ Build → 📁 Static           | Production docs          |
-| `make docs-deploy` | ⚠️ Confirm → 🚀 Deploy → 📖 Live          | GitHub Pages             |
-| `make clean`       | 🗑️ Python → 🧪 Tests → 🐳 Docker          | Fresh environment        |
-
-### 🔄 Development Workflow
+````
 
 ```mermaid
 graph LR
@@ -421,9 +345,23 @@ graph LR
     style E fill:#fff3e0
 ```
 
-## 📋 Project Achievements
+### Command Quick Reference
 
-### ✅ Completed Features
+| Command            | Flow                             | Result                   |
+| ------------------ | -------------------------------- | ------------------------ |
+| `make setup`       | Validate → Install → Ready       | Complete dev environment |
+| `make dev`         | Choose → Launch → Services       | Interactive launcher     |
+| `make dev-python`  | Check → Start → Hot reload       | Local Python services    |
+| `make dev-docker`  | Check → Build → Health           | Containerized services   |
+| `make test`        | Backend → Frontend → Integration | Quality validation       |
+| `make docs`        | Install → Serve → Live edit      | Documentation server     |
+| `make docs-build`  | Check → Build → Static           | Production docs          |
+| `make docs-deploy` | Confirm → Deploy → Live          | GitHub Pages             |
+| `make clean`       | Python → Tests → Docker          | Fresh environment        |
+
+## Project Achievements
+
+### Completed Features
 
 - [x] **Unified Development Workflow** - Single command setup and development
 - [x] **Smart Environment Launcher** - Choose Python or Docker development
@@ -432,12 +370,12 @@ graph LR
 - [x] **Live Documentation** - MkDocs with GitHub Pages deployment (`make docs`)
 - [x] **Quality Automation** - Black, Flake8, Coverage reporting
 - [x] **CI/CD Pipeline** - GitHub Actions with branch-based deployment
-- [x] **Multiple API Formats** - Swagger, ReDoc, RapiDoc documentation
+- [x] **Multiple API Formats** - Swagger, ReDoc documentation
 - [x] **Responsive Web Interface** - Professional UI with real-time predictions
 - [x] **Docker Support** - Containerized development and deployment
 - [x] **CORS-enabled Architecture** - Microservices-ready design
 
-### 🎯 Business Impact
+### Business Impact
 
 - **Zero Setup Friction** - `make setup` gets anyone developing in 30 seconds
 - **Consistent Development** - Same commands work locally and in CI/CD
@@ -452,102 +390,3 @@ graph LR
 **Architecture**: Full-stack MLOps solution
 **Methodology**: SCRUM/Agile development
 **Quality**: Enterprise-grade standards
-
----
-
-## 🎉 Getting Started
-
-### 🚀 30-Second Setup
-
-```bash
-# 1. Clone and enter project
-git clone <repository-url> && cd p1.1
-
-# 2. Complete setup (installs everything)
-make setup
-
-# 3. Start development
-make dev
-
-# 🎯 You're ready to develop!
-```
-
-### 🔄 Daily Development Workflow
-
-```bash
-# Morning routine
-make dev           # Start development environment
-
-# Development cycle
-make test          # Run tests before committing
-make docs          # Update documentation
-
-# Maintenance
-make clean         # Clean environment when needed
-```
-
-### 🌐 Access Points (All Environments)
-
-| Service             | URL                               | Purpose                                 |
-| ------------------- | --------------------------------- | --------------------------------------- |
-| 🎨 **Web App**      | `http://localhost:3000`           | Main application interface              |
-| 🚀 **API**          | `http://localhost:5002`           | ML prediction endpoints                 |
-| 📚 **API Docs**     | `http://localhost:5004/docs-menu` | Interactive API documentation           |
-| 📖 **Swagger**      | `http://localhost:5004/docs/`     | API testing interface                   |
-| 📝 **Project Docs** | `http://localhost:8000`           | Project documentation (via `make docs`) |
-
-### 🆘 Need Help?
-
-```bash
-make help                    # Show all available commands
-./scripts/dev-status.sh      # Check service status
-make clean                   # Reset environment
-```
-
-### ✅ What `make setup` Does
-
-- ✅ Validates Python 3.9+ and pip
-- ✅ Installs all dependencies from **pyproject.toml** (TOML format)
-- ✅ Unified configuration using Tom's Obvious Minimal Language
-- ✅ Backend dependencies (Flask, XGBoost, ML libraries)
-- ✅ Frontend dependencies (Flask, Flasgger)
-- ✅ Testing tools (pytest, coverage, black, flake8)
-- ✅ Documentation tools (MkDocs, Material theme)
-- ✅ Modern Python project standards (PEP 518/621)
-
-**🎯 One command, complete setup, ready to develop!**
-
-### 🚀 Modern Configuration (v1.1.0)
-
-**TOML Migration Completed** - The project now uses modern Python configuration:
-
-```bash
-# Single command setup (replaces 3 separate requirements.txt files)
-make setup  # Uses pyproject.toml (TOML format)
-```
-
-**Benefits:**
-- ⚡ **3x Faster Setup** - One command vs three
-- 🎯 **Centralized Config** - All dependencies in pyproject.toml
-- 🛠️ **Tool Integration** - Black, pytest, flake8 configured in TOML
-- 📊 **Modern Standards** - PEP 518/621 compliant
-
-**Migration Documentation:**
-- [MIGRATION_README.md](MIGRATION_README.md) - Complete migration details and implementation summary
-- [CHANGELOG.md](docs/development/CHANGELOG.md) - Version history and evolution
-- [pyproject.toml](pyproject.toml) - TOML configuration file (Tom's Obvious Minimal Language)
-
-### ⚡ Quick Commands
-
-```bash
-# 🎯 First Time Setup
-make setup && make dev
-
-# 🔄 Daily Development
-make dev          # Start coding
-make test         # Quality check
-make docs         # Documentation
-
-# 🧹 Maintenance
-make clean        # Fresh start
-```

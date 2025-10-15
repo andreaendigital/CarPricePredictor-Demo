@@ -1,24 +1,24 @@
 .PHONY: help dev dev-python dev-docker run-dev test setup docs docs-serve docs-build docs-deploy clean pre-commit setup-legacy test-migration
 
 help:
-	@echo "🚗 Car Price Prediction Platform - Unified Development"
+	@echo "Car Price Prediction Platform - Unified Development"
 	@echo "Available commands:"
-	@echo "  setup       - 🚀 Modern setup (pyproject.toml)"
-	@echo "  dev         - 🎯 Smart launcher (interactive choice)"
-	@echo "  dev-python  - 🐍 Python development (start-local.sh)"
-	@echo "  dev-docker  - 🐳 Docker development (docker-compose)"
-	@echo "  test        - 🧪 Run full test suite"
-	@echo "  docs        - 📚 Documentation development server"
-	@echo "  docs-build  - 📝 Build documentation site"
-	@echo "  docs-deploy - 🚀 Deploy docs to GitHub Pages"
-	@echo "  clean       - 🧹 Clean build artifacts"
-	@echo "  pre-commit  - 🔒 Run pre-commit on all files"
-	@echo "  setup-legacy - 📦 Legacy setup (requirements.txt)"
-	@echo "  test-migration - 🧪 Test new pyproject.toml setup"
-	@echo "  run-dev     - 🐳 Legacy docker command (deprecated)"
+	@echo "  setup       -  Modern setup (pyproject.toml)"
+	@echo "  dev         -  Smart launcher (interactive choice)"
+	@echo "  dev-python  -  Python development (start-local.sh)"
+	@echo "  dev-docker  -  Docker development (docker-compose)"
+	@echo "  test        -  Run full test suite"
+	@echo "  docs        -  Documentation development server"
+	@echo "  docs-build  -  Build documentation site"
+	@echo "  docs-deploy -  Deploy docs to GitHub Pages"
+	@echo "  clean       -  Clean build artifacts"
+	@echo "  pre-commit  -  Run pre-commit on all files"
+	@echo "  setup-legacy -  Legacy setup (requirements.txt)"
+	@echo "  test-migration -  Test new pyproject.toml setup"
+	@echo "  run-dev     -  Legacy docker command (deprecated)"
 
 dev:
-	@echo "🚗 Car Price Prediction Platform - Smart Launcher"
+	@echo "Car Price Prediction Platform - Smart Launcher"
 	@echo "================================================="
 	@echo "Choose your development environment:"
 	@echo "  1) 🐍 Python (Local services)"
@@ -33,11 +33,11 @@ dev:
 	esac
 
 dev-python:
-	@echo "🐍 Starting Python Development Environment..."
+	@echo "Starting Python Development Environment..."
 	@echo "============================================="
-	@echo "🧪 Running full test verification before startup..."
+	@echo "Running full test verification before startup..."
 	@make test || (echo "❌ Tests failed - fix issues before starting" && exit 1)
-	@echo "✅ All tests passed - starting services..."
+	@echo "All tests passed - starting services..."
 	@if [ ! -f "scripts/start-local.sh" ]; then \
 		echo "❌ scripts/start-local.sh not found"; \
 		exit 1; \
@@ -46,11 +46,11 @@ dev-python:
 	@./scripts/start-local.sh
 
 dev-docker:
-	@echo "🐳 Starting Docker Development Environment..."
+	@echo "Starting Docker Development Environment..."
 	@echo "============================================"
-	@echo "🧪 Running full test verification before build..."
+	@echo "Running full test verification before build..."
 	@make test || (echo "❌ Tests failed - fix issues before building" && exit 1)
-	@echo "✅ All tests passed - building and starting containers..."
+	@echo "All tests passed - building and starting containers..."
 	@if ! command -v docker >/dev/null 2>&1; then \
 		echo "❌ Docker not installed"; \
 		exit 1; \
@@ -64,40 +64,40 @@ dev-docker:
 	@docker-compose -f config/docker-compose.dev.yml logs -f
 
 setup:
-	@echo "📦 Setting up Car Price Prediction Platform..."
+	@echo "Setting up Car Price Prediction Platform..."
 	@echo "============================================="
-	@echo "🔍 Checking Python..."
+	@echo "Checking Python..."
 	@python3 --version || (echo "❌ Python3 not found" && exit 1)
-	@echo "🔍 Checking pip..."
+	@echo "Checking pip..."
 	@pip --version || (echo "❌ pip not found" && exit 1)
-	@echo "🚀 Installing project with all dependencies (pyproject.toml)..."
+	@echo "Installing project with all dependencies (pyproject.toml)..."
 	@pip install -e .[dev]
-	@echo "🔒 Installing pre-commit hooks..."
+	@echo "Installing pre-commit hooks..."
 	@pre-commit install --config config/.pre-commit-config.yaml
-	@echo "✅ Setup complete! Available commands:"
+	@echo "Setup complete! Available commands:"
 	@echo "   • make dev     - Start development environment"
 	@echo "   • make test    - Run test suite"
 	@echo "   • make docs    - Start documentation server"
 	@echo "   • Pre-commit hooks active - quality checks on every commit"
-	@echo "   • Modern pyproject.toml configuration active 🎯"
+	@echo "   • Modern pyproject.toml configuration active"
 
 
 test:
-	@echo "🧪 Running Full Test Suite..."
+	@echo "Running Full Test Suite..."
 	@echo "============================="
-	@echo "📊 Backend Tests:"
+	@echo "Backend Tests:"
 	@cd backend && python3 -m pytest ../tests/test_backend.py -v --cov=. --cov-report=term-missing
-	@echo "\n🎨 Frontend Tests:"
+	@echo "\nFrontend Tests:"
 	@cd frontend && python3 -m pytest tests/ -v --cov=. --cov-report=term-missing
 	@echo "\n🔗 Integration Tests:"
 	@python3 -m pytest tests/test_integration.py -v
-	@echo "\n✅ All tests completed!"
+	@echo "\nAll tests completed!"
 
 docs:
-	@echo "📚 Starting Documentation Development Server..."
+	@echo "Starting Documentation Development Server..."
 	@echo "============================================="
 	@if ! command -v mkdocs >/dev/null 2>&1; then \
-		echo "📦 Installing MkDocs..."; \
+		echo "Installing MkDocs..."; \
 		pip install mkdocs-material mkdocs-git-revision-date-localized-plugin pymdown-extensions; \
 	fi
 	@echo "🌐 Documentation server: http://localhost:8000"

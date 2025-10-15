@@ -73,6 +73,7 @@ def home():
 
 # First Endpoint GET - Get for current car price
 
+
 @app.route("/precio_actual", methods=["GET"])
 def precio_actual():
     try:
@@ -118,6 +119,7 @@ def precio_actual():
 
 
 # Second Endpoint, This is a GET for a future price
+
 
 @app.route("/prediccion_futura", methods=["GET"])
 def prediccion_futura():

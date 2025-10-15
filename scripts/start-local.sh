@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "🚗 Car Price Prediction Platform - Python Development"
+echo "Car Price Prediction Platform - Python Development"
 echo "===================================================="
-echo "🔍 Running pre-flight checks..."
+echo "Running pre-flight checks..."
 
 # Pre-flight checks
 if ! command -v python3 >/dev/null 2>&1; then
@@ -15,12 +15,12 @@ if ! command -v pip >/dev/null 2>&1; then
     exit 1
 fi
 
-echo "✅ Python environment ready"
+echo "Python environment ready"
 
 # Function to cleanup on exit
 cleanup() {
     echo ""
-    echo "🛑 Stopping services..."
+    echo "Stopping services..."
     kill $BACKEND_PID $FRONTEND_PID $DOCS_PID 2>/dev/null
     exit 0
 }
@@ -29,7 +29,7 @@ cleanup() {
 trap cleanup SIGINT
 
 # Install Backend Requirements
-echo "📦 Installing Backend Requirements..."
+echo "Installing Backend Requirements..."
 cd backend
 if [ -f "requirements.txt" ]; then
     pip install -r requirements.txt
@@ -39,7 +39,7 @@ fi
 cd ..
 
 # Install Frontend Requirements
-echo "📦 Installing Frontend Requirements..."
+echo "Installing Frontend Requirements..."
 cd frontend
 if [ -f "requirements.txt" ]; then
     pip install -r requirements.txt
@@ -61,7 +61,7 @@ cd ..
 sleep 2
 
 # Start Documentation Service
-echo "📚 Starting Documentation Service (Port 5004)..."
+echo "Starting Documentation Service (Port 5004)..."
 cd backend
 python3 app_swagger.py &
 DOCS_PID=$!
@@ -71,7 +71,7 @@ cd ..
 sleep 2
 
 # Start Frontend
-echo "🎨 Starting Frontend Web Interface (Port 3000)..."
+echo "Starting Frontend Web Interface (Port 3000)..."
 cd frontend
 python3 app.py &
 FRONTEND_PID=$!
@@ -84,12 +84,12 @@ echo ""
 echo "✅ All services started successfully!"
 echo ""
 echo "🌐 Access Points:"
-echo "   • 🎨 Web Application: http://localhost:3000"
-echo "   • 🚀 Backend API: http://localhost:5002"
-echo "   • 📚 API Documentation: http://localhost:5004/docs-menu"
-echo "   • 📖 Swagger UI: http://localhost:5004/docs/"
+echo "   • Web Application: http://localhost:3000"
+echo "   • Backend API: http://localhost:5002"
+echo "   • API Documentation: http://localhost:5004/docs-menu"
+echo "   • Swagger UI: http://localhost:5004/docs/"
 echo ""
-echo "🛠️  Development Commands:"
+echo " Development Commands:"
 echo "   • make test        - Run full test suite"
 echo "   • make dev         - Restart development environment"
 echo ""
