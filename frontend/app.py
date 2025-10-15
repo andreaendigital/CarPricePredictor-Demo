@@ -26,7 +26,7 @@ def predict():
 
     try:
         # Call backend API
-        response = requests.get(f"{BACKEND_URL}/precio_actual", params=car_data)
+        response = requests.get(f"{BACKEND_URL}/precio_actual", params=car_data, timeout=5)
         if response.ok:
             result = response.json()
         else:
@@ -53,7 +53,7 @@ def predict_future():
 
     try:
         # Call backend API
-        response = requests.get(f"{BACKEND_URL}/prediccion_futura", params=car_data)
+        response = requests.get(f"{BACKEND_URL}/prediccion_futura", params=car_data, timeout=5)
         if response.ok:
             future_result = response.json()
         else:
