@@ -297,7 +297,7 @@ stages: [Test & Quality → Build → Deploy]
 
 ## 🛠️ Development Workflow
 
-````
+
 
 ## 📋 Makefile Commands Visual Guide
 
@@ -328,6 +328,24 @@ flowchart TD
     style M fill:#ffebee
 ```
 
+
+
+### Command Quick Reference
+
+| Command            | Flow                             | Result                   |
+| ------------------ | -------------------------------- | ------------------------ |
+| `make setup`       | Validate → Install → Ready       | Complete dev environment |
+| `make dev`         | Choose → Launch → Services       | Interactive launcher     |
+| `make dev-python`  | Check → Start → Hot reload       | Local Python services    |
+| `make dev-docker`  | Check → Build → Health           | Containerized services   |
+| `make test`        | Backend → Frontend → Integration | Quality validation       |
+| `make docs`        | Install → Serve → Live edit      | Documentation server     |
+| `make docs-build`  | Check → Build → Static           | Production docs          |
+| `make docs-deploy` | Confirm → Deploy → Live          | GitHub Pages             |
+| `make clean`       | Python → Tests → Docker          | Fresh environment        |
+
+
+
 ```mermaid
 graph LR
     A["🆕 New Developer"] --> B["make setup"]
@@ -345,19 +363,6 @@ graph LR
     style E fill:#fff3e0
 ```
 
-### Command Quick Reference
-
-| Command            | Flow                             | Result                   |
-| ------------------ | -------------------------------- | ------------------------ |
-| `make setup`       | Validate → Install → Ready       | Complete dev environment |
-| `make dev`         | Choose → Launch → Services       | Interactive launcher     |
-| `make dev-python`  | Check → Start → Hot reload       | Local Python services    |
-| `make dev-docker`  | Check → Build → Health           | Containerized services   |
-| `make test`        | Backend → Frontend → Integration | Quality validation       |
-| `make docs`        | Install → Serve → Live edit      | Documentation server     |
-| `make docs-build`  | Check → Build → Static           | Production docs          |
-| `make docs-deploy` | Confirm → Deploy → Live          | GitHub Pages             |
-| `make clean`       | Python → Tests → Docker          | Fresh environment        |
 
 ## Project Achievements
 
