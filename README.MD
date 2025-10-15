@@ -16,27 +16,13 @@
 
 ```
 Car Price Prediction Demo
-├── frontend/             # Modern Web Interface (Port 3000)
-│   ├── api/              # Flask blueprints & routing
-│   │   ├── __init__.py
-│   │   └── routes.py
-│   ├── config/           # Application configuration
-│   │   ├── __init__.py
-│   │   └── settings.py
-│   ├── logic/            # Business logic layer
-│   │   ├── __init__.py
-│   │   ├── data_processor.py
-│   │   └── predictor.py
-│   ├── static/           # CSS3 animations & JavaScript
-│   │   ├── css/
-│   │   └── js/
+├── frontend/             # Flask-Only Web Interface (Port 3000)
+│   ├── static/           # CSS3 animations & styling
+│   │   └── css/
 │   ├── templates/        # Professional HTML5 templates
 │   │   ├── index.html
 │   │   └── layout.html
-│   ├── tests/            # Unit & integration tests
-│   │   ├── test_api_endpoints.py
-│   │   └── test_logic_unit.py
-│   ├── app.py            # Frontend Flask application
+│   ├── app.py            # Flask server-side application
 │   └── Dockerfile       # Frontend containerization
 │
 ├── backend/              # ML API Services (Port 5002/5004)
@@ -160,7 +146,7 @@ curl -X POST http://localhost:5002/publicar_vehiculo \
 
 - **Framework**: Flask + Jinja2 templating
 - **Styling**: CSS3 with animations and gradients
-- **JavaScript**: ES6+ with Fetch API
+- **Server-side Forms**: Traditional HTML form submissions
 - **UI/UX**: Responsive design with professional styling
 - **Testing**: Unit and integration test suites
 
@@ -168,13 +154,10 @@ curl -X POST http://localhost:5002/publicar_vehiculo \
 
 - **Swagger UI** - Interactive API testing
 - **ReDoc** - Professional dark theme documentation
-- **RapiDoc** - Modern interactive documentation
-- **Stoplight Elements** - Enterprise-grade documentation
-- **Scalar** - Elegant modern API documentation
 
 ## Technical Stack
 
-**Frontend**: Flask + Jinja2, CSS3 animations, responsive design, real-time validation
+**Frontend**: Flask + Jinja2, CSS3 animations, server-side forms, responsive design
 **Backend**: Flask-RESTX, XGBoost ML model, Swagger/OpenAPI documentation
 **ML Model**: XGBoost algorithm with features (model_year, age, fuel_type, transmission, clean_title)
 **Predictions**: Current market value, future price forecasting, marketplace recommendations
@@ -193,7 +176,7 @@ make docs     # Live documentation server
 
 ### Test Coverage
 - **Backend**: `tests/test_backend.py` - ML API endpoints, model predictions
-- **Frontend**: `frontend/tests/` - API endpoints, business logic validation
+- **Frontend**: `tests/test_frontend.py` - Flask-only frontend validation
 - **Integration**: `tests/test_integration.py` - End-to-end workflow testing
 - **Quality**: Black formatting, Flake8 linting, pytest coverage, pre-commit hooks
 
@@ -291,8 +274,8 @@ graph LR
 - [x] **Live Documentation** - MkDocs with GitHub Pages deployment (`make docs`)
 - [x] **Quality Automation** - Black, Flake8, Coverage reporting
 - [x] **CI/CD Pipeline** - GitHub Actions with branch-based deployment
-- [x] **Multiple API Formats** - Swagger, ReDoc, RapiDoc documentation
-- [x] **Responsive Web Interface** - Professional UI with real-time predictions
+- [x] **Streamlined API Documentation** - Swagger UI and ReDoc formats
+- [x] **Flask-Only Web Interface** - Server-side forms with professional UI
 - [x] **Docker Support** - Containerized development and deployment
 - [x] **CORS-enabled Architecture** - Microservices-ready design
 
