@@ -326,7 +326,7 @@ flowchart TD
     style F fill:#fff3e0
     style H fill:#e8f5e8
     style M fill:#ffebee
-````
+```
 
 ```mermaid
 graph LR
