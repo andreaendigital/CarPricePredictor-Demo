@@ -19,60 +19,122 @@
 
     <div class="section">
         <h2>Car Details</h2>
-        <form id="carForm">
+        <form method="POST" action="{{ url_for('predict') }}">
             <div class="form-row">
                 <div class="form-group">
                     <label for="model_year">Model Year:</label>
-                    <input type="number" id="model_year" name="model_year" min="1990" max="2024" value="2020" required>
+                    <input type="number" id="model_year" name="model_year" min="1990" max="2024" value="{{ car_data.model_year if car_data else 2020 }}" required>
                 </div>
 
                 <div class="form-group">
                     <label for="age">Age (years):</label>
-                    <input type="number" id="age" name="age" min="0" max="50" value="4" required>
+                    <input type="number" id="age" name="age" min="0" max="50" value="{{ car_data.age if car_data else 4 }}" required>
                 </div>
 
                 <div class="form-group">
                     <label for="fuel_type">Fuel Type:</label>
                     <select id="fuel_type" name="fuel_type" required>
-                        <option value="Gasoline">Gasoline</option>
-                        <option value="Diesel">Diesel</option>
-                        <option value="Hybrid">Hybrid</option>
-                        <option value="Electric">Electric</option>
+                        <option value="Gasoline" {{ 'selected' if car_data and car_data.fuel_type == 'Gasoline' else '' }}>Gasoline</option>
+                        <option value="Diesel" {{ 'selected' if car_data and car_data.fuel_type == 'Diesel' else '' }}>Diesel</option>
+                        <option value="Hybrid" {{ 'selected' if car_data and car_data.fuel_type == 'Hybrid' else '' }}>Hybrid</option>
+                        <option value="Electric" {{ 'selected' if car_data and car_data.fuel_type == 'Electric' else '' }}>Electric</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="transmission">Transmission:</label>
                     <select id="transmission" name="transmission" required>
-                        <option value="Automatic">Automatic</option>
-                        <option value="Manual">Manual</option>
+                        <option value="Automatic" {{ 'selected' if car_data and car_data.transmission == 'Automatic' else '' }}>Automatic</option>
+                        <option value="Manual" {{ 'selected' if car_data and car_data.transmission == 'Manual' else '' }}>Manual</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="clean_title">Clean Title:</label>
                     <select id="clean_title" name="clean_title" required>
-                        <option value="1">Yes</option>
-                        <option value="0">No</option>
+                        <option value="1" {{ 'selected' if car_data and car_data.clean_title == 1 else '' }}>Yes</option>
+                        <option value="0" {{ 'selected' if car_data and car_data.clean_title == 0 else '' }}>No</option>
                     </select>
                 </div>
             </div>
 
             <div class="button-row">
-                <button type="button" onclick="getCurrentValue()">Get Current Value</button>
-                <button type="button" onclick="getPredictions()">Get Future Price (12 months)</button>
-                <button type="button" onclick="publishVehicle()" style="background: linear-gradient(135deg, #28a745, #20c997);">Publish Vehicle</button>
+                <button type="submit">Get Current Value</button>
             </div>
         </form>
 
-        <div id="requestData"></div>
+        <form method="POST" action="{{ url_for('predict_future') }}" style="margin-top: 10px;">
+            {% if car_data %}
+                <input type="hidden" name="model_year" value="{{ car_data.model_year }}">
+                <input type="hidden" name="age" value="{{ car_data.age }}">
+                <input type="hidden" name="fuel_type" value="{{ car_data.fuel_type }}">
+                <input type="hidden" name="transmission" value="{{ car_data.transmission }}">
+                <input type="hidden" name="clean_title" value="{{ car_data.clean_title }}">
+            {% else %}
+                <input type="hidden" name="model_year" value="2020">
+                <input type="hidden" name="age" value="4">
+                <input type="hidden" name="fuel_type" value="Gasoline">
+                <input type="hidden" name="transmission" value="Automatic">
+                <input type="hidden" name="clean_title" value="1">
+            {% endif %}
+            <div class="button-row">
+                <button type="submit" style="background: linear-gradient(135deg, #28a745, #20c997);">Get Future Price (12 months)</button>
+            </div>
+        </form>
 
+        <!-- Results Section -->
+        {% if result %}
         <div class="results-row">
-            <div id="currentValue"></div>
-            <div id="predictions"></div>
+            <div class="fade-in" style="background: linear-gradient(135deg, #ffffff, #f8f9fa); border-radius: 12px; padding: 15px; border: 1px solid #e9ecef; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <div style="text-align: center; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid #e9ecef;">
+                    <div style="font-size: 14px; color: #6c757d; margin-bottom: 2px;">💲 Current Value</div>
+                    <div style="font-size: 28px; font-weight: 700; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">${{ "{:,.0f}".format(result.precio_actual_estimado) }}</div>
+                </div>
+                <div style="margin-bottom: 8px;">
+                    <div style="font-size: 13px; font-weight: 600; color: #495057; margin-bottom: 6px; text-align: center;">Vehicle Analysis</div>
+                    {% for key, value in result.datos.items() %}
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 4px 10px; margin: 1px 0; background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 6px; border-left: 3px solid #667eea;">
+                        <span style="font-size: 12px; color: #495057;"><strong>{{ key.replace('_', ' ').title() }}</strong></span>
+                        <span style="font-size: 16px; font-weight: 400; font-style: italic; color: #667eea; font-family: 'Georgia', serif;">{{ value }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div style="text-align: center; padding-top: 6px; border-top: 1px solid #e9ecef;">
+                    <span style="font-size: 11px; color: #6c757d; background: #f8f9fa; padding: 3px 6px; border-radius: 10px;">🤖 ML Prediction</span>
+                </div>
+            </div>
         </div>
+        {% endif %}
 
-        <div id="publishResult" style="margin-top: 20px;"></div>
+        {% if future_result %}
+        <div class="results-row">
+            <div class="fade-in" style="background: linear-gradient(135deg, #ffffff, #f8f9fa); border-radius: 12px; padding: 15px; border: 1px solid #e9ecef; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <div style="text-align: center; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 2px solid #e9ecef;">
+                    <div style="font-size: 14px; color: #6c757d; margin-bottom: 2px;">🔮 Future Prediction ({{ future_result.meses }} months)</div>
+                    <div style="font-size: 28px; font-weight: 700; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">${{ "{:,.0f}".format(future_result.precio_estimado_futuro) }}</div>
+                    <div style="font-size: 16px; color: #6c757d; margin-top: 4px;">Current: ${{ "{:,.0f}".format(future_result.precio_actual_estimado) }}</div>
+                </div>
+                <div style="margin-bottom: 8px;">
+                    <div style="font-size: 13px; font-weight: 600; color: #495057; margin-bottom: 6px; text-align: center;">Vehicle Analysis</div>
+                    {% for key, value in future_result.datos.items() %}
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 4px 10px; margin: 1px 0; background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 6px; border-left: 3px solid #667eea;">
+                        <span style="font-size: 12px; color: #495057;"><strong>{{ key.replace('_', ' ').title() }}</strong></span>
+                        <span style="font-size: 16px; font-weight: 400; font-style: italic; color: #667eea; font-family: 'Georgia', serif;">{{ value }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div style="text-align: center; padding-top: 6px; border-top: 1px solid #e9ecef;">
+                    <span style="font-size: 11px; color: #6c757d; background: #f8f9fa; padding: 3px 6px; border-radius: 10px;">📈 Depreciation Model</span>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div style="color: red; margin-top: 20px; padding: 15px; background: #f8d7da; border: 1px solid #f5c6cb; border-radius: 8px;">
+            <strong>Error:</strong> {{ error }}
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

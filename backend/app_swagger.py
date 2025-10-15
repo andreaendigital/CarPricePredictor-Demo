@@ -7,7 +7,7 @@ import math
 import json
 import os
 
-#flask implementation
+# flask implementation
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 

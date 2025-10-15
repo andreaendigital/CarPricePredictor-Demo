@@ -3,12 +3,12 @@ import sys
 import os
 
 # Add backend to path and set up environment
-backend_dir = os.path.join(os.path.dirname(__file__), '..', 'backend')
+backend_dir = os.path.join(os.path.dirname(__file__), "..", "backend")
 sys.path.append(backend_dir)
 
 # Set environment variables before importing app
-os.environ['MODEL_PATH'] = os.path.join(backend_dir, 'modelo', 'modelo.joblib')
-os.environ['DB_PATH'] = os.path.join(backend_dir, 'vehiculos.json')
+os.environ["MODEL_PATH"] = os.path.join(backend_dir, "modelo", "modelo.joblib")
+os.environ["DB_PATH"] = os.path.join(backend_dir, "vehiculos.json")
 
 # Change to backend directory for relative paths
 original_cwd = os.getcwd()
@@ -19,44 +19,52 @@ try:
 finally:
     os.chdir(original_cwd)
 
+
 @pytest.fixture
 def client():
-    app.config['TESTING'] = True
+    app.config["TESTING"] = True
     with app.test_client() as client:
         yield client
 
+
 def test_home_endpoint(client):
     """Test the home endpoint returns correct response"""
-    response = client.get('/')
+    response = client.get("/")
     assert response.status_code == 200
     data = response.get_json()
     assert data is not None
-    assert 'message' in data
-    assert 'endpoints' in data
+    assert "message" in data
+    assert "endpoints" in data
+
 
 def test_precio_actual_endpoint(client):
     """Test current price prediction endpoint"""
-    response = client.get('/precio_actual?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1')
+    response = client.get("/precio_actual?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1")
     assert response.status_code == 200
     data = response.get_json()
-    assert 'precio_actual_estimado' in data
-    assert 'datos' in data
+    assert "precio_actual_estimado" in data
+    assert "datos" in data
+
 
 def test_precio_actual_missing_params(client):
     """Test current price endpoint with missing parameters"""
-    response = client.get('/precio_actual?model_year=2020')
+    response = client.get("/precio_actual?model_year=2020")
     assert response.status_code == 400
     data = response.get_json()
-    assert 'error' in data
+    assert "error" in data
+
 
 def test_prediccion_futura_endpoint(client):
     """Test future price prediction endpoint"""
-    response = client.get('/prediccion_futura?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1&meses=12')
+    response = client.get(
+        "/prediccion_futura?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1&meses=12"
+    )
     assert response.status_code == 200
     data = response.get_json()
-    assert 'precio_actual_estimado' in data
-    assert 'precio_estimado_futuro' in data
-    assert 'meses' in data
+    assert "precio_actual_estimado" in data
+    assert "precio_estimado_futuro" in data
+    assert "meses" in data
+
 
 def test_publicar_vehiculo_endpoint(client):
     """Test vehicle publishing endpoint"""
@@ -66,10 +74,10 @@ def test_publicar_vehiculo_endpoint(client):
         "fuel_type": "Gasoline",
         "transmission": "Automatic",
         "clean_title": 1,
-        "precio": 25000000
+        "precio": 25000000,
     }
-    response = client.post('/publicar_vehiculo', json=vehicle_data)
+    response = client.post("/publicar_vehiculo", json=vehicle_data)
     assert response.status_code == 201
     data = response.get_json()
-    assert 'vehiculo_id' in data
-    assert 'precio_recomendado_modelo' in data
+    assert "vehiculo_id" in data
+    assert "precio_recomendado_modelo" in data

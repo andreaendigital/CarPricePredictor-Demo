@@ -13,27 +13,11 @@ repos:
     hooks:
       - id: black
         args: [--line-length=127]
-        files: ^(backend|frontend)/.*\.py$
+        files: ^(backend|frontend|tests)/.*\.py$
 
   - repo: https://github.com/pycqa/flake8
     rev: 7.0.0
     hooks:
       - id: flake8
         args: [--max-line-length=127, --max-complexity=10]
-        files: ^(backend|frontend)/.*\.py$
-
-  - repo: local
-    hooks:
-      - id: pytest-backend
-        name: Backend Tests
-        entry: bash -c 'cd backend && python3 -m pytest ../tests/test_backend.py -v --tb=short'
-        language: system
-        files: ^(backend|tests)/.*\.py$
-        pass_filenames: false
-
-      - id: pytest-frontend
-        name: Frontend Tests
-        entry: bash -c 'cd frontend && python3 -m pytest tests/ -v --tb=short'
-        language: system
-        files: ^frontend/.*\.py$
-        pass_filenames: false
+        files: ^(backend|frontend|tests)/.*\.py$

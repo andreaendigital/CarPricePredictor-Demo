@@ -15,9 +15,9 @@ Professional web interface delivering real-time ML predictions with modern user 
     Users input vehicle parameters through responsive forms, receive instant current valuations, future price forecasts, and can publish vehicles to marketplace - all with real-time feedback.
 
 === "🤖 Technology"
-    **Flask + Jinja2 + Modern JavaScript architecture**
+    **Flask + Jinja2 server-side architecture**
 
-    Server-side rendering with client-side enhancements, modular API design, comprehensive testing suite, and production-ready containerization.
+    Pure server-side rendering with traditional form submissions, modular API design, comprehensive testing suite, and production-ready containerization.
 
 === "🏗️ Architecture"
     **Layered frontend architecture with separation of concerns**
@@ -40,12 +40,12 @@ Professional web interface delivering real-time ML predictions with modern user 
     <div style="display: flex; align-items: flex-start; gap: 30px; margin: 20px 0;">
         <div style="flex: 1;">
             <p><strong>Technology Stack:</strong> Jinja2 + CSS3 + JavaScript ES6+</p>
-            <p>Professional web interface with responsive design, 3D car animations, and real-time form validation. Modern UI components with gradient styling and smooth transitions.</p>
+            <p>Professional web interface with responsive design, 3D car animations, and server-side form validation. Modern UI components with gradient styling and smooth transitions.</p>
             <ul>
                 <li>🎨 <strong>Templates:</strong> layout.html, index.html</li>
                 <li>🎭 <strong>Animations:</strong> 3D car model with CSS transforms</li>
                 <li>📱 <strong>Responsive:</strong> Mobile-first design approach</li>
-                <li>⚡ <strong>Interactive:</strong> Real-time validation & feedback</li>
+                <li>⚡ <strong>Interactive:</strong> Server-side validation & feedback</li>
             </ul>
         </div>
     </div>
@@ -231,7 +231,7 @@ sequenceDiagram
 
 ### 🎨 User Experience
 - **3D Car Animation**: CSS3 transforms with keyframe animations
-- **Real-time Validation**: JavaScript form validation with instant feedback
+- **Server-side Validation**: Flask form validation with page feedback
 - **Responsive Design**: Mobile-first approach with CSS Grid/Flexbox
 - **Professional Styling**: Gradient backgrounds, smooth transitions
 - **Interactive Elements**: Hover effects, loading states, success animations

@@ -1,9 +1,10 @@
+import os
+import subprocess
+import time
+
 import pytest
 import requests
-import time
-import subprocess
-import os
-import signal
+
 
 class TestIntegration:
     backend_process = None
@@ -13,21 +14,15 @@ class TestIntegration:
     def setup_class(cls):
         """Start backend and frontend services for integration testing"""
         # Start backend
-        backend_dir = os.path.join(os.path.dirname(__file__), '..', 'backend')
+        backend_dir = os.path.join(os.path.dirname(__file__), "..", "backend")
         cls.backend_process = subprocess.Popen(
-            ['python3', 'app.py'],
-            cwd=backend_dir,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL
+            ["python3", "app.py"], cwd=backend_dir, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
         )
 
         # Start frontend
-        frontend_dir = os.path.join(os.path.dirname(__file__), '..', 'frontend')
+        frontend_dir = os.path.join(os.path.dirname(__file__), "..", "frontend")
         cls.frontend_process = subprocess.Popen(
-            ['python3', 'app.py'],
-            cwd=frontend_dir,
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL
+            ["python3", "app.py"], cwd=frontend_dir, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
         )
 
         # Wait for services to start
@@ -46,7 +41,7 @@ class TestIntegration:
     def test_backend_health(self):
         """Test backend service is running"""
         try:
-            response = requests.get('http://localhost:5002/', timeout=5)
+            response = requests.get("http://localhost:5002/", timeout=5)
             assert response.status_code == 200
         except requests.exceptions.RequestException:
             pytest.skip("Backend service not available for integration testing")
@@ -54,7 +49,7 @@ class TestIntegration:
     def test_frontend_health(self):
         """Test frontend service is running"""
         try:
-            response = requests.get('http://localhost:3000/', timeout=5)
+            response = requests.get("http://localhost:3000/", timeout=5)
             assert response.status_code == 200
         except requests.exceptions.RequestException:
             pytest.skip("Frontend service not available for integration testing")
@@ -63,20 +58,14 @@ class TestIntegration:
         """Test complete prediction workflow"""
         try:
             # Test backend API directly
-            params = {
-                'model_year': 2020,
-                'age': 4,
-                'fuel_type': 'Gasoline',
-                'transmission': 'Automatic',
-                'clean_title': 1
-            }
-            response = requests.get('http://localhost:5002/precio_actual', params=params, timeout=5)
+            params = {"model_year": 2020, "age": 4, "fuel_type": "Gasoline", "transmission": "Automatic", "clean_title": 1}
+            response = requests.get("http://localhost:5002/precio_actual", params=params, timeout=5)
             assert response.status_code == 200
             data = response.json()
-            assert 'precio_actual_estimado' in data
+            assert "precio_actual_estimado" in data
 
             # Test frontend can reach backend (through CORS)
-            frontend_response = requests.get('http://localhost:3000/', timeout=5)
+            frontend_response = requests.get("http://localhost:3000/", timeout=5)
             assert frontend_response.status_code == 200
 
         except requests.exceptions.RequestException:

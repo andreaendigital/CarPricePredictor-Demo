@@ -18,7 +18,7 @@
 📁 Car Price Prediction Platform
 ├── 🎨 frontend/          # Modern Web Interface (Port 3000)
 │   ├── 🖥️  templates/     # Professional HTML5 templates
-│   ├── 🎨 static/        # CSS3 animations & JavaScript
+│   ├── 🎨 static/        # CSS3 animations & styling
 │   ├── 🔧 api/           # Flask blueprints & routing
 │   ├── ⚙️  config/       # Application configuration
 │   ├── 🧠 logic/         # Business logic layer
@@ -117,7 +117,7 @@ curl -X POST http://localhost:5002/publicar_vehiculo \
 
 - **Framework**: Flask + Jinja2 templating
 - **Styling**: CSS3 with animations and gradients
-- **JavaScript**: ES6+ with Fetch API
+- **Server-side Forms**: Traditional HTML form submissions
 - **UI/UX**: Responsive design with professional styling
 - **Testing**: Unit and integration test suites
 
@@ -135,7 +135,7 @@ curl -X POST http://localhost:5002/publicar_vehiculo \
 
 - **Responsive Design** - Mobile-first approach
 - **Professional Animations** - CSS3 transitions and effects
-- **Real-time Validation** - Form validation and error handling
+- **Server-side Validation** - Form validation and error handling
 - **Modern UI Components** - Cards, gradients, and professional typography
 - **Cross-browser Compatibility** - Tested across major browsers
 
