@@ -50,7 +50,9 @@ def test_home_endpoint(client):
 
 def test_current_value_market_endpoint(client):
     """Test current price prediction endpoint"""
-    response = client.get("/current_value_market?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1")
+    response = client.get(
+        "/current_value_market?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1"
+    )
     assert response.status_code == 200
     data = response.get_json()
     assert "current_value_market_estimado" in data

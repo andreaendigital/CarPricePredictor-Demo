@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pull Request Template</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #0d1117;
+            color: #e6edf3;
+        }
+        .container {
+            background: #161b22;
+            padding: 24px;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+        }
+        h1 {
+            color: #f0f6fc;
+            border-bottom: 1px solid #21262d;
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+        }
+        h2 {
+            color: #7d8590;
+            margin-top: 24px;
+            margin-bottom: 8px;
+        }
+        h3 {
+            color: #7d8590;
+            margin-top: 16px;
+            margin-bottom: 8px;
+        }
+        code {
+            background: #21262d;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'SFMono-Regular', Consolas, monospace;
+            color: #f85149;
+        }
+        pre {
+            background: #0d1117;
+            padding: 16px;
+            border-radius: 6px;
+            overflow-x: auto;
+            border: 1px solid #30363d;
+            color: #e6edf3;
+        }
+        .checkbox {
+            margin: 4px 0;
+            color: #e6edf3;
+        }
+        .checkbox input {
+            margin-right: 8px;
+            accent-color: #238636;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+        th, td {
+            border: 1px solid #30363d;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background: #21262d;
+            font-weight: 600;
+            color: #f0f6fc;
+        }
+        td {
+            color: #e6edf3;
+        }
+        .section {
+            margin: 20px 0;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #21262d;
+            margin: 24px 0;
+        }
+        details {
+            margin: 16px 0;
+        }
+        summary {
+            cursor: pointer;
+            color: #58a6ff;
+            margin-bottom: 8px;
+        }
+        strong {
+            color: #f0f6fc;
+        }
+        em {
+            color: #7d8590;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pull Request</h1>
+
+        <div class="section">
+            <h2>Summary</h2>
+            <p><strong>SCRUM Ticket:</strong> <code>SCRUM-XXX</code></p>
+            <p><strong>Type:</strong></p>
+            <div class="checkbox"><input type="checkbox"> Frontend</div>
+            <div class="checkbox"><input type="checkbox"> Backend</div>
+            <div class="checkbox"><input type="checkbox"> Bug Fix</div>
+            <div class="checkbox"><input type="checkbox"> Enhancement</div>
+
+            <h3>What does this PR do?</h3>
+            <p><em>&lt;!-- Describe your changes here --&gt;</em></p>
+
+            <h3>Related Issues</h3>
+            <p><em>&lt;!-- Link related issues: Closes #XXX, Fixes #XXX --&gt;</em></p>
+        </div>
+
+        <hr>
+
+        <div class="section">
+            <h2>Testing</h2>
+            <h3>Quick Test Commands</h3>
+            <pre><code># Backend Test
+python backend/app.py  # Port 5002
+# Frontend Test
+python frontend/app.py # Port 3000</code></pre>
+
+            <h3>Testing Status</h3>
+            <div class="checkbox"><input type="checkbox"> Backend API tested (Port 5002)</div>
+            <div class="checkbox"><input type="checkbox"> Frontend app tested (Port 3000)</div>
+            <div class="checkbox"><input type="checkbox"> Integration working</div>
+            <div class="checkbox"><input type="checkbox"> Manual testing completed</div>
+        </div>
+
+        <div class="section">
+            <h2>Technical Changes</h2>
+            <h3>Backend Changes</h3>
+            <div class="checkbox"><input type="checkbox"> New API endpoints added</div>
+            <div class="checkbox"><input type="checkbox"> ML prediction logic updated</div>
+            <div class="checkbox"><input type="checkbox"> Error handling improved</div>
+
+            <h3>Frontend Changes</h3>
+            <div class="checkbox"><input type="checkbox"> UI components updated</div>
+            <div class="checkbox"><input type="checkbox"> CSS styling improvements</div>
+            <div class="checkbox"><input type="checkbox"> API integration updated</div>
+        </div>
+
+        <hr>
+
+        <div class="section">
+            <h2>Screenshots</h2>
+            <details>
+                <summary>Click to view screenshots</summary>
+                <h3>Before Changes</h3>
+                <p><em>&lt;!-- Screenshot here --&gt;</em></p>
+                <h3>After Changes</h3>
+                <p><em>&lt;!-- Screenshot here --&gt;</em></p>
+            </details>
+        </div>
+
+        <hr>
+
+        <div class="section">
+            <h2>Pre-merge Checklist</h2>
+            <div class="checkbox"><input type="checkbox"> Code reviewed</div>
+            <div class="checkbox"><input type="checkbox"> Services tested locally</div>
+            <div class="checkbox"><input type="checkbox"> No breaking changes</div>
+            <div class="checkbox"><input type="checkbox"> Ready for deployment</div>
+
+            <p><strong>Reviewer:</strong> @&lt;!-- username --&gt;</p>
+
+            <h3>Test URLs</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>URL</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Backend API</td>
+                        <td><code>http://localhost:5002</code></td>
+                        <td><input type="checkbox"> Tested</td>
+                    </tr>
+                    <tr>
+                        <td>Frontend App</td>
+                        <td><code>http://localhost:3000</code></td>
+                        <td><input type="checkbox"> Tested</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
