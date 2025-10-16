@@ -120,7 +120,6 @@ def current_value_market():
 
 # Second Endpoint, This is a GET for a future price
 
-
 @app.route("/future_prediction", methods=["GET"])
 def future_prediction():
     try:
@@ -175,7 +174,7 @@ def future_prediction():
         return jsonify({"error": str(e)}), 400
 
 
-# === Endpoint 3: publicar vehículo ===
+# === Endpoint 3: publish car ===
 @app.route("/publish_car", methods=["POST"])
 def publish_car():
     try:
