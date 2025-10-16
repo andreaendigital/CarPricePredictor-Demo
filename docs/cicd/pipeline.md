@@ -9,22 +9,22 @@ tags:
   - Enterprise DevOps
 ---
 
-# 🔄 Enterprise DevOps Workflow - 13-Step Pipeline Flow
+# 🔄 Enterprise DevOps Workflow - 12-Step Pipeline Flow
 
 ```mermaid
 flowchart TD
-    A[📋 Step 1: JIRA Ticket] --> B[🌿 Step 4: Branch Creation]
-    B --> C[👨💻 Step 5: Development]
-    C --> D[🧪 Step 6: Local Testing]
-    D --> E[📝 Step 8: Git Commit]
-    E --> F[⬆️ Step 9: Git Push]
-    F --> G[🔄 Step 10: Pull Request]
-    G --> H[👥 Step 11: Code Review]
-    H --> I[🔗 Step 12: JIRA Integration]
-    I --> J[🔍 Step 13: GitHub Trigger]
-    J --> K[🏷️ Container Image Tagging]
-    K --> L[📦 Backend: SCRUM-95, pr-142, latest]
-    K --> M[📦 Frontend: SCRUM-95, pr-142, latest]
+    A[📋 Step 1: JIRA Ticket] --> B[Step 2: Branch Creation]
+    B --> C[Step 3: Development]
+    C --> D[Step 4: Local Testing]
+    D --> E[Step 5: Git Commit]
+    E --> F[Step 6: Git Push]
+    F --> G[Step 7: Pull Request]
+    G --> H[Step 8: Code Review]
+    H --> I[Step 9: GitHub Trigger]
+    I --> J[Container Image Tagging]
+    J --> L[Backend: SCRUM-95, pr-142, latest]
+    J --> M[Frontend: SCRUM-95, pr-142, latest]
+    
 
     classDef planning fill:#fff3e0,stroke:#f57c00,stroke-width:2px
     classDef development fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
@@ -33,10 +33,10 @@ flowchart TD
     classDef build fill:#fce4ec,stroke:#c2185b,stroke-width:2px
 
     class A planning
-    class B,C,D,E development
-    class F,G,H review
+    class B,C,D,E,F,G development
+    class H review
     class I,J cicd
-    class K,L,M build
+    class L,M build
 ```
 
 
@@ -44,143 +44,64 @@ flowchart TD
 
 ---
 
-## 🎫 Step 1: JIRA Ticket Creation
+## Step 1: JIRA Ticket Creation 
+
+**Product Owner creates user story**
 
 ![Step 1](../assets/images/1.jpeg)
 
-**Product Owner creates user story**
-- Creates ticket in JIRA
-- Defines acceptance criteria
-- Sets priority and sprint
-- Assigns story points
-
----
-
-## 📋 Step 2: Sprint Planning
-
 ![Step 2](../assets/images/2.jpeg)
 
-**Team estimates and plans sprint**
-- Story point estimation
-- Capacity planning
-- Risk assessment
-- Sprint commitment
 
 ---
 
-## 🎯 Step 3: Ticket Assignment
+## Step 2: Ticket Assignment
+
+**Developer picks up ticket**
 
 ![Step 3](../assets/images/3.jpeg)
 
-**Developer picks up ticket**
-- Self-assignment in JIRA
-- Status change to "In Progress"
-- Timeline planning
-- Resource allocation
-
 ---
 
-## 🌿 Step 4: Branch Creation
+## Step 3: Branch Creation
 
 ![Step 4](../assets/images/4.jpeg)
 
-**Create feature branch**
-- Branch from main/develop
-- Follow naming convention
-- Push to remote repository
-- Set up tracking
-
 ---
 
-## 👨💻 Step 5: Developer Coding
+## Step 4: Developer Coding
 
 ![Step 5](../assets/images/5.jpeg)
 
-**Implement feature code**
-- Write HTML/CSS/Python code
-- Follow coding standards
-- Implement responsive design
-- Add form validation
 
 ---
 
-## 🧪 Step 6: Local Testing
+## Step 5: Local Testing
 
 ![Step 6](../assets/images/6.png)
 
-**Run tests locally**
-- Execute test suite
-- Check code coverage
-- Verify functionality
-- Test responsive design
 
 ---
 
-## 🔒 Step 7: Pre-commit Hooks
+## Step 6: Pre-commit Hooks
 
 ![Step 7](../assets/images/7.png)
 
 **Automated quality checks**
 - Code formatting (Black)
 - Linting (Flake8)
-- File cleanup
-- Test execution
 
 ---
 
-## 📝 Step 8: Git Commit
+## Step 7: Git Commit - Git Push
 
 ![Step 8](../assets/images/8.jpeg)
 
-**Commit changes with message**
-- Follow commit conventions
-- Reference JIRA ticket
-- Describe changes clearly
-- Include breaking changes
 
 ---
 
----
+## Step 8: Pull Request
 
-## ⬆️ Step 9: Git Push
-
-<div style="display: flex; gap: 20px; margin: 20px 0; align-items: flex-start;">
-<div style="flex: 1; background: #f3e5f5; padding: 15px; border-radius: 8px; border-left: 4px solid #7b1fa2;">
-
-**Push branch to remote**
-- Upload commits to GitHub
-- Trigger branch protection
-- Enable collaboration
-- Prepare for PR
-
-</div>
-<div style="flex: 1; background: #f5f5f5; padding: 15px; border-radius: 8px; font-family: monospace;">
-
-```bash
-git push origin SCRUM-95-tabbed-interface
-
-Enumerating objects: 12, done.
-Counting objects: 100% (12/12), done.
-Delta compression using up to 8 threads
-Compressing objects: 100% (8/8), done.
-Writing objects: 100% (8/8), 2.34 KiB | 2.34 MiB/s
-Total 8 (delta 6), reused 0 (delta 0)
-
-To github.com:user/CarPricePredictor-Demo.git
-   def5678..abc1234  SCRUM-95-tabbed-interface -> SCRUM-95-tabbed-interface
-
-✅ Branch protection rules: Passed
-✅ 3 commits pushed successfully
-```
-
-</div>
-</div>
-
----
-
-## 🔄 Step 10: Pull Request
-
-==Commit changes with message and Push branch to remote==
 
 <div style="display: flex; gap: 20px; margin: 20px 0; align-items: flex-start;">
 <div style="flex: 1; background: #f3e5f5; padding: 15px; border-radius: 8px; border-left: 4px solid #7b1fa2;">
@@ -280,7 +201,7 @@ python frontend/app.py # Port 3000</pre>
 
 ---
 
-## 👥 Step 11: Code Review
+## Step 9: Code Review
 
 <div style="display: flex; gap: 20px; margin: 20px 0; align-items: flex-start;">
 <div style="flex: 1; background: #f3e5f5; padding: 15px; border-radius: 8px; border-left: 4px solid #7b1fa2;">
@@ -295,20 +216,18 @@ python frontend/app.py # Port 3000</pre>
 <div style="flex: 1; background: #f5f5f5; padding: 15px; border-radius: 8px; font-family: monospace;">
 
 ```
-👥 Code Review - PR #142
+Code Review - PR #142
 
 Reviewer: Tech Lead (@tech-lead)
-Status: ✅ Approved
+Status: Approved
 
 Comments:
-✅ "Great CSS-only approach!"
-✅ "Mobile responsiveness looks good"
-⚠️ "Consider adding loading states" (resolved)
+"Great CSS-only approach!"
+"Consider adding loading states" (resolved)
 
 Suggestions Implemented:
-✅ Added loading spinners
-✅ Improved error handling
-✅ Updated documentation
+Improved error handling
+Updated documentation
 
 Approval: Ready to merge
 Merge Strategy: Squash and merge
@@ -319,46 +238,7 @@ Merge Strategy: Squash and merge
 
 ---
 
-## 🔗 Step 12: JIRA Integration
-
-<div style="display: flex; gap: 20px; margin: 20px 0; align-items: flex-start;">
-<div style="flex: 1; background: #f3e5f5; padding: 15px; border-radius: 8px; border-left: 4px solid #7b1fa2;">
-
-**Automatic JIRA updates**
-- Status transitions
-- PR linking
-- Comment synchronization
-- Workflow automation
-
-</div>
-<div style="flex: 1; background: #f5f5f5; padding: 15px; border-radius: 8px; font-family: monospace;">
-
-```
-🔗 JIRA Integration Update
-
-Ticket: SCRUM-95
-Status Transition: In Progress → Code Review
-
-Automated Actions:
-✅ PR link added to ticket
-✅ Code review status updated
-✅ Reviewers notified
-✅ Time tracking updated
-
-Webhook Events:
-- pull_request.opened
-- pull_request.review_requested
-- issue_comment.created
-
-Integration: ✅ Successful
-```
-
-</div>
-</div>
-
----
-
-## 🔍 Step 13: GitHub Trigger
+## Step 10: GitHub Trigger
 
 <div style="display: flex; gap: 20px; margin: 20px 0; align-items: flex-start;">
 <div style="flex: 1; background: #f3e5f5; padding: 15px; border-radius: 8px; border-left: 4px solid #7b1fa2;">
@@ -440,7 +320,7 @@ jobs:
         black --check --diff .
         flake8 .
 
-Trigger Status: ✅ Pipeline Started
+Trigger Status: Pipeline Started
 Run ID: #1234567890
 ```
 
@@ -449,10 +329,10 @@ Run ID: #1234567890
 
 ---
 
-## 🐳 Step 11: Container Image Tagging Examples
+## Step 11: Container Image Tagging Examples
 
 ![Step 11](../assets/images/11.png)
 
-## 📚 Step 12: Full CI/CD Pipeline Actions Documentation
+## Step 12: Full CI/CD Pipeline Actions Documentation
 
 ![Step 12](../assets/images/12.png)
