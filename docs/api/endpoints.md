@@ -35,7 +35,7 @@ Enterprise-grade ML API platform delivering real-time vehicle valuations with XG
 ## API Endpoints Overview
 
 ### 🔍 Current Price Prediction
-**`GET /precio_actual`** - Get instant vehicle valuation
+**`GET /current_value_market`** - Get instant vehicle valuation
 
 **What it does:** Uses XGBoost ML model to predict current market value of a vehicle based on its characteristics.
 
@@ -48,7 +48,7 @@ Enterprise-grade ML API platform delivering real-time vehicle valuations with XG
 
 **Example Request:**
 ```bash
-GET /precio_actual?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1
+GET /current_value_market?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1
 ```
 
 **Response:**
@@ -61,12 +61,12 @@ GET /precio_actual?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automat
     "transmission": "Automatic",
     "clean_title": 1
   },
-  "precio_actual_estimado": 25000000
+  "current_value_market_estimado": 25000000
 }
 ```
 
 ### 📈 Future Price Forecasting
-**`GET /prediccion_futura`** - Predict future vehicle value
+**`GET /future_prediction`** - Predict future vehicle value
 
 **What it does:** Calculates how much the vehicle will be worth in the future using depreciation modeling.
 
@@ -75,7 +75,7 @@ GET /precio_actual?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automat
 
 **Example Request:**
 ```bash
-GET /prediccion_futura?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1&meses=12
+GET /future_prediction?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1&meses=12
 ```
 
 **Response:**
@@ -83,13 +83,13 @@ GET /prediccion_futura?model_year=2020&age=4&fuel_type=Gasoline&transmission=Aut
 {
   "datos": {...},
   "meses": 12,
-  "precio_actual_estimado": 25000000,
+  "current_value_market_estimado": 25000000,
   "precio_estimado_futuro": 22500000
 }
 ```
 
 ### 📝 Vehicle Marketplace
-**`POST /publicar_vehiculo`** - Publish vehicle for sale
+**`POST /publish_car`** - Publish vehicle for sale
 
 **What it does:** Adds a vehicle to the marketplace and provides AI-powered price recommendation.
 
@@ -126,9 +126,9 @@ GET /prediccion_futura?model_year=2020&age=4&fuel_type=Gasoline&transmission=Aut
 {
   "message": "API de predicción y publicación de vehículos",
   "endpoints": {
-    "GET /precio_actual": "Predice el precio actual del vehículo",
-    "GET /prediccion_futura": "Predice el precio futuro del vehículo",
-    "POST /publicar_vehiculo": "Permite publicar un vehículo en venta"
+    "GET /current_value_market": "Predice el precio actual del vehículo",
+    "GET /future_prediction": "Predice el precio futuro del vehículo",
+    "POST /publish_car": "Permite publicar un vehículo en venta"
   }
 }
 ```
@@ -212,7 +212,7 @@ sequenceDiagram
             <p>High-performance REST API delivering real-time ML predictions with sub-100ms response times. XGBoost model integration with intelligent fallback systems for maximum reliability.</p>
             <ul>
                 <li>🚀 <strong>Port:</strong> 5002</li>
-                <li>🔌 <strong>Endpoints:</strong> /precio_actual, /prediccion_futura, /publicar_vehiculo</li>
+                <li>🔌 <strong>Endpoints:</strong> /current_value_market, /future_prediction, /publish_car</li>
                 <li>🤖 <strong>ML Model:</strong> XGBoost (modelo.joblib)</li>
                 <li>⚡ <strong>Performance:</strong> Sub-100ms predictions</li>
             </ul>
@@ -248,7 +248,7 @@ sequenceDiagram
 ├── **app.py**                  # **Main ML API (Port 5002)**
 │   ├── Flask + CORS           # Web framework with cross-origin
 │   ├── XGBoost integration    # ML model loading and inference
-│   ├── 3 REST endpoints       # precio_actual, prediccion_futura, publicar_vehiculo
+│   ├── 3 REST endpoints       # current_value_market, future_prediction, publish_car
 │   └── JSON data persistence  # Vehicle storage management
 │
 ├── **app_swagger.py**          # **Documentation Server (Port 5004)**

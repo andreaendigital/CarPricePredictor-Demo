@@ -48,36 +48,36 @@ def test_home_endpoint(client):
     assert "endpoints" in data
 
 
-def test_precio_actual_endpoint(client):
+def test_current_value_market_endpoint(client):
     """Test current price prediction endpoint"""
-    response = client.get("/precio_actual?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1")
+    response = client.get("/current_value_market?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1")
     assert response.status_code == 200
     data = response.get_json()
-    assert "precio_actual_estimado" in data
+    assert "current_value_market_estimado" in data
     assert "datos" in data
 
 
-def test_precio_actual_missing_params(client):
+def test_current_value_market_missing_params(client):
     """Test current price endpoint with missing parameters"""
-    response = client.get("/precio_actual?model_year=2020")
+    response = client.get("/current_value_market?model_year=2020")
     assert response.status_code == 400
     data = response.get_json()
     assert "error" in data
 
 
-def test_prediccion_futura_endpoint(client):
+def test_future_prediction_endpoint(client):
     """Test future price prediction endpoint"""
     response = client.get(
-        "/prediccion_futura?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1&meses=12"
+        "/future_prediction?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1&meses=12"
     )
     assert response.status_code == 200
     data = response.get_json()
-    assert "precio_actual_estimado" in data
+    assert "current_value_market_estimado" in data
     assert "precio_estimado_futuro" in data
     assert "meses" in data
 
 
-def test_publicar_vehiculo_endpoint(client):
+def test_publish_car_endpoint(client):
     """Test vehicle publishing endpoint"""
     vehicle_data = {
         "model_year": 2020,
@@ -87,7 +87,7 @@ def test_publicar_vehiculo_endpoint(client):
         "clean_title": 1,
         "precio": 25000000,
     }
-    response = client.post("/publicar_vehiculo", json=vehicle_data)
+    response = client.post("/publish_car", json=vehicle_data)
     assert response.status_code == 201
     data = response.get_json()
     assert "vehiculo_id" in data

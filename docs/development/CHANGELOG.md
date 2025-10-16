@@ -86,9 +86,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Documentation System** - Live editing with auto-deployment
 
 ### 📊 API Endpoints
-- `GET /precio_actual` - Current market valuation
-- `GET /prediccion_futura` - Future price forecasting with depreciation
-- `POST /publicar_vehiculo` - Vehicle marketplace listing
+- `GET /current_value_market` - Current market valuation
+- `GET /future_prediction` - Future price forecasting with depreciation
+- `POST /publish_car` - Vehicle marketplace listing
 
 ### 🧪 Testing Infrastructure
 - **Backend Tests** - 5 tests, 78% coverage, ML model validation

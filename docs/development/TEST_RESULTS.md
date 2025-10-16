@@ -30,10 +30,10 @@ TOTAL              244    165    32%
 
 ### Test Cases:
 1. **✅ test_home_endpoint** - Validates API home endpoint response
-2. **✅ test_precio_actual_endpoint** - Tests current price prediction functionality
-3. **✅ test_precio_actual_missing_params** - Validates error handling for missing parameters
-4. **✅ test_prediccion_futura_endpoint** - Tests future price prediction functionality
-5. **✅ test_publicar_vehiculo_endpoint** - Tests vehicle publishing functionality
+2. **✅ test_current_value_market_endpoint** - Tests current price prediction functionality
+3. **✅ test_current_value_market_missing_params** - Validates error handling for missing parameters
+4. **✅ test_future_prediction_endpoint** - Tests future price prediction functionality
+5. **✅ test_publish_car_endpoint** - Tests vehicle publishing functionality
 
 ### Backend Test Command:
 ```bash
