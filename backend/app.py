@@ -63,9 +63,9 @@ def home():
         {
             "message": "API de predicción y publicación de vehículos (basado en tu modelo joblib)",
             "endpoints": {
-                "GET /precio_actual": "Predice el precio actual del vehículo",
-                "GET /prediccion_futura": "Predice el precio futuro del vehículo en N meses",
-                "POST /publicar_vehiculo": "Permite publicar un vehículo en venta",
+                "GET /current_value_market": "Predice el precio actual del vehículo",
+                "GET /future_prediction": "Predice el precio futuro del vehículo en N meses",
+                "POST /publish_car": "Permite publicar un vehículo en venta",
             },
         }
     )
@@ -74,8 +74,8 @@ def home():
 # First Endpoint GET - Get for current car price
 
 
-@app.route("/precio_actual", methods=["GET"])
-def precio_actual():
+@app.route("/current_value_market", methods=["GET"])
+def current_value_market():
     try:
         # Obtener y validar parámetros
         model_year = request.args.get("model_year")
@@ -111,7 +111,7 @@ def precio_actual():
         }
 
         pred = predict_price(data)
-        return jsonify({"datos": data, "precio_actual_estimado": round(pred, 2)})
+        return jsonify({"datos": data, "current_value_market_estimado": round(pred, 2)})
     except ValueError as e:
         return jsonify({"error": f"Error de conversión: {str(e)}"}), 400
     except Exception as e:
@@ -121,8 +121,8 @@ def precio_actual():
 # Second Endpoint, This is a GET for a future price
 
 
-@app.route("/prediccion_futura", methods=["GET"])
-def prediccion_futura():
+@app.route("/future_prediction", methods=["GET"])
+def future_prediction():
     try:
         meses = int(request.args.get("meses", 12))
 
@@ -165,7 +165,7 @@ def prediccion_futura():
             {
                 "datos": data,
                 "meses": meses,
-                "precio_actual_estimado": round(pred_actual, 2),
+                "current_value_market_estimado": round(pred_actual, 2),
                 "precio_estimado_futuro": round(pred_futura, 2),
             }
         )
@@ -176,8 +176,8 @@ def prediccion_futura():
 
 
 # === Endpoint 3: publicar vehículo ===
-@app.route("/publicar_vehiculo", methods=["POST"])
-def publicar_vehiculo():
+@app.route("/publish_car", methods=["POST"])
+def publish_car():
     try:
         data = request.get_json()
 

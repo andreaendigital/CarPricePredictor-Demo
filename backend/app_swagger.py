@@ -265,7 +265,7 @@ current_price_response = api.model(
     "CurrentPriceResponse",
     {
         "datos": fields.Nested(vehicle_input_model, description="Input vehicle data"),
-        "precio_actual_estimado": fields.Float(description="Estimated current price", example=15750.50),
+        "current_value_market_estimado": fields.Float(description="Estimated current price", example=15750.50),
     },
 )
 
@@ -274,7 +274,7 @@ future_price_response = api.model(
     {
         "datos": fields.Nested(vehicle_input_model, description="Input vehicle data"),
         "meses": fields.Integer(description="Months ahead for prediction", example=24),
-        "precio_actual_estimado": fields.Float(description="Current estimated price", example=15750.50),
+        "current_value_market_estimado": fields.Float(description="Current estimated price", example=15750.50),
         "precio_estimado_futuro": fields.Float(description="Future estimated price", example=12850.25),
     },
 )
@@ -421,7 +421,7 @@ class CurrentPrice(Resource):
                     "transmission": args["transmission"],
                     "clean_title": args["clean_title"],
                 },
-                "precio_actual_estimado": round(pred, 2),
+                "current_value_market_estimado": round(pred, 2),
             }
         except Exception as e:
             api.abort(400, f"Prediction error: {str(e)}")
@@ -510,7 +510,7 @@ class FuturePrice(Resource):
                     "clean_title": args["clean_title"],
                 },
                 "meses": args["meses"],
-                "precio_actual_estimado": round(pred_actual, 2),
+                "current_value_market_estimado": round(pred_actual, 2),
                 "precio_estimado_futuro": round(pred_futura, 2),
             }
         except Exception as e:

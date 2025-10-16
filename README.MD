@@ -126,21 +126,21 @@ After running `make dev`, access:
 
 | Endpoint             | Method | Description                 | Parameters                                            |
 | -------------------- | ------ | --------------------------- | ----------------------------------------------------- |
-| `/precio_actual`     | GET    | Current market valuation    | model_year, age, fuel_type, transmission, clean_title |
-| `/prediccion_futura` | GET    | Future price forecasting    | Same as above + meses (months)                        |
-| `/publicar_vehiculo` | POST   | Vehicle marketplace listing | Vehicle data + precio (listing price)                 |
+| `/current_value_market`     | GET    | Current market valuation    | model_year, age, fuel_type, transmission, clean_title |
+| `/future_prediction` | GET    | Future price forecasting    | Same as above + meses (months)                        |
+| `/publish_car` | POST   | Vehicle marketplace listing | Vehicle data + precio (listing price)                 |
 
 ### 📈 Sample API Calls
 
 ```bash
 # Current Price Prediction
-curl "http://localhost:5002/precio_actual?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1"
+curl "http://localhost:5002/current_value_market?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1"
 
 # Future Price Forecasting (12 months)
-curl "http://localhost:5002/prediccion_futura?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1&meses=12"
+curl "http://localhost:5002/future_prediction?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1&meses=12"
 
 # Vehicle Publishing
-curl -X POST http://localhost:5002/publicar_vehiculo \
+curl -X POST http://localhost:5002/publish_car \
   -H "Content-Type: application/json" \
   -d '{"model_year": 2020, "age": 4, "fuel_type": "Gasoline", "transmission": "Automatic", "clean_title": 1, "precio": 25000000}'
 ```
