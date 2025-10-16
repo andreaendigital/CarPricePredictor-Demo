@@ -42,7 +42,13 @@ jobs:
       run: make setup
 
     - name: Run code quality checks
-      run: make pre-commit
+      run: |
+        echo "🔍 Running code quality checks..."
+        echo "📋 Black formatting check:"
+        black --check --diff .
+        echo "📋 Flake8 linting check:"
+        flake8 .
+        echo "✅ Code quality checks completed"
 
   backend-tests:
     name: 🧪 Backend Tests
