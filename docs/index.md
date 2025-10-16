@@ -123,6 +123,8 @@ Car price prediction web application using machine learning to estimate vehicle 
         </div>
     </div>
 
+
+
 ## Enterprise Architecture
 
 Modern three-tier architecture delivering real-time ML predictions with enterprise scalability.
