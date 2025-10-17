@@ -24,7 +24,7 @@ flowchart TD
     I --> J[Container Image Tagging]
     J --> L[Backend: SCRUM-95, pr-142, latest]
     J --> M[Frontend: SCRUM-95, pr-142, latest]
-    
+
 
     classDef planning fill:#fff3e0,stroke:#f57c00,stroke-width:2px
     classDef development fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
@@ -44,9 +44,9 @@ flowchart TD
 
 ---
 
-## Step 1: JIRA Ticket Creation 
+## Step 1: JIRA Ticket Creation
 
-**Product Owner creates user story**
+<strong>Product Owner creates user story</strong>
 
 ![Step 1](../assets/images/1.jpeg)
 
@@ -57,7 +57,7 @@ flowchart TD
 
 ## Step 2: Ticket Assignment
 
-**Developer picks up ticket**
+<strong>Developer picks up ticket</strong>
 
 ![Step 3](../assets/images/3.jpeg)
 
@@ -87,7 +87,7 @@ flowchart TD
 
 ![Step 7](../assets/images/7.png)
 
-**Automated quality checks**
+<strong>Automated quality checks</strong>
 - Code formatting (Black)
 - Linting (Flake8)
 
@@ -106,7 +106,7 @@ flowchart TD
 <div style="display: flex; gap: 20px; margin: 20px 0; align-items: flex-start;">
 <div style="flex: 1; background: #f3e5f5; padding: 15px; border-radius: 8px; border-left: 4px solid #7b1fa2;">
 
-**Create pull request**
+<strong>Create pull request</strong>
 - Link to JIRA ticket
 - Describe changes
 - Add screenshots
@@ -203,38 +203,7 @@ python frontend/app.py # Port 3000</pre>
 
 ## Step 9: Code Review
 
-<div style="display: flex; gap: 20px; margin: 20px 0; align-items: flex-start;">
-<div style="flex: 1; background: #f3e5f5; padding: 15px; border-radius: 8px; border-left: 4px solid #7b1fa2;">
-
-**Peer review process**
-- Technical review by team
-- Code quality assessment
-- Security review
-- Approval workflow
-
-</div>
-<div style="flex: 1; background: #f5f5f5; padding: 15px; border-radius: 8px; font-family: monospace;">
-
-```
-Code Review - PR #142
-
-Reviewer: Tech Lead (@tech-lead)
-Status: Approved
-
-Comments:
-"Great CSS-only approach!"
-"Consider adding loading states" (resolved)
-
-Suggestions Implemented:
-Improved error handling
-Updated documentation
-
-Approval: Ready to merge
-Merge Strategy: Squash and merge
-```
-
-</div>
-</div>
+![Step 9](../assets/images/CodeReview.png)
 
 ---
 
