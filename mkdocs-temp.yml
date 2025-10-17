@@ -117,6 +117,7 @@ nav:
   - Home: index.md
   - Frontend: architecture/components.md
   - Backend: api/endpoints.md
+  - CI/CD Pipeline: cicd/pipeline.md
 
 extra:
   social:

@@ -95,7 +95,7 @@ def predict() -> str:
     """Handle current price prediction requests."""
     try:
         car_data = extract_vehicle_data(request.form)
-        result, error = call_backend_api("precio_actual", car_data)
+        result, error = call_backend_api("current_value_market", car_data)
 
         return render_template("index.html", result=result, error=error, car_data=car_data, active_tab="tab1")
 
@@ -110,7 +110,7 @@ def predict_future() -> str:
         car_data = extract_vehicle_data(request.form)
         car_data["meses"] = DEFAULT_MONTHS
 
-        future_result, error = call_backend_api("prediccion_futura", car_data)
+        future_result, error = call_backend_api("future_prediction", car_data)
 
         return render_template("index.html", future_result=future_result, error=error, car_data=car_data, active_tab="tab2")
 
@@ -125,7 +125,7 @@ def publish_vehicle() -> str:
         vehicle_data = extract_vehicle_data(request.form)
         vehicle_data["precio"] = float(request.form["precio"])
 
-        publish_result, error = call_backend_api("publicar_vehiculo", vehicle_data, method="POST")
+        publish_result, error = call_backend_api("publish_car", vehicle_data, method="POST")
 
         return render_template(
             "index.html", publish_result=publish_result, error=error, vehicle_data=vehicle_data, active_tab="tab3"

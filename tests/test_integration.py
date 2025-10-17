@@ -59,10 +59,10 @@ class TestIntegration:
         try:
             # Test backend API directly
             params = {"model_year": 2020, "age": 4, "fuel_type": "Gasoline", "transmission": "Automatic", "clean_title": 1}
-            response = requests.get("http://localhost:5002/precio_actual", params=params, timeout=5)
+            response = requests.get("http://localhost:5002/current_value_market", params=params, timeout=5)
             assert response.status_code == 200
             data = response.json()
-            assert "precio_actual_estimado" in data
+            assert "current_value_market_estimado" in data
 
             # Test frontend can reach backend (through CORS)
             frontend_response = requests.get("http://localhost:3000/", timeout=5)

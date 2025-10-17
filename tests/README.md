@@ -10,10 +10,10 @@ Comprehensive testing suite for the Car Price Prediction Platform with **14 tota
 **Coverage: 78%** | **ML API & Model Validation**
 
 - `test_home_endpoint` - Validates API home endpoint response structure
-- `test_precio_actual_endpoint` - Tests current price prediction with XGBoost model
-- `test_precio_actual_missing_params` - Validates error handling for missing parameters
-- `test_prediccion_futura_endpoint` - Tests future price prediction with depreciation modeling
-- `test_publicar_vehiculo_endpoint` - Tests vehicle publishing and price recommendation
+- `test_current_value_market_endpoint` - Tests current price prediction with XGBoost model
+- `test_current_value_market_missing_params` - Validates error handling for missing parameters
+- `test_future_prediction_endpoint` - Tests future price prediction with depreciation modeling
+- `test_publish_car_endpoint` - Tests vehicle publishing and price recommendation
 
 ### 🎨 Frontend Tests (`../frontend/tests/`) - 6 tests
 **Coverage: 89%** | **API Routes & Business Logic**

@@ -30,17 +30,17 @@ ReDoc:      http://localhost:5004/redoc
 ## 📊 API Endpoints Overview
 
 ### 🔍 Current Price Prediction
-**GET** `/api/prediction/precio_actual`
+**GET** `/api/prediction/current_value_market`
 - Predicts current market value
 - Parameters: model_year, age, fuel_type, transmission, clean_title
 
 ### 📈 Future Price Forecasting
-**GET** `/api/prediction/prediccion_futura`
+**GET** `/api/prediction/future_prediction`
 - Forecasts price after specified months
 - Additional parameter: meses (months ahead)
 
 ### 📝 Vehicle Listing Management
-**POST** `/api/vehicles/publicar_vehiculo`
+**POST** `/api/vehicles/publish_car`
 - Adds vehicle to marketplace
 - Returns price recommendation vs listed price
 
@@ -92,17 +92,17 @@ python app_swagger.py
 
 ### Current Price Prediction
 ```bash
-curl "http://localhost:5004/api/prediction/precio_actual?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1"
+curl "http://localhost:5004/api/prediction/current_value_market?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1"
 ```
 
 ### Future Price Forecasting
 ```bash
-curl "http://localhost:5004/api/prediction/prediccion_futura?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1&meses=12"
+curl "http://localhost:5004/api/prediction/future_prediction?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1&meses=12"
 ```
 
 ### Vehicle Listing
 ```bash
-curl -X POST http://localhost:5004/api/vehicles/publicar_vehiculo \
+curl -X POST http://localhost:5004/api/vehicles/publish_car \
   -H "Content-Type: application/json" \
   -d '{"model_year": 2020, "age": 4, "fuel_type": "Gasoline", "transmission": "Automatic", "clean_title": 1, "precio": 25000000}'
 ```

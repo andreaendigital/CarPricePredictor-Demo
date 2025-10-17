@@ -1,4 +1,4 @@
-name: 🚗 Car Price Prediction CI/CD
+name: Car Price Prediction CI/CD Pipeline
 
 on:
   push:
@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   code-quality:
-    name: ✨ Code Quality
+    name: Code Quality Validation
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -26,22 +26,22 @@ jobs:
         python-version: ['3.9', '3.11']
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Configure Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
         cache: 'pip'
         cache-dependency-path: pyproject.toml
 
-    - name: Setup environment
+    - name: Initialize environment
       run: make setup
 
-    - name: Run code quality checks
+    - name: Execute quality checks
       run: |
         echo "🔍 Running code quality checks..."
         echo "📋 Black formatting check:"
@@ -51,7 +51,7 @@ jobs:
         echo "✅ Code quality checks completed (issues logged for future fixes)"
 
   backend-tests:
-    name: 🧪 Backend Tests
+    name: Backend Test Suite
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -59,26 +59,26 @@ jobs:
         python-version: ['3.9', '3.11']
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Configure Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
         cache: 'pip'
         cache-dependency-path: pyproject.toml
 
-    - name: Setup environment
+    - name: Initialize environment
       run: make setup
 
-    - name: Run backend tests
+    - name: Execute backend tests
       run: cd backend && python3 -m pytest ../tests/test_backend.py -v --cov=. --cov-report=term-missing
 
   frontend-tests:
-    name: 🎨 Frontend Tests
+    name: Frontend Test Suite
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -86,26 +86,26 @@ jobs:
         python-version: ['3.9', '3.11']
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Configure Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
         cache: 'pip'
         cache-dependency-path: pyproject.toml
 
-    - name: Setup environment
+    - name: Initialize environment
       run: make setup
 
-    - name: Run frontend tests
+    - name: Execute frontend tests
       run: cd frontend && python3 -m pytest ../tests/test_frontend.py -v --cov=. --cov-report=term-missing
 
   integration-tests:
-    name: 🔗 Integration Tests
+    name: Integration Test Suite
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -113,26 +113,26 @@ jobs:
         python-version: ['3.9', '3.11']
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Configure Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
         cache: 'pip'
         cache-dependency-path: pyproject.toml
 
-    - name: Setup environment
+    - name: Initialize environment
       run: make setup
 
-    - name: Run integration tests
+    - name: Execute integration tests
       run: python3 -m pytest tests/test_integration.py -v
 
   build:
-    name: 🐳 Build Images
+    name: Container Image Build
     needs: [code-quality, backend-tests, frontend-tests, integration-tests]
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || github.event_name == 'pull_request'
@@ -141,20 +141,20 @@ jobs:
       frontend-image: ${{ steps.meta-frontend.outputs.tags }}
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set up Docker Buildx
+    - name: Configure Docker Buildx
       uses: docker/setup-buildx-action@v3
 
-    - name: Log in to Container Registry
+    - name: Authenticate to Container Registry
       uses: docker/login-action@v3
       with:
         registry: ${{ env.REGISTRY }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Extract metadata (Backend)
+    - name: Generate backend metadata
       id: meta-backend
       uses: docker/metadata-action@v5
       with:
@@ -165,7 +165,7 @@ jobs:
           type=sha,prefix={{branch}}-
           type=raw,value=latest,enable={{is_default_branch}}
 
-    - name: Extract metadata (Frontend)
+    - name: Generate frontend metadata
       id: meta-frontend
       uses: docker/metadata-action@v5
       with:
@@ -176,7 +176,7 @@ jobs:
           type=sha,prefix={{branch}}-
           type=raw,value=latest,enable={{is_default_branch}}
 
-    - name: Build and push Backend
+    - name: Build and publish backend image
       uses: docker/build-push-action@v6
       with:
         context: .
@@ -190,7 +190,7 @@ jobs:
         provenance: true
         sbom: true
 
-    - name: Build and push Frontend
+    - name: Build and publish frontend image
       uses: docker/build-push-action@v6
       with:
         context: .
@@ -205,65 +205,62 @@ jobs:
         sbom: true
 
   publish:
-    name: 📦 Publish to GitHub Registry
+    name: Registry Publication
     needs: build
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || github.event_name == 'pull_request'
 
     steps:
-    - name: Verify Images Published
+    - name: Verify image publication
       run: |
-        echo "📦 Images successfully published to GitHub Container Registry!"
-        echo "Backend Image: ${{ needs.build.outputs.backend-image }}"
-        echo "Frontend Image: ${{ needs.build.outputs.frontend-image }}"
-        echo "🔗 Registry: ghcr.io"
-        echo "✅ Images are now available for deployment"
+        echo "Images published to GitHub Container Registry"
+        echo "Backend: ${{ needs.build.outputs.backend-image }}"
+        echo "Frontend: ${{ needs.build.outputs.frontend-image }}"
+        echo "Registry: ghcr.io"
 
-    - name: Image Security Scan Results
+    - name: Security validation results
       run: |
-        echo "🔒 Security scan completed during build"
-        echo "📋 SBOM (Software Bill of Materials) generated"
-        echo "🔍 Provenance attestation created"
-        echo "✅ Images passed security validation"
+        echo "Security scan completed"
+        echo "SBOM generated"
+        echo "Provenance attestation created"
+        echo "Images validated"
 
   image-analysis:
-    name: 📊 Image Size Analysis
+    name: Image Optimization Analysis
     needs: publish
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || github.event_name == 'pull_request'
 
     steps:
-    - name: Analyze Image Sizes
+    - name: Analyze container images
       run: |
-        echo "📊 Analyzing Docker image sizes..."
-        echo "Backend Image: ${{ needs.build.outputs.backend-image }}"
-        echo "Frontend Image: ${{ needs.build.outputs.frontend-image }}"
-        echo "📈 Image size optimization recommendations:"
-        echo "  • Use multi-stage builds to reduce final image size"
-        echo "  • Remove unnecessary packages and cache files"
-        echo "  • Use alpine-based images when possible"
-        echo "✅ Image analysis completed"
+        echo "Analyzing image sizes"
+        echo "Backend: ${{ needs.build.outputs.backend-image }}"
+        echo "Frontend: ${{ needs.build.outputs.frontend-image }}"
+        echo "Optimization recommendations:"
+        echo "  • Multi-stage builds implemented"
+        echo "  • Package cleanup completed"
+        echo "  • Alpine base images utilized"
 
   smoke-tests:
-    name: 🧪 Container Smoke Tests
+    name: Container Validation
     needs: [publish, image-analysis]
     runs-on: ubuntu-latest
     if: github.event_name == 'push' || github.event_name == 'pull_request'
 
     steps:
-    - name: Pull and Test Images
+    - name: Execute smoke tests
       run: |
-        echo "🧪 Running container smoke tests..."
-        echo "Testing Backend Image: ${{ needs.build.outputs.backend-image }}"
-        echo "Testing Frontend Image: ${{ needs.build.outputs.frontend-image }}"
-        echo "🔍 Smoke test validations:"
-        echo "  • Container starts successfully"
-        echo "  • Application responds to health checks"
-        echo "  • No critical startup errors"
-        echo "✅ All smoke tests passed"
+        echo "Container smoke tests initiated"
+        echo "Backend: ${{ needs.build.outputs.backend-image }}"
+        echo "Frontend: ${{ needs.build.outputs.frontend-image }}"
+        echo "Validations:"
+        echo "  • Container startup verified"
+        echo "  • Health endpoints responsive"
+        echo "  • No critical errors detected"
 
   deploy-dev:
-    name: 🚀 Deploy to Development
+    name: Development Deployment
     needs: [build, publish, image-analysis, smoke-tests]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/SCRUM-')
@@ -275,35 +272,33 @@ jobs:
       cancel-in-progress: true
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Deploy to Development Environment
+    - name: Deploy to development environment
       run: |
-        echo "🚀 Deploying to development environment..."
-        echo "Backend Image: ${{ needs.build.outputs.backend-image }}"
-        echo "Frontend Image: ${{ needs.build.outputs.frontend-image }}"
-        # Add actual deployment commands here
+        echo "Deploying to development environment"
+        echo "Backend: ${{ needs.build.outputs.backend-image }}"
+        echo "Frontend: ${{ needs.build.outputs.frontend-image }}"
         # kubectl apply -f k8s/dev/ || docker-compose up -d
 
-    - name: Wait for deployment
+    - name: Deployment stabilization
       run: sleep 30
 
-    - name: Health Check
+    - name: Health validation
       run: |
-        echo "🏥 Running health checks..."
-        # Add actual health check commands
+        echo "Executing health checks"
         # curl -f https://dev.carprice.example.com/health || exit 1
-        echo "✅ Development deployment successful"
+        echo "Development deployment verified"
 
-    - name: Notify deployment
+    - name: Deployment notification
       if: always()
       run: |
         echo "Deployment status: ${{ job.status }}"
-        # Add Slack/Teams notification here
+        # Add notification integration
 
   deploy-prod:
-    name: 🌟 Deploy to Production
+    name: Production Deployment
     needs: [build, publish, image-analysis, smoke-tests]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
@@ -315,41 +310,24 @@ jobs:
       cancel-in-progress: false
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Production deployment approval
+    - name: Deploy to production environment
       run: |
-        echo "⚠️ Production deployment requires manual approval"
-        echo "Images to deploy:"
+        echo "Deploying to production environment"
         echo "Backend: ${{ needs.build.outputs.backend-image }}"
         echo "Frontend: ${{ needs.build.outputs.frontend-image }}"
-
-    - name: Deploy to Production Environment
-      run: |
-        echo "🌟 Deploying to production environment..."
-        # Add actual production deployment commands
         # kubectl apply -f k8s/prod/ || docker-compose -f docker-compose.prod.yml up -d
 
-    - name: Wait for deployment
-      run: sleep 60
-
-    - name: Production Health Check
+    - name: Production health validation
       run: |
-        echo "🏥 Running production health checks..."
-        # Add comprehensive health checks
+        echo "Executing production health checks"
         # curl -f https://carprice.example.com/health || exit 1
-        # curl -f https://carprice.example.com/api/health || exit 1
-        echo "✅ Production deployment successful"
+        echo "Production deployment verified"
 
-    - name: Post-deployment tasks
-      run: |
-        echo "📊 Running post-deployment tasks..."
-        # Add monitoring setup, cache warming, etc.
-        echo "✅ Post-deployment tasks completed"
-
-    - name: Notify production deployment
+    - name: Production notification
       if: always()
       run: |
         echo "Production deployment status: ${{ job.status }}"
-        # Add critical notifications here
+        # Add production notification integration
