@@ -9,7 +9,7 @@ tags:
 
 # 🚗 Car Price Prediction Platform
 
-Modern microservices-based automotive valuation platform following current development trends with completely decoupled frontend, backend API, and ML inference services.
+Modern microservices-based automotive valuation platform following current development trends with completely decoupled frontend, backend API, and ML inference services. This design adheres to current development best practices by completely separating the three core functions: The Frontend (the user-facing application), The Backend API (the gateway for all requests), and The ML Inference Service (the engine that runs the predictions).
 
 ## 🚀 Quick Start
 
@@ -79,7 +79,7 @@ Modern microservices-based automotive valuation platform following current devel
         </div>
         <div style="flex: 1;">
             <p><strong>Technology Stack:</strong> Flask + XGBoost + CORS</p>
-            <p>High-performance REST API service handling prediction requests with enterprise security. CORS-enabled microservices architecture for seamless integration.</p>
+            <p>High-performance REST API service handling prediction requests and acts as the entry point for all predictions with enterprise security.</p>
             <ul>
                 <li>🚀 <strong>Port:</strong> 5002</li>
                 <li>🔌 <strong>Endpoints:</strong> /current_value_market, /future_prediction</li>
@@ -98,8 +98,8 @@ Modern microservices-based automotive valuation platform following current devel
             <p style="text-align: center; font-style: italic; margin-top: 8px; font-size: 0.9em; color: #666;">XGBoost ML Model</p>
         </div>
         <div style="flex: 1;">
-            <p><strong>Technology Stack:</strong> XGBoost + Scikit-learn</p>
-            <p>Production-ready machine learning model delivering sub-100ms prediction latency. Advanced gradient boosting algorithms with real-time inference capabilities.</p>
+            <p><strong>Technology Stack:</strong> XGBoost</p>
+            <p>XGBoost Gradient Boosting for its high accuracy and production-ready performance.</p>
             <ul>
                 <li>🤖 <strong>Algorithm:</strong> XGBoost Gradient Boosting</li>
                 <li>⚡ <strong>Latency:</strong> Sub-100ms prediction time</li>
@@ -119,10 +119,10 @@ Modern microservices-based automotive valuation platform following current devel
         </div>
         <div style="flex: 1;">
             <p><strong>Technology Stack:</strong> Swagger + OpenAPI 3.0</p>
-            <p>Interactive API documentation with multiple format support for developer onboarding. Professional documentation with Swagger UI, ReDoc, and RapiDoc formats.</p>
+            <p>Interactive API documentation with multiple format support for developer onboarding. Professional documentation with Swagger UI and ReDoc formats.</p>
             <ul>
                 <li>📚 <strong>Port:</strong> 5004</li>
-                <li>📄 <strong>Formats:</strong> Swagger UI, ReDoc, RapiDoc, Scalar</li>
+                <li>📄 <strong>Formats:</strong> Swagger UI, ReDoc</li>
                 <li>🔗 <strong>Access:</strong> /docs-menu, /docs/, /redoc/</li>
                 <li>👥 <strong>Purpose:</strong> Developer onboarding & API testing</li>
             </ul>
@@ -150,7 +150,9 @@ Modern microservices-based automotive valuation platform following current devel
 
 ## Enterprise Architecture
 
-Modern three-tier architecture delivering real-time ML predictions with enterprise scalability.
+**Three-Tier Scalability** 🏗️
+
+Modern enterprise architecture with Frontend Layer (Port 3000) serving Business Users, API Layer (Port 5002) centralizing all prediction requests, ML Layer housing XGBoost inference engine, and Documentation Portal (Port 5004) enabling developer integration.
 
 ```mermaid
 graph LR
@@ -206,6 +208,8 @@ graph LR
 
 ## 📋 Development Commands
 
+To simplify the entire development lifecycle we create a Makefile and the key to use it is understand the essential commands:
+
 ```mermaid
 flowchart LR
     A[🎯 make setup] --> B{🚀 make dev}
@@ -225,6 +229,8 @@ flowchart LR
     style H fill:#e8f5e8
     style M fill:#ffebee
 ```
+
+`make setup` (one-time environment provisioning with pyproject.toml dependencies and pre-commit hooks), `make dev` (intelligent launcher for all services on ports 3000/5002/5004), and `make test` (comprehensive quality assurance with coverage reporting). Additional commands include `make docs` for live documentation and `make clean` for environment reset.
 
 ### Command Interface
 
