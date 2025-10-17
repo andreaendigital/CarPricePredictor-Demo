@@ -9,37 +9,43 @@ tags:
 
 # 🚗 Car Price Prediction Platform
 
-Car price prediction web application using machine learning to estimate vehicle values. Users input car details through a web interface for instant XGBoost-powered price predictions with complete CI/CD workflow.
+Modern microservices-based automotive valuation platform following current development trends with completely decoupled frontend, backend API, and ML inference services.
 
-**Key Features:**
+## 🚀 Quick Start
 
-=== "🎯 What it does"
-    **ML-powered car price prediction platform**
+=== "⚡ 30-Second Setup"
+    **Complete environment setup in three commands**
 
-    Real-time vehicle valuation using advanced XGBoost algorithms with instant price predictions and future depreciation modeling for automotive marketplace integration.
+    ```bash
+    # Clone and enter project
+    git clone <repository-url> && cd car-price-prediction
 
-=== "👥 How users interact"
-    **Professional web interface with intuitive forms**
+    # Complete setup (installs everything)
+    make setup
 
-    Responsive design with real-time validation, professional animations, and cross-browser compatibility. Users input vehicle parameters through modern UI components for instant ML predictions.
+    # Start development
+    make dev
+    ```
 
-=== "🤖 Technology"
-    **XGBoost machine learning model with enterprise architecture**
+=== "🌐 Access Points"
+    **Service endpoints and documentation portals**
 
-    Production-ready gradient boosting algorithms with Flask REST APIs, comprehensive documentation, and sub-100ms prediction latency for real-time applications.
+    | Service | URL | Purpose |
+    |---------|-----|----------|
+    | 🎨 **Web App** | [http://localhost:3000](http://localhost:3000) | Main application interface |
+    | 🚀 **API** | [http://localhost:5002](http://localhost:5002) | ML prediction endpoints |
+    | 📚 **API Docs** | [http://localhost:5004/docs-menu](http://localhost:5004/docs-menu) | Interactive API documentation |
+    | 📝 **Project Docs** | [http://localhost:8000](http://localhost:8000) | This documentation (via `make docs`) |
 
-=== "🏗️ Architecture"
-    **Modern three-tier enterprise architecture**
+=== "⚙️ Daily Commands"
+    **Essential development workflow commands**
 
-    Frontend service (Port 3000) + ML API Gateway (Port 5002) + XGBoost inference engine with documentation portal (Port 5004) and CORS-enabled microservices design.
-
-=== "⚙️ Professional setup"
-    **Enterprise-grade development ecosystem**
-
-    Automated testing suites, GitHub Actions CI/CD pipeline, multi-platform Docker containers, pre-commit hooks, and comprehensive quality assurance framework.
-
-![Platform Demo](assets/images/3.jpg)
-*Car Price Prediction Platform - Frontend and Backend Integration*
+    ```bash
+    make dev     # Start development environment
+    make test    # Run quality checks
+    make docs    # Update documentation
+    make clean   # Reset environment
+    ```
 
 ## Core Components
 
@@ -123,7 +129,24 @@ Car price prediction web application using machine learning to estimate vehicle 
         </div>
     </div>
 
+=== "🏗️ Architecture"
+    **Modern three-tier enterprise architecture**
 
+    Frontend service (Port 3000) + ML API Gateway (Port 5002) + XGBoost inference engine with documentation portal (Port 5004) and CORS-enabled microservices design.
+
+    **API Communication Endpoints:**
+    ```bash
+    # Current Price Prediction
+    curl "http://localhost:5002/current_value_market?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1"
+
+    # Future Price Forecasting (12 months)
+    curl "http://localhost:5002/future_prediction?model_year=2020&age=4&fuel_type=Gasoline&transmission=Automatic&clean_title=1&meses=12"
+
+    # Vehicle Publishing
+    curl -X POST http://localhost:5002/publish_car \
+      -H "Content-Type: application/json" \
+      -d '{"model_year": 2020, "age": 4, "fuel_type": "Gasoline", "transmission": "Automatic", "clean_title": 1, "precio": 25000000}'
+    ```
 
 ## Enterprise Architecture
 
@@ -181,11 +204,29 @@ graph LR
     class DOC docs
 ```
 
+## 📋 Development Commands
 
+```mermaid
+flowchart LR
+    A[🎯 make setup] --> B{🚀 make dev}
+    B --> C[🐍 make dev-python]
+    B --> D[🐳 make dev-docker]
+    C --> E["🌐 Services<br/>:5002/:5004/:3000"]
+    D --> E
+    A --> F[🧪 make test]
+    F --> G["📊 Coverage<br/>Backend/Frontend"]
+    A --> H[📚 make docs]
+    H --> I["📝 Live Docs<br/>:8000"]
+    H --> J[🏗️ docs-build] --> K[🚀 docs-deploy] --> L["📖 GitHub Pages"]
+    M[🧹 make clean] --> A
+    style A fill:#e1f5fe
+    style B fill:#f3e5f5
+    style F fill:#fff3e0
+    style H fill:#e8f5e8
+    style M fill:#ffebee
+```
 
-## Enterprise Development Ecosystem
-
-**Command-Line Interface:**
+### Command Interface
 
 === "📦 make setup"
     **Automated environment provisioning with dependency validation**
@@ -198,20 +239,16 @@ graph LR
     Python 3.11.5
     🔍 Checking pip...
     pip 23.2.1
-    📦 Installing backend dependencies...
-    Successfully installed Flask-2.3.3 XGBoost-1.7.6 scikit-learn-1.3.0
-    📦 Installing frontend dependencies...
-    Successfully installed Flask-2.3.3 Jinja2-3.1.2
-    🧪 Installing test dependencies...
-    Successfully installed pytest-7.4.2 pytest-cov-4.1.0 black-23.7.0
-    📚 Installing documentation dependencies...
-    Successfully installed mkdocs-material-9.2.6
+    🚀 Installing project with all dependencies (pyproject.toml)...
+    Successfully installed car-price-predictor[dev] with all optional dependencies
     🔒 Installing pre-commit hooks...
     pre-commit installed at .git/hooks/pre-commit
     ✅ Setup complete! Available commands:
        • make dev     - Start development environment
        • make test    - Run test suite
        • make docs    - Start documentation server
+       • Pre-commit hooks active - quality checks on every commit
+       • Modern pyproject.toml configuration active 🎯
     ```
 
 === "🚀 make dev"
@@ -228,6 +265,8 @@ graph LR
     Enter choice [1-3]: 1
     🐍 Starting Python Development Environment...
     =============================================
+    🧪 Running full test verification before startup...
+    ✅ All tests passed - starting services...
     🚀 Backend API starting on port 5002...
     🚀 Documentation API starting on port 5004...
     🎨 Frontend starting on port 3000...
@@ -277,12 +316,12 @@ graph LR
     plugins: cov-4.1.0
     collected 6 items
 
-    tests/test_api_endpoints.py::TestAPIEndpoints::test_predictions_endpoint PASSED [ 16%]
-    tests/test_api_endpoints.py::TestAPIEndpoints::test_valoractual_endpoint PASSED  [ 33%]
-    tests/test_logic_unit.py::TestLogicUnit::test_get_current_value PASSED          [ 50%]
-    tests/test_logic_unit.py::TestLogicUnit::test_get_predictions_missing_feature PASSED [ 66%]
-    tests/test_logic_unit.py::TestLogicUnit::test_get_predictions_no_data PASSED     [ 83%]
-    tests/test_logic_unit.py::TestLogicUnit::test_get_predictions_valid_data PASSED  [100%]
+    ../tests/test_frontend.py::TestFrontendEndpoints::test_predictions_endpoint PASSED [ 16%]
+    ../tests/test_frontend.py::TestFrontendEndpoints::test_valoractual_endpoint PASSED  [ 33%]
+    ../tests/test_frontend.py::TestFrontendLogic::test_get_current_value PASSED          [ 50%]
+    ../tests/test_frontend.py::TestFrontendLogic::test_get_predictions_missing_feature PASSED [ 66%]
+    ../tests/test_frontend.py::TestFrontendLogic::test_get_predictions_no_data PASSED     [ 83%]
+    ../tests/test_frontend.py::TestFrontendLogic::test_get_predictions_valid_data PASSED  [100%]
 
     ---------- coverage: platform darwin, python 3.9.13-final-0 ----------
     Name                          Stmts   Miss  Cover   Missing
@@ -338,192 +377,60 @@ graph LR
     INFO    -  [11:26:18] Browser connected: http://localhost:8000/CarPricePredictor-MLOps-Demo/
     ```
 
+=== "⚙️ pyproject.toml"
+    **Modern Python project configuration with TOML (Tom's Obvious Minimal Language)**
 
-**Quality Assurance Framework:**
+    TOML replaces traditional requirements.txt files with a unified configuration approach. It defines project metadata, dependencies, build system, and tool configurations in a single declarative file that's both human-readable and machine-parseable.
 
-=== "🎨 Code Standards"
-    **Black formatting with PEP 8 compliance and Flake8 linting**
+    ```toml title="pyproject.toml"
+    [build-system]
+    requires = ["setuptools>=61.0", "wheel"]
+    build-backend = "setuptools.build_meta"
 
-    ```console title="VS Code Terminal"
-    (.venv) joserubio@Joses-MacBook-Pro car-price-prediction % make pre-commit
-    🔒 Running Pre-commit on All Files...
-    ====================================
-    trim trailing whitespace.................................................[32mPassed[0m
-    fix end of files.........................................................[32mPassed[0m
-    check yaml...............................................................[32mPassed[0m
-    check for added large files..............................................[32mPassed[0m
-    check for merge conflicts................................................[32mPassed[0m
-    black....................................................................[32mPassed[0m
-    flake8...................................................................[32mPassed[0m
+    [project]
+    name = "car-price-predictor"
+    version = "1.1.0"
+    description = "Enterprise MLOps platform for automotive price prediction"
+    requires-python = ">=3.9"
+    dependencies = [
+        "requests>=2.31.0",
+    ]
 
-    Backend Tests............................................................[32mPassed[0m
-    ============================= test session starts ==============================
-    platform darwin -- Python 3.9.13, pytest-7.4.3, pluggy-1.6.0
-    cachedir: .pytest_cache
-    rootdir: /Users/joserubio/Desktop/proyectos/DevopsSoftsertverProjecLab/car-price-prediction
-    plugins: cov-4.1.0
-    collected 5 items
+    [project.optional-dependencies]
+    backend = [
+        "Flask==2.3.3",
+        "flask-restx==1.3.0",
+        "xgboost==2.1.3",
+        "scikit-learn==1.6.1",
+    ]
+    frontend = [
+        "Flask==2.3.3",
+        "Flasgger==0.9.7.1",
+    ]
+    test = [
+        "pytest==7.4.3",
+        "pytest-cov==4.1.0",
+    ]
+    dev = [
+        "car-price-predictor[backend,frontend,test,quality,docs]",
+    ]
 
-    ../tests/test_backend.py::test_home_endpoint [32mPASSED[0m                      [33m[ 20%][0m
-    ../tests/test_backend.py::test_current_value_market_endpoint [32mPASSED[0m             [33m[ 40%][0m
-    ../tests/test_backend.py::test_current_value_market_missing_params [32mPASSED[0m       [33m[ 60%][0m
-    ../tests/test_backend.py::test_future_prediction_endpoint [32mPASSED[0m         [33m[ 80%][0m
-    ../tests/test_backend.py::test_publish_car_endpoint [32mPASSED[0m         [33m[100%][0m
+    [tool.black]
+    line-length = 127
+    target-version = ['py39', 'py310', 'py311']
 
-    =============================== warnings summary ===============================
-    XGBoost model compatibility warnings...
-
-    ======================== [32m5 passed[0m, 7 warnings in 0.63s =========================
-
-    Frontend Tests...........................................................[32mPassed[0m
-
-    [32m✅ All quality checks passed![0m
+    [tool.pytest.ini_options]
+    testpaths = ["tests", "backend", "frontend/tests"]
+    addopts = ["-v", "--strict-markers"]
     ```
 
-
-
-
-
-
-
-=== "📋 PR Template"
-    **GitHub Pull Request template for approval standards**
-
-    **📄 Template (.github/pull_request_template.md)**
-    ```markdown
-    # 🚗 Car Price Prediction Platform - Pull Request
-    ## 📋 PR Summary
-    **SCRUM Ticket:** SCRUM-XXX
-    **Type:** [ ] Feature [ ] Bug Fix [ ] Enhancement
-    ### 🎯 What does this PR do?
-    <!-- Brief description of changes -->
-    ## 🧪 Testing Checklist
-    - [ ] Backend tests pass
-    - [ ] Frontend tests pass
-    - [ ] Integration tests pass
-    - [ ] Code formatting checked
-    ## 🔧 Technical Changes
-    - [ ] API endpoints modified/added
-    - [ ] UI/UX improvements
-    - [ ] CI/CD pipeline updates
-    ## ✅ Pre-merge Checklist
-    - [ ] Code reviewed by team member
-    - [ ] All CI/CD checks passing
-    - [ ] Ready for deployment
-    ```
-
-    **📊 PR Review Output**
-    ```console
-    🚗 Pull Request #42 - SCRUM-90
-    Type: ✅ Feature
-    🎯 Docker containerization with security scanning
-    🧪 Testing: ✅ All tests passed (14/14)
-    🔧 Changes: ✅ CI/CD pipeline, Docker config
-    🎯 Status: APPROVED ✅ - Ready to merge
-    ```
-
-=== "🔒 Pre-commit Config"
-    **Automated quality checks with pre-commit hooks**
-
-    **⚙️ Configuration (.pre-commit-config.yaml)**
-    ```yaml
-    repos:
-      - repo: https://github.com/pre-commit/pre-commit-hooks
-        rev: v4.5.0
-        hooks:
-          - id: trailing-whitespace
-          - id: end-of-file-fixer
-          - id: check-yaml
-          - id: check-added-large-files
-          - id: check-merge-conflict
-      - repo: https://github.com/psf/black
-        rev: 23.12.1
-        hooks:
-          - id: black
-            args: [--line-length=127]
-            files: ^(backend|frontend)/.*\.py$
-      - repo: https://github.com/pycqa/flake8
-        rev: 7.0.0
-        hooks:
-          - id: flake8
-            args: [--max-line-length=127, --max-complexity=10]
-            files: ^(backend|frontend)/.*\.py$
-      - repo: local
-        hooks:
-          - id: pytest-backend
-            name: Backend Tests
-            entry: bash -c 'cd backend && python3 -m pytest ../tests/test_backend.py -v'
-            language: system
-            files: ^(backend|tests)/.*\.py$
-            pass_filenames: false
-    ```
-
-    **🔍 Pre-commit Execution Output**
-    ```console
-    $ git commit -m "feat: add Docker security scanning"
-    🔒 Running pre-commit hooks...
-    trim trailing whitespace.........................Passed
-    fix end of files.................................Passed
-    check yaml.......................................Passed
-    black................................................Passed
-    flake8...............................................Passed
-    Backend Tests....................................Passed
-    Frontend Tests...................................Passed
-    ✅ All hooks passed!
-    [SCRUM-90 abc1234] feat: add Docker security scanning
-    🎯 Commit successful - ready to push!
-    ```
-
-
-
-
-
-
-
-
-## 🚀 Quick Start
-
-=== "⚡ 30-Second Setup"
-    **Complete environment setup in three commands**
-
-    ```bash
-    # Clone and enter project
-    git clone <repository-url> && cd car-price-prediction
-
-    # Complete setup (installs everything)
-    make setup
-
-    # Start development
-    make dev
-    ```
-
-=== "🌐 Access Points"
-    **Service endpoints and documentation portals**
-
-    | Service | URL | Purpose |
-    |---------|-----|----------|
-    | 🎨 **Web App** | [http://localhost:3000](http://localhost:3000) | Main application interface |
-    | 🚀 **API** | [http://localhost:5002](http://localhost:5002) | ML prediction endpoints |
-    | 📚 **API Docs** | [http://localhost:5004/docs-menu](http://localhost:5004/docs-menu) | Interactive API documentation |
-    | 📝 **Project Docs** | [http://localhost:8000](http://localhost:8000) | This documentation (via `make docs`) |
-
-=== "⚙️ Daily Commands"
-    **Essential development workflow commands**
-
-    ```bash
-    make dev     # Start development environment
-    make test    # Run quality checks
-    make docs    # Update documentation
-    make clean   # Reset environment
-    ```
-
-# Key Project Blockers
+## Key Project Blockers
 
 This summary identifies risks related to dependency management, development infrastructure (Docker/TOML), and workflow tool adoption (Jira/GitHub).
 
-| Blocker | Potential Impact on the Project | Proposed Solution (Mitigation) | 
- | ----- | ----- | ----- | 
-| **1. Migration to TOML : Incompatibility in Docker Builds** | The current Dockerfile process assumes pip install -r requirements.txt. Migration requires changing the builder to install dependencies from pyproject.toml or the lock file. | **Solution:** Refactor the Dockerfile to use the native TOML tool flow (e.g., copying pyproject.toml and poetry.lock and running poetry install --no-root). | 
-| **2. Build-Time Dependency Management** | ML dependencies requiring compilation might face issues if the TOML tool doesn't manage them correctly in the Docker build environment. | **Solution:** Identify and isolate complex dependencies. Use a builder pattern or a multi-stage container in Docker to pre-install or configure necessary system tools before Python installation. | 
-| **3. Jira and GitHub Learning Curve** | The team's lack of familiarity with the Jira-GitHub workflow (creating branches with ticket IDs, linking commits, auto-moving statuses). | **Solution:** Conduct a mandatory hands-on workshop at the start of the project on the "Branching, Commit, Merge Request, Ticket Closing" flow. Document the commit message convention (e.g., [Ticket-ID] Descriptive message). | 
-| **4. Python/ML Library Version Conflict** | A required preprocessing library is incompatible with onnxruntime in the Docker environment. | **Solution:** Define the versions of all dependencies. Use a clean Docker base image to strictly isolate dependencies. | 
+| Blocker | Potential Impact on the Project | Proposed Solution (Mitigation) |
+ | ----- | ----- | ----- |
+| **1. Migration to TOML : Incompatibility in Docker Builds** | The current Dockerfile process assumes pip install -r requirements.txt. Migration requires changing the builder to install dependencies from pyproject.toml or the lock file. | **Solution:** Refactor the Dockerfile to use the native TOML tool flow (e.g., copying pyproject.toml and poetry.lock and running poetry install --no-root). |
+| **2. Build-Time Dependency Management** | ML dependencies requiring compilation might face issues if the TOML tool doesn't manage them correctly in the Docker build environment. | **Solution:** Identify and isolate complex dependencies. Use a builder pattern or a multi-stage container in Docker to pre-install or configure necessary system tools before Python installation. |
+| **3. Jira and GitHub Learning Curve** | The team's lack of familiarity with the Jira-GitHub workflow (creating branches with ticket IDs, linking commits, auto-moving statuses). | **Solution:** Conduct a mandatory hands-on workshop at the start of the project on the "Branching, Commit, Merge Request, Ticket Closing" flow. Document the commit message convention (e.g., [Ticket-ID] Descriptive message). |
+| **4. Python/ML Library Version Conflict** | A required preprocessing library is incompatible with onnxruntime in the Docker environment. | **Solution:** Define the versions of all dependencies. Use a clean Docker base image to strictly isolate dependencies. |
