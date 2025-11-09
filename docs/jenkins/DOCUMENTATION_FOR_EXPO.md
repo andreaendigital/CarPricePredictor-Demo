@@ -84,7 +84,11 @@ flowchart LR
     style I fill:#e8f5e8
 ```
 
-**Architecture Flow:** The enterprise architecture follows a structured approach where three source control repositories (Infrastructure, Configuration, Application) feed into Jenkins CI/CD for automated orchestration. Jenkins deploys infrastructure to AWS Cloud (VPC, EC2, S3) and establishes comprehensive observability through OpenTelemetry metrics collection that streams to Splunk Cloud for enterprise-grade monitoring and analytics.
+**Architecture Flow:**
+• **Three-Repository Structure** - Infrastructure, Configuration, and Application repositories provide **separation of concerns**
+• **Jenkins CI/CD Orchestration** - Automated pipeline manages **end-to-end deployment** across all environments
+• **AWS Cloud Infrastructure** - VPC, EC2, and S3 deliver **enterprise-grade hosting** with security isolation
+• **Comprehensive Observability** - OpenTelemetry collectors stream **real-time metrics** to Splunk Cloud for analytics
 
 ---
 
@@ -139,7 +143,12 @@ flowchart LR
     style L fill:#e8f5e8
 ```
 
-**How It Works:** Jenkins orchestrates the entire deployment pipeline by first executing Terraform to provision AWS infrastructure (VPC, EC2, S3, Security Groups), then running Ansible to configure the application environment and deploy Flask services with Python dependencies. Simultaneously, OpenTelemetry collectors are installed and configured to stream metrics to Splunk Observability Cloud. The pipeline concludes with automated health checks on both backend (port 5002) and frontend (port 3000) services, ensuring the complete stack is operational before deployment completion.
+**Deployment Process:**
+• **Jenkins Orchestration** - Central pipeline manages **automated deployment** across all infrastructure layers
+• **Terraform Provisioning** - Infrastructure as Code creates **AWS resources** (VPC, EC2, S3, Security Groups)
+• **Ansible Configuration** - Automated setup deploys **Flask services** with Python dependencies
+• **OpenTelemetry Integration** - Collectors installed for **real-time metrics** streaming to Splunk Cloud
+• **Health Validation** - Automated checks verify **backend and frontend** services before completion
 
 ---
 
@@ -173,6 +182,12 @@ flowchart LR
                 │ (Port 3000)  │ │ (10s int.)  │ │ Metrics   │
                 │ (Port 5002)  │ │             │ │           │
                 └──────────────┘ └─────────────┘ └───────────┘
+
+    **Telemetry Flow:**
+    • **Three-Layer Architecture** - Application, Infrastructure, and Pipeline layers provide **comprehensive coverage**
+    • **Specialized Collectors** - OpenTelemetry, HostMetrics, and Jenkins collectors ensure **targeted data capture**
+    • **Enterprise Platform** - Splunk Observability Cloud delivers **centralized monitoring** and analytics
+    • **Real-Time Streaming** - Continuous metrics flow enables **proactive operational management**
     ```
 
 === "Metrics Volume"
@@ -230,7 +245,12 @@ flowchart LR
     style L fill:#e1f5fe
 ```
 
-**Data Collection Process:** Multiple data sources (Backend/Frontend applications, EC2 infrastructure, Jenkins pipeline, AWS resources) generate metrics at different intervals. These metrics flow through specialized collectors (OpenTelemetry, HostMetrics, Pipeline) into a unified processing layer that performs resource detection, attribute processing, and exports to Splunk Observability Cloud, achieving comprehensive platform visibility with over 1,070 metrics per hour.
+**Data Collection Process:**
+• **Multiple Data Sources** - Backend/Frontend apps, EC2 infrastructure, Jenkins pipeline generate **diverse metrics**
+• **Specialized Collectors** - OpenTelemetry, HostMetrics, and Pipeline collectors provide **targeted monitoring**
+• **Unified Processing** - Resource detection and attribute processing ensure **data consistency**
+• **Splunk Integration** - Real-time export delivers **1,070+ metrics per hour** for enterprise analytics
+• **Comprehensive Visibility** - Complete platform monitoring from **application to infrastructure**
 
 ### Implemented Metrics
 
@@ -312,7 +332,12 @@ flowchart LR
     style B fill:#f3e5f5
 ```
 
-**Dashboard Ecosystem:** The monitoring architecture provides multi-tier visibility through local dashboards (Backend and Frontend services) that collect real-time metrics, process them through a unified data flow, and visualize results in both local interfaces and the enterprise Splunk Observability platform. This creates comprehensive operational awareness from application-level details to enterprise-wide analytics.
+**Dashboard Ecosystem:**
+• **Multi-Tier Visibility** - Local dashboards provide **application-level insights** for Backend and Frontend services
+• **Real-Time Processing** - Unified data flow ensures **live metric collection** and processing
+• **Dual Visualization** - Local interfaces and **Splunk Observability** platform offer comprehensive views
+• **Enterprise Analytics** - Complete operational awareness from **granular details to strategic insights**
+• **Operational Excellence** - Continuous monitoring enables **proactive management** and optimization
 
 === "Backend Dashboard"
 
