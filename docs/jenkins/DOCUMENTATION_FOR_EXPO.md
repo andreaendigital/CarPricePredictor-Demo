@@ -242,9 +242,9 @@ flowchart LR
 
     subgraph PROCESSING ["⚙️ PROCESSING"]
         direction TB
-        P1["🔍 Resource Detection<br/><b>Auto-discovery</b>"]
-        P2["🏷️ Attribute Processing<br/><b>Enrichment</b>"]
-        P3["📤 Splunk Export<br/><b>Real-time Stream</b>"]
+        P1["🔍 Resource Detection<br/><b>Auto-discovery</b><br/><small>Service identification</small>"]
+        P2["🏷️ Attribute Processing<br/><b>Data Enrichment</b><br/><small>Metadata tagging</small>"]
+        P3["📤 Splunk Export<br/><b>Real-time Stream</b><br/><small>Enterprise delivery</small>"]
     end
 
     subgraph ANALYTICS ["📊 ANALYTICS PLATFORM"]
