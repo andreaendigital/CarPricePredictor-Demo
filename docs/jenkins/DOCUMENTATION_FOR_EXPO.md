@@ -113,67 +113,52 @@ flowchart LR
 ## 🔄 Deployment Flow
 
 ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff', 'lineColor': '#374151'}}}%%
-
 flowchart LR
-    subgraph TRIGGER ["🚀 PIPELINE TRIGGER"]
-        T1["📝 Code Commit<br/><b>Git Push</b><br/><small>~30s</small>"]
+    subgraph "Pipeline Execution"
+        A[🚀 Jenkins<br/>Orchestration]
+        B[🏗️ Terraform<br/>Infrastructure]
+        C[⚙️ Ansible<br/>Configuration]
+        D[🎯 Health<br/>Validation]
     end
 
-    subgraph PIPELINE ["🔄 DEPLOYMENT STAGES"]
-        direction TB
-        P1["🏗️ Terraform<br/><b>Infrastructure</b><br/><small>~5 min</small>"]
-        P2["⚙️ Ansible<br/><b>Configuration</b><br/><small>~3 min</small>"]
-        P3["🎯 Health Check<br/><b>Validation</b><br/><small>~1 min</small>"]
+    subgraph "Infrastructure Layer"
+        E[🌐 AWS VPC<br/>Network Isolation]
+        F[💻 EC2 t3.small<br/>Compute Instance]
+        G[📦 S3 Bucket<br/>State Management]
+        H[🔒 Security Groups<br/>Access Control]
     end
 
-    subgraph INFRA ["☁️ AWS INFRASTRUCTURE"]
-        direction TB
-        I1["🌐 VPC<br/><b>10.0.0.0/16</b>"]
-        I2["💻 EC2<br/><b>t3.small</b>"]
-        I3["📦 S3<br/><b>State</b>"]
-        I4["🗄️ RDS<br/><b>MySQL</b>"]
+    subgraph "Application Layer"
+        I[🐍 Flask Services<br/>systemd Deployment]
+        J[🔧 Python Environment<br/>Dependencies Setup]
     end
 
-    subgraph APPS ["🚀 APPLICATION SERVICES"]
-        direction TB
-        A1["🎨 Frontend<br/><b>Port 3000</b>"]
-        A2["🔌 Backend<br/><b>Port 5002</b>"]
+    subgraph "Monitoring Layer"
+        K[📊 OpenTelemetry<br/>Collector Installation]
+        L[☁️ Splunk Integration<br/>Observability Cloud]
     end
 
-    subgraph MONITOR ["📊 MONITORING"]
-        direction TB
-        M1["📈 OpenTelemetry<br/><b>Collector</b>"]
-        M2["☁️ Splunk Cloud<br/><b>Analytics</b>"]
-    end
+    A --> B
+    B --> C
+    C --> D
 
-    T1 ==>|"Triggers"| P1
-    P1 ==>|"Provisions"| I1
-    P1 ==>|"Creates"| I2
-    P1 ==>|"Sets up"| I3
-    P1 ==>|"Deploys"| I4
-    P1 --> P2
-    P2 ==>|"Configures"| A1
-    P2 ==>|"Deploys"| A2
-    P2 ==>|"Installs"| M1
-    P2 --> P3
-    P3 -.->|"Validates"| A1
-    P3 -.->|"Validates"| A2
-    A1 ==> M1
-    A2 ==> M1
-    M1 ==> M2
+    B --> E
+    B --> F
+    B --> G
+    B --> H
 
-    classDef trigger fill:#fef3c7,stroke:#f59e0b,stroke-width:3px
-    classDef pipeline fill:#dbeafe,stroke:#3b82f6,stroke-width:3px
-    classDef infra fill:#dcfce7,stroke:#10b981,stroke-width:3px
-    classDef apps fill:#fce7f3,stroke:#ec4899,stroke-width:3px
-    classDef monitor fill:#f3e8ff,stroke:#8b5cf6,stroke-width:3px
+    C --> I
+    C --> J
+    C --> K
 
-    class T1 trigger
-    class P1,P2,P3 pipeline
-    class I1,I2,I3,I4 infra
-    class A1,A2 apps
-    class M1,M2 monitor
+    K --> L
+
+    D --> M[✅ Backend :5002<br/>Health Check]
+    D --> N[✅ Frontend :3000<br/>Health Check]
+
+    style A fill:#e1f5fe
+    style D fill:#c8e6c9
+    style L fill:#e8f5e8
 ```
 
 **Deployment Process:**
@@ -236,43 +221,59 @@ flowchart LR
 ### Data Collection Flow
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff'}}}%%
+
 flowchart LR
-    subgraph "Data Sources"
-        A[🖥️ Backend App<br/>~360/hour<br/>30s interval]
-        B[🌐 Frontend App<br/>~360/hour<br/>30s interval]
-        C[🏗️ EC2 Infrastructure<br/>~200/hour<br/>10s interval]
-        D[🔧 Jenkins Pipeline<br/>~50/deployment]
-        E[☁️ AWS Resources<br/>~100/hour<br/>60s interval]
+    subgraph SOURCES ["📊 DATA SOURCES"]
+        direction TB
+        S1["🖥️ Backend App<br/><b>~360/hour</b><br/><small>30s interval</small>"]
+        S2["🌐 Frontend App<br/><b>~360/hour</b><br/><small>30s interval</small>"]
+        S3["🏗️ EC2 Infrastructure<br/><b>~200/hour</b><br/><small>10s interval</small>"]
+        S4["🔧 Jenkins Pipeline<br/><b>~50/deployment</b><br/><small>Per build</small>"]
+        S5["☁️ AWS Resources<br/><b>~100/hour</b><br/><small>60s interval</small>"]
     end
 
-    subgraph "Collection Layer"
-        F[📊 OpenTelemetry<br/>Collector]
-        G[📈 HostMetrics<br/>Collector]
-        H[🔄 Pipeline<br/>Metrics]
+    subgraph COLLECTORS ["🔄 COLLECTION LAYER"]
+        direction TB
+        C1["📈 OpenTelemetry<br/><b>App Metrics</b>"]
+        C2["📊 HostMetrics<br/><b>System Data</b>"]
+        C3["🔄 Pipeline<br/><b>DevOps Metrics</b>"]
     end
 
-    subgraph "Processing"
-        I[🔄 Resource Detection]
-        J[🏷️ Attribute Processing]
-        K[📤 Splunk Export]
+    subgraph PROCESSING ["⚙️ PROCESSING"]
+        direction TB
+        P1["🔍 Resource Detection<br/><b>Auto-discovery</b>"]
+        P2["🏷️ Attribute Processing<br/><b>Enrichment</b>"]
+        P3["📤 Splunk Export<br/><b>Real-time Stream</b>"]
     end
 
-    A --> F
-    B --> F
-    C --> G
-    D --> H
-    E --> G
+    subgraph ANALYTICS ["📊 ANALYTICS PLATFORM"]
+        A1["☁️ Splunk Observability<br/><b>1,070+ metrics/hour</b><br/><small>Enterprise Analytics</small>"]
+    end
 
-    F --> I
-    G --> I
-    H --> I
+    S1 --> C1
+    S2 --> C1
+    S3 --> C2
+    S4 --> C3
+    S5 --> C2
 
-    I --> J
-    J --> K
+    C1 --> P1
+    C2 --> P1
+    C3 --> P1
 
-    K --> L[☁️ Splunk Observability<br/>~1,070 metrics/hour]
+    P1 --> P2
+    P2 --> P3
+    P3 --> A1
 
-    style L fill:#e1f5fe
+    classDef sources fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
+    classDef collectors fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
+    classDef processing fill:#e8f5e8,stroke:#388e3c,stroke-width:3px
+    classDef analytics fill:#fff3e0,stroke:#f57c00,stroke-width:3px
+
+    class S1,S2,S3,S4,S5 sources
+    class C1,C2,C3 collectors
+    class P1,P2,P3 processing
+    class A1 analytics
 ```
 
 **Data Collection Process:**
