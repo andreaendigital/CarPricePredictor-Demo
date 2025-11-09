@@ -348,31 +348,54 @@ flowchart LR
 ### Dashboard Architecture
 
 ```mermaid
-flowchart LR
-    subgraph "Local Dashboards"
-        A[🖥️ Backend Dashboard<br/>Port 5002/dashboard<br/>• System Metrics<br/>• API Performance<br/>• 5s Auto-refresh]
-        B[🌐 Frontend Dashboard<br/>Port 3000/dashboard<br/>• Web Metrics<br/>• User Activity<br/>• Health Status]
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff'}}}%%
+
+flowchart TB
+    subgraph USERS ["👥 USER PERSONAS"]
+        direction LR
+        U1["👔 Executives<br/><small>Strategic KPIs</small>"]
+        U2["🔧 Operations<br/><small>System Health</small>"]
+        U3["👨‍💻 Developers<br/><small>Technical Metrics</small>"]
     end
 
-    subgraph "Enterprise Platform"
-        C[☁️ Splunk Observability<br/>app.us1.signalfx.com<br/>• 1,070+ metrics/hour<br/>• Real-time streaming<br/>• 30-day retention<br/>• Custom dashboards]
+    subgraph LOCAL ["🖥️ LOCAL DASHBOARDS"]
+        direction LR
+        L1["🎨 Frontend Dashboard<br/><b>Port 3000/dashboard</b><br/><small>• User Activity<br/>• Page Performance<br/>• 5s Auto-refresh</small>"]
+        L2["🔌 Backend Dashboard<br/><b>Port 5002/dashboard</b><br/><small>• API Performance<br/>• ML Predictions<br/>• System Health</small>"]
     end
 
-    subgraph "Data Flow"
-        D[📊 Metrics Collection]
-        E[🔄 Real-time Processing]
-        F[📈 Visualization]
+    subgraph ENTERPRISE ["☁️ ENTERPRISE PLATFORM"]
+        direction TB
+        E1["📊 Splunk Observability<br/><b>app.us1.signalfx.com</b><br/><small>• 1,070+ metrics/hour<br/>• 30-day retention<br/>• Custom dashboards<br/>• Real-time alerts</small>"]
     end
 
-    A --> D
-    B --> D
-    D --> E
-    E --> F
-    F --> C
+    subgraph ANALYTICS ["📈 BUSINESS ANALYTICS"]
+        direction LR
+        A1["💼 Executive View<br/><small>Revenue & KPIs</small>"]
+        A2["🎯 Operational View<br/><small>Performance & SLA</small>"]
+        A3["🔍 Technical View<br/><small>Infrastructure & Code</small>"]
+    end
 
-    style C fill:#e1f5fe
-    style A fill:#fff3e0
-    style B fill:#f3e5f5
+    U1 --> A1
+    U2 --> A2
+    U3 --> A3
+
+    L1 --> E1
+    L2 --> E1
+
+    E1 --> A1
+    E1 --> A2
+    E1 --> A3
+
+    classDef users fill:#fef3c7,stroke:#f59e0b,stroke-width:3px
+    classDef local fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
+    classDef enterprise fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
+    classDef analytics fill:#e8f5e8,stroke:#388e3c,stroke-width:3px
+
+    class U1,U2,U3 users
+    class L1,L2 local
+    class E1 enterprise
+    class A1,A2,A3 analytics
 ```
 
 **Dashboard Ecosystem:**
