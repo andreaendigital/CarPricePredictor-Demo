@@ -202,19 +202,6 @@ flowchart LR
 - **Enterprise Platform** - Splunk Observability Cloud delivers **centralized monitoring** and analytics
 - **Real-Time Streaming** - Continuous metrics flow enables **proactive operational management**
 
-=== "Metrics Volume"
-
-    | Layer | Component | Metrics/Hour | Collection Interval |
-    |-------|-----------|--------------|--------------------|
-    | **Application** | Backend Service | ~360 | 30 seconds |
-    | **Application** | Frontend Service | ~360 | 30 seconds |
-    | **Infrastructure** | EC2 Host Metrics | ~200 | 10 seconds |
-    | **Pipeline** | Jenkins Deployment | ~50 | Per deployment |
-    | **Cloud** | AWS Resources | ~100 | 60 seconds |
-    | **Total** | **Enterprise Platform** | **~1,070** | **Real-time** |
-
-
-
 ### Data Collection Flow
 
 ```mermaid
@@ -266,6 +253,17 @@ flowchart LR
 - **Comprehensive Visibility** - Complete platform monitoring from **application to infrastructure**
 
 ### Implemented Metrics
+
+=== "Metrics Volume"
+
+    | Layer | Component | Metrics/Hour | Collection Interval |
+    |-------|-----------|--------------|--------------------|
+    | **Application** | Backend Service | ~360 | 30 seconds |
+    | **Application** | Frontend Service | ~360 | 30 seconds |
+    | **Infrastructure** | EC2 Host Metrics | ~200 | 10 seconds |
+    | **Pipeline** | Jenkins Deployment | ~50 | Per deployment |
+    | **Cloud** | AWS Resources | ~100 | 60 seconds |
+    | **Total** | **Enterprise Platform** | **~1,070** | **Real-time** |
 
 === "Backend Metrics"
 
