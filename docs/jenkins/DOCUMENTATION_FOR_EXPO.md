@@ -52,41 +52,70 @@
 ## 🏗️ Enterprise Architecture Overview
 
 ```mermaid
-flowchart LR
-    subgraph "Source Control"
-        A[🏗️ Infrastructure<br/>Terraform IaC]
-        B[⚙️ Configuration<br/>Ansible Automation]
-        C[🚀 Application<br/>Flask + XGBoost]
+%%{init: {
+  'theme': 'base',
+  'themeVariables': {
+    'primaryColor': '#2563eb',
+    'primaryTextColor': '#ffffff',
+    'primaryBorderColor': '#1e40af',
+    'lineColor': '#374151',
+    'secondaryColor': '#f3f4f6',
+    'tertiaryColor': '#e5e7eb',
+    'background': '#ffffff',
+    'mainBkg': '#f8fafc',
+    'secondBkg': '#f1f5f9',
+    'tertiaryBkg': '#e2e8f0'
+  }
+}}%%
+
+flowchart TB
+    subgraph SC ["🏛️ SOURCE CONTROL LAYER"]
+        direction TB
+        A["🏗️ Infrastructure<br/><b>Terraform IaC</b><br/><small>AWS Resources</small>"]
+        B["⚙️ Configuration<br/><b>Ansible Automation</b><br/><small>System Setup</small>"]
+        C["🚀 Application<br/><b>Flask + XGBoost</b><br/><small>ML Platform</small>"]
     end
 
-    subgraph "Deployment"
-        D[🔄 Jenkins CI/CD<br/>Automated Pipeline]
+    subgraph DP ["🔄 DEPLOYMENT PIPELINE"]
+        direction TB
+        D["🎯 Jenkins CI/CD<br/><b>Orchestration Engine</b><br/><small>Automated Deployment</small>"]
     end
 
-    subgraph "AWS Cloud"
-        E[🌐 VPC Network<br/>Security & Isolation]
-        F[💻 EC2 Instance<br/>Application Runtime]
-        G[📦 S3 Storage<br/>State Management]
+    subgraph AWS ["☁️ AWS CLOUD INFRASTRUCTURE"]
+        direction TB
+        E["🌐 VPC Network<br/><b>Security & Isolation</b><br/><small>10.0.0.0/16</small>"]
+        F["💻 EC2 Instance<br/><b>Application Runtime</b><br/><small>t3.small</small>"]
+        G["📦 S3 Storage<br/><b>State Management</b><br/><small>Terraform Backend</small>"]
     end
 
-    subgraph "Observability"
-        H[📊 OpenTelemetry<br/>Metrics Collection]
-        I[☁️ Splunk Cloud<br/>Enterprise Monitoring]
+    subgraph OBS ["📊 OBSERVABILITY PLATFORM"]
+        direction TB
+        H["📈 OpenTelemetry<br/><b>Metrics Collection</b><br/><small>Real-time Data</small>"]
+        I["☁️ Splunk Cloud<br/><b>Enterprise Monitoring</b><br/><small>1,070+ metrics/hour</small>"]
     end
 
-    A --> D
-    B --> D
-    C --> D
+    %% Connections with labels
+    A -.->|"Infrastructure Code"| D
+    B -.->|"Configuration Scripts"| D
+    C -.->|"Application Code"| D
 
-    D --> E
-    D --> F
-    D --> G
+    D ==>|"Provisions"| E
+    D ==>|"Deploys"| F
+    D ==>|"Manages"| G
 
-    F --> H
-    H --> I
+    F ==>|"Streams Metrics"| H
+    H ==>|"Exports Data"| I
 
-    style D fill:#e1f5fe
-    style I fill:#e8f5e8
+    %% Professional styling
+    classDef sourceControl fill:#e3f2fd,stroke:#1976d2,stroke-width:3px,color:#000
+    classDef deployment fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px,color:#000
+    classDef aws fill:#e8f5e8,stroke:#388e3c,stroke-width:3px,color:#000
+    classDef observability fill:#fff3e0,stroke:#f57c00,stroke-width:3px,color:#000
+
+    class A,B,C sourceControl
+    class D deployment
+    class E,F,G aws
+    class H,I observability
 ```
 
 **Architecture Flow:**
