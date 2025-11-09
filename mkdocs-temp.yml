@@ -117,7 +117,7 @@ nav:
   - Frontend: architecture/components.md
   - Backend: api/endpoints.md
   - CI/CD Pipeline: cicd/pipeline.md
-  - Enterprise DevOps: jenkins/DOCUMENTATION_FOR_EXPO.md
+  - AutoML Intelligence Platform: jenkins/DOCUMENTATION_FOR_EXPO.md
 
 extra:
   social:

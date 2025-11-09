@@ -95,75 +95,103 @@ configManagement-carPrice/
 
 ## 🔄 Deployment Flow Architecture
 
-### Phase 1: Pipeline Initiation
-```
-Jenkins Server → Jenkinsfile (tf-infra-demoCar/Jenkinsfile)
-├── 1. Clone Repositories
-│   ├── tf-infra-demoCar (Infrastructure)
-│   └── configManagement-carPrice (Ansible)
-├── 2. Terraform Operations
-│   ├── terraform init (S3 backend)
-│   ├── terraform plan (Preview changes)
-│   └── terraform apply (Provision AWS resources)
-└── 3. Generate Ansible Inventory
-    └── Dynamic EC2 IP discovery
+### Complete Pipeline Flow
+
+```mermaid
+flowchart TD
+    A[🚀 Jenkins Pipeline Start] --> B[📥 Clone Repositories]
+    B --> C[tf-infra-demoCar]
+    B --> D[configManagement-carPrice]
+
+    C --> E[🏗️ Terraform Init]
+    E --> F[📋 Terraform Plan]
+    F --> G[🚀 Terraform Apply]
+
+    G --> H[🌐 AWS Infrastructure]
+    H --> I[VPC + Subnets<br/>10.0.0.0/16]
+    H --> J[🔒 Security Groups<br/>SSH, HTTP, App Ports]
+    H --> K[💻 EC2 Instance<br/>t3.small Amazon Linux]
+    H --> L[📦 S3 Bucket<br/>Terraform State]
+
+    D --> M[📝 Generate Inventory]
+    M --> N[🔧 Ansible Deployment]
+
+    N --> O[🐍 Flask App Role]
+    N --> P[📊 Monitoring Role]
+
+    O --> Q[System Updates]
+    O --> R[Python Setup]
+    O --> S[App Deployment]
+    O --> T[Service Creation]
+
+    P --> U[OpenTelemetry Install]
+    P --> V[Metrics Configuration]
+    P --> W[Splunk Integration]
+
+    T --> X[🎯 Health Checks]
+    W --> X
+    X --> Y[✅ Production Ready]
+
+    style A fill:#e1f5fe
+    style Y fill:#c8e6c9
+    style H fill:#fff3e0
 ```
 
-### Phase 2: Infrastructure Provisioning
-```
-AWS Account
-├── 🌐 VPC (10.0.0.0/16)
-│   ├── Public Subnet (us-east-1a): 10.0.1.0/24
-│   └── Public Subnet (us-east-1b): 10.0.2.0/24
-├── 🔒 Security Groups
-│   ├── SSH Access (Port 22)
-│   ├── HTTP/HTTPS (Ports 80, 443)
-│   └── Application Ports (3000, 5002)
-├── 💻 EC2 Instance (t3.small)
-│   ├── Amazon Linux 2
-│   ├── Public IP Assignment
-│   └── Key Pair Authentication
+### Infrastructure Provisioning Flow
 
-└── 📦 S3 Bucket
-    └── Terraform State Storage
-```
+```mermaid
+graph LR
+    subgraph "AWS Account"
+        A[🌐 VPC<br/>10.0.0.0/16] --> B[📍 Subnet 1a<br/>10.0.1.0/24]
+        A --> C[📍 Subnet 1b<br/>10.0.2.0/24]
 
-### Phase 3: Application Deployment
-```
-Ansible Playbook Execution
-├── 🐍 Flask App Role
-│   ├── System package updates
-│   ├── Python 3 + pip installation
-│   ├── Git repository cloning
-│   ├── Virtual environment setup
-│   ├── Dependencies installation
-│   ├── Systemd service creation
-│   │   ├── carprice.service (Backend - Port 5002)
-│   │   └── carprice-frontend.service (Frontend - Port 3000)
-│   └── Service startup & enablement
-└── 📊 Splunk Monitoring Role
-    ├── curl package conflict resolution
-    ├── OpenTelemetry Collector installation
-    ├── Configuration deployment
-    │   ├── Host metrics collection
-    │   ├── Prometheus scraping (Ports 3000, 5002)
-    │   └── Splunk Observability export
-    └── Service startup & health check
+        D[🔒 Security Groups] --> E[SSH :22]
+        D --> F[HTTP :80,443]
+        D --> G[App :3000,5002]
+
+        H[💻 EC2 Instance] --> I[Amazon Linux 2]
+        H --> J[Public IP]
+        H --> K[Key Pair Auth]
+
+        L[📦 S3 Bucket] --> M[Terraform State]
+    end
+
+    style A fill:#e3f2fd
+    style H fill:#fff3e0
+    style L fill:#f3e5f5
 ```
 
-### Phase 4: Monitoring Integration
-```
-Splunk Observability Cloud (https://app.us1.signalfx.com)
-├── 📊 Infrastructure Metrics
-│   ├── EC2: CPU, Memory, Disk, Network
-├── 🚀 Application Metrics
-│   ├── Backend (Port 5002): API performance, ML predictions
-│   ├── Frontend (Port 3000): User sessions, page views
-│   └── Business KPIs: Revenue tracking, model accuracy
-└── 🔧 Pipeline Metrics
-    ├── Jenkins: Success/failure rates
-    ├── Terraform: Deployment duration
-    └── Ansible: Configuration success
+### Application Deployment Flow
+
+```mermaid
+flowchart TD
+    A[🔧 Ansible Playbook] --> B[🐍 Flask App Role]
+    A --> C[📊 Monitoring Role]
+
+    B --> D[System Updates]
+    D --> E[Python 3 + pip]
+    E --> F[Git Clone Repo]
+    F --> G[Virtual Environment]
+    G --> H[Install Dependencies]
+    H --> I[Create Services]
+
+    I --> J[carprice.service<br/>Backend :5002]
+    I --> K[carprice-frontend.service<br/>Frontend :3000]
+
+    C --> L[Resolve curl conflicts]
+    L --> M[Install OpenTelemetry]
+    M --> N[Deploy Configuration]
+    N --> O[Host Metrics]
+    N --> P[Prometheus Scraping]
+    N --> Q[Splunk Export]
+
+    J --> R[🎯 Service Health]
+    K --> R
+    Q --> R
+    R --> S[✅ Production Ready]
+
+    style A fill:#e8f5e8
+    style S fill:#c8e6c9
 ```
 
 ---
@@ -200,16 +228,47 @@ Splunk Observability Cloud (https://app.us1.signalfx.com)
             └──────────────┘ └─────────────┘ └───────────┘
 ```
 
-### Data Collection Framework
+### Data Collection Flow
 
-| Component                | Metrics/Hour | Collection Interval |
-| ------------------------ | ------------ | ------------------- |
-| **Application Backend**  | ~360         | 30 seconds          |
-| **Application Frontend** | ~360         | 30 seconds          |
-| **EC2 Infrastructure**   | ~200         | 10 seconds          |
-| **Jenkins Pipeline**     | ~50          | Per deployment      |
-| **AWS Resources**        | ~100         | 60 seconds          |
-| **Total**                | **~1,070**   | Various             |
+```mermaid
+flowchart LR
+    subgraph "Data Sources"
+        A[🖥️ Backend App<br/>~360/hour<br/>30s interval]
+        B[🌐 Frontend App<br/>~360/hour<br/>30s interval]
+        C[🏗️ EC2 Infrastructure<br/>~200/hour<br/>10s interval]
+        D[🔧 Jenkins Pipeline<br/>~50/deployment]
+        E[☁️ AWS Resources<br/>~100/hour<br/>60s interval]
+    end
+
+    subgraph "Collection Layer"
+        F[📊 OpenTelemetry<br/>Collector]
+        G[📈 HostMetrics<br/>Collector]
+        H[🔄 Pipeline<br/>Metrics]
+    end
+
+    subgraph "Processing"
+        I[🔄 Resource Detection]
+        J[🏷️ Attribute Processing]
+        K[📤 Splunk Export]
+    end
+
+    A --> F
+    B --> F
+    C --> G
+    D --> H
+    E --> G
+
+    F --> I
+    G --> I
+    H --> I
+
+    I --> J
+    J --> K
+
+    K --> L[☁️ Splunk Observability<br/>~1,070 metrics/hour]
+
+    style L fill:#e1f5fe
+```
 
 ### OpenTelemetry Collector Configuration
 
@@ -285,6 +344,44 @@ exporters:
 ---
 
 ## 🔧 Jenkins Pipeline Implementation
+
+### Pipeline Execution Flow
+
+```mermaid
+flowchart TD
+    A[🚀 Pipeline Start] --> B[📥 Checkout Stage]
+    B --> C[📊 Send Checkout Metric]
+
+    C --> D[🏗️ Terraform Plan]
+    D --> E[⏱️ Measure Duration]
+    E --> F[📊 Send Plan Metric]
+
+    F --> G[🚀 Terraform Apply]
+    G --> H[⏱️ Measure Duration]
+    H --> I[📊 Send Apply Metric]
+
+    I --> J[🔧 Ansible Deploy]
+    J --> K[⏱️ Measure Duration]
+    K --> L[📊 Send Deploy Metric]
+
+    L --> M[🎯 Health Check]
+    M --> N[🔍 Backend Health]
+    M --> O[🔍 Frontend Health]
+
+    N --> P[📊 Send Health Metrics]
+    O --> P
+
+    P --> Q{✅ Success?}
+    Q -->|Yes| R[📊 Success Metric]
+    Q -->|No| S[❌ Failure Metric]
+
+    R --> T[☁️ Splunk Observability]
+    S --> T
+
+    style A fill:#e1f5fe
+    style T fill:#e8f5e8
+    style Q fill:#fff3e0
+```
 
 ### Jenkins Pipeline with Splunk Metrics
 
@@ -453,6 +550,45 @@ def sendSplunkMetric(metricName, value, dimensions) {
 
 ## 🎯 Alerting Framework
 
+### Alert Flow Architecture
+
+```mermaid
+flowchart TD
+    subgraph "Monitoring Sources"
+        A[💻 Infrastructure<br/>CPU > 85%<br/>Memory > 90%<br/>Disk > 95%]
+        B[🚀 Application<br/>Response > 2s<br/>Error Rate > 5%<br/>Accuracy < 80%]
+        C[🔧 Pipeline<br/>Deploy Failure<br/>Terraform Error<br/>Ansible Failure]
+    end
+
+    subgraph "Alert Processing"
+        D[🚨 Threshold Detection]
+        E[🔄 Alert Correlation]
+        F[📱 Notification Routing]
+    end
+
+    subgraph "Response Actions"
+        G[📧 Email Alerts]
+        H[📱 Slack Notifications]
+        I[🔧 Auto-remediation]
+        J[📈 Dashboard Updates]
+    end
+
+    A --> D
+    B --> D
+    C --> D
+
+    D --> E
+    E --> F
+
+    F --> G
+    F --> H
+    F --> I
+    F --> J
+
+    style D fill:#ffebee
+    style I fill:#e8f5e8
+```
+
 ### Critical Alert Thresholds
 
 ```yaml
@@ -486,6 +622,36 @@ def sendSplunkMetric(metricName, value, dimensions) {
 ---
 
 ## 📊 Available Dashboards
+
+### Dashboard Architecture
+
+```mermaid
+flowchart LR
+    subgraph "Local Dashboards"
+        A[🖥️ Backend Dashboard<br/>Port 5002/dashboard<br/>• System Metrics<br/>• API Performance<br/>• 5s Auto-refresh]
+        B[🌐 Frontend Dashboard<br/>Port 3000/dashboard<br/>• Web Metrics<br/>• User Activity<br/>• Health Status]
+    end
+
+    subgraph "Enterprise Platform"
+        C[☁️ Splunk Observability<br/>app.us1.signalfx.com<br/>• 1,070+ metrics/hour<br/>• Real-time streaming<br/>• 30-day retention<br/>• Custom dashboards]
+    end
+
+    subgraph "Data Flow"
+        D[📊 Metrics Collection]
+        E[🔄 Real-time Processing]
+        F[📈 Visualization]
+    end
+
+    A --> D
+    B --> D
+    D --> E
+    E --> F
+    F --> C
+
+    style C fill:#e1f5fe
+    style A fill:#fff3e0
+    style B fill:#f3e5f5
+```
 
 ### **Backend Dashboard** (Port 5002/dashboard)
 - **System Metrics**: CPU, Memory, Uptime
@@ -555,14 +721,55 @@ car_price.frontend.requests.total        # Frontend request counter
 car_price.frontend.publish.total         # Publish counter
 ```
 
-### **Real-time Monitoring Features**
+### Real-time Monitoring Flow
 
-- **Continuous Metrics**: Both services send metrics every 10 seconds
-- **Event-driven Metrics**: Metrics sent on user actions (predictions, publishes)
-- **System Monitoring**: CPU, memory, disk usage tracking
-- **Business Analytics**: Prediction values, model accuracy, user engagement
-- **Health Checks**: Service status and connectivity monitoring
-- **Dashboard Integration**: Real-time dashboards with auto-refresh
+```mermaid
+flowchart TD
+    subgraph "User Interactions"
+        A[👤 User Prediction Request]
+        B[📝 Vehicle Publish Action]
+        C[🔍 Dashboard Access]
+    end
+
+    subgraph "Application Layer"
+        D[🖥️ Backend Service<br/>Port 5002]
+        E[🌐 Frontend Service<br/>Port 3000]
+    end
+
+    subgraph "Metrics Generation"
+        F[📊 System Metrics<br/>CPU, Memory, Disk]
+        G[🔢 Business KPIs<br/>Predictions, Accuracy]
+        H[⚡ Event Metrics<br/>User Actions]
+    end
+
+    subgraph "Real-time Processing"
+        I[📈 10s Continuous Collection]
+        J[🎯 Event-driven Collection]
+        K[💓 Health Monitoring]
+    end
+
+    A --> D
+    B --> E
+    C --> E
+
+    D --> F
+    D --> G
+    E --> F
+    E --> H
+
+    F --> I
+    G --> J
+    H --> J
+
+    I --> L[📊 Live Dashboards]
+    J --> L
+    K --> L
+
+    L --> M[☁️ Splunk Observability]
+
+    style M fill:#e1f5fe
+    style L fill:#f3e5f5
+```
 
 
 
