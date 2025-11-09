@@ -84,6 +84,8 @@ flowchart LR
     style I fill:#e8f5e8
 ```
 
+**Architecture Flow:** The enterprise architecture follows a structured approach where three source control repositories (Infrastructure, Configuration, Application) feed into Jenkins CI/CD for automated orchestration. Jenkins deploys infrastructure to AWS Cloud (VPC, EC2, S3) and establishes comprehensive observability through OpenTelemetry metrics collection that streams to Splunk Cloud for enterprise-grade monitoring and analytics.
+
 ---
 
 ## 🔄 Deployment Flow
@@ -228,7 +230,7 @@ flowchart LR
     style L fill:#e1f5fe
 ```
 
-
+**Data Collection Process:** Multiple data sources (Backend/Frontend applications, EC2 infrastructure, Jenkins pipeline, AWS resources) generate metrics at different intervals. These metrics flow through specialized collectors (OpenTelemetry, HostMetrics, Pipeline) into a unified processing layer that performs resource detection, attribute processing, and exports to Splunk Observability Cloud, achieving comprehensive platform visibility with over 1,070 metrics per hour.
 
 ### Implemented Metrics
 
@@ -309,6 +311,8 @@ flowchart LR
     style A fill:#fff3e0
     style B fill:#f3e5f5
 ```
+
+**Dashboard Ecosystem:** The monitoring architecture provides multi-tier visibility through local dashboards (Backend and Frontend services) that collect real-time metrics, process them through a unified data flow, and visualize results in both local interfaces and the enterprise Splunk Observability platform. This creates comprehensive operational awareness from application-level details to enterprise-wide analytics.
 
 === "Backend Dashboard"
 
