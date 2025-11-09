@@ -29,8 +29,6 @@ graph TB
     subgraph "AWS Infrastructure"
         E[VPC + Subnets<br/>Network Layer]
         F[EC2 Instance<br/>Application Server]
-        G[RDS MySQL<br/>Database]
-        H[ALB<br/>Load Balancer]
         I[S3 Bucket<br/>Terraform State]
     end
 
@@ -43,8 +41,6 @@ graph TB
     B --> D
     D --> E
     D --> F
-    D --> G
-    D --> H
     D --> I
     C --> F
     F --> K
@@ -68,9 +64,7 @@ tf-infra-demoCar/
 │       ├── networking/           # VPC, Subnets, Routing
 │       ├── security-groups/      # Security Group Rules
 │       ├── ec2/                  # EC2 Instance Configuration
-│       ├── rds/                  # MySQL Database
-│       ├── load-balancer/        # Application Load Balancer
-│       ├── load-balancer-target-group/ # ALB Target Groups
+
 │       └── s3/                   # S3 Bucket for State
 └── README.md                     # Infrastructure Documentation
 ```
@@ -129,14 +123,7 @@ AWS Account
 │   ├── Amazon Linux 2
 │   ├── Public IP Assignment
 │   └── Key Pair Authentication
-├── 🗄️ RDS MySQL (db.t3.micro)
-│   ├── Multi-AZ Deployment
-│   ├── Automated Backups
-│   └── Encryption at Rest
-├── ⚖️ Application Load Balancer
-│   ├── Target Group (Port 5000)
-│   ├── Health Checks
-│   └── Traffic Distribution
+
 └── 📦 S3 Bucket
     └── Terraform State Storage
 ```
@@ -169,8 +156,6 @@ Ansible Playbook Execution
 Splunk Observability Cloud (https://app.us1.signalfx.com)
 ├── 📊 Infrastructure Metrics
 │   ├── EC2: CPU, Memory, Disk, Network
-│   ├── RDS: Database connections, performance
-│   └── ALB: Request count, response times
 ├── 🚀 Application Metrics
 │   ├── Backend (Port 5002): API performance, ML predictions
 │   ├── Frontend (Port 3000): User sessions, page views
@@ -553,32 +538,6 @@ car_price.frontend.publish.total         # Publish counter
 
 ---
 
-## 🎯 Success Metrics & Maturity Model
-
-### **Observability Maturity**
-
-| Level       | Capabilities           | Metrics Coverage           |
-| ----------- | ---------------------- | -------------------------- |
-| **Level 1** | Basic monitoring       | System metrics only        |
-| **Level 2** | Application monitoring | App + system metrics       |
-| **Level 3** | Business monitoring    | Full stack + business KPIs |
-| **Level 4** | Predictive monitoring  | AI-driven insights         |
-| **Level 5** | Self-healing systems   | Automated remediation      |
-
-### **Current Implementation Status**
-
-✅ **Level 3 Achieved**: Full stack + business KPIs monitoring
-
-### **Current Performance**
-- **Real-time Monitoring**: 720+ metrics/hour per service
-- **Continuous Collection**: Metrics every 10 seconds
-- **Health Monitoring**: Live dashboard with auto-refresh
-- **Splunk Integration**: Enterprise observability platform
-
-
-
----
-
 ## 🔧 Deployment Commands
 
 ### **Infrastructure Deployment**
@@ -597,77 +556,29 @@ ansible-playbook -i inventory splunk-observability.yml
 ansible-playbook -i inventory deploy-app.yml
 
 # 4. Verify monitoring
-curl http://$(terraform output -raw ec2_public_ip):5002/health
-curl http://$(terraform output -raw ec2_public_ip):3000/health
+curl http://13.220.64.167:5002/health
+curl http://13.220.64.167:3000/health
 ```
 
 ### **Access Points**
 - **Splunk Observability**: https://app.us1.signalfx.com
-- **Backend Dashboard**: `http://your-ec2-ip:5002/dashboard`
-- **Frontend Dashboard**: `http://your-ec2-ip:3000/dashboard`
-- **Health Checks**: `http://your-ec2-ip:5002/health` & `http://your-ec2-ip:3000/health`
+- **Production Application**: http://13.220.64.167:3000/
+- **Backend Dashboard**: http://13.220.64.167:5002/dashboard
+- **Frontend Dashboard**: http://13.220.64.167:3000/dashboard
+- **Health Checks**: http://13.220.64.167:5002/health & http://13.220.64.167:3000/health
 
 ---
 
-## 📚 Project Achievements
+## Implementation Summary
 
-### **Completed Features**
-- [x] **Unified Development Workflow** - Single command setup and development
-- [x] **Professional ML Architecture** - XGBoost integration with production-ready APIs
-- [x] **Comprehensive Testing** - Unit, Integration, and E2E testing
-- [x] **Live Documentation** - MkDocs with GitHub Pages deployment
-- [x] **CI/CD Pipeline** - GitHub Actions with branch-based deployment
-- [x] **Docker Support** - Containerized development and deployment
-- [x] **Real-time Monitoring** - System metrics and application analytics
-- [x] **Splunk Observability Cloud** - Enterprise-grade continuous monitoring
-- [x] **Health Check System** - Comprehensive service monitoring
-- [x] **Performance Dashboards** - Live metrics with auto-refresh
-
-### **Current Capabilities**
-- **Zero Setup Friction** - `make setup` gets anyone developing in 30 seconds
-- **Consistent Development** - Same commands work locally and in CI/CD
-- **Professional Documentation** - Live docs with GitHub Pages integration
-- **Quality Assurance** - Automated testing and code quality checks
-- **Scalable Architecture** - Docker-ready microservices design
-- **Real-time Observability** - Live monitoring dashboards and metrics APIs
-- **Enterprise Monitoring** - Splunk Observability Cloud integration active
-- **Health Monitoring** - Comprehensive service status tracking
+**Platform Status**: Production-ready ML prediction service with enterprise DevOps architecture
+**Monitoring Coverage**: Application, infrastructure, and pipeline metrics with Splunk Observability Cloud
+**Architecture**: 3-repository structure with Terraform IaC, Ansible configuration, and Flask application
+**Deployment**: Jenkins CI/CD pipeline with automated AWS provisioning and monitoring integration
+**Team**: Jose Rubio (Project Lead) | Full-stack MLOps | SCRUM methodology
 
 ---
 
-## 🎯 **Current Results**
-
-### **Implemented Features**
-- **Application Monitoring** - 720+ metrics/hour from CarPricePredictor
-- **Real-time Dashboards** - Live monitoring with auto-refresh
-- **Splunk Integration** - Enterprise observability platform
-- **Health Checks** - Service status monitoring
-- **System Metrics** - CPU, memory, disk usage tracking
-
-### **Active Metrics Volume**
-- **Backend Service**: ~360 metrics/hour (every 10 seconds)
-- **Frontend Service**: ~360 metrics/hour (every 10 seconds)
-- **System Performance**: CPU, memory, disk monitoring
-- **Business KPIs**: Prediction values, user activity
-
-### **Operational Status**
-✅ **Splunk Observability** - Active monitoring with token integration
-✅ **Health endpoints** - /health and /metrics/json available
-✅ **Live dashboards** - Real-time monitoring interfaces
-✅ **Continuous metrics** - Background threads collecting data
-✅ **Event tracking** - User actions and API calls monitored
-
-**Result**: Production-ready monitoring and observability system.
-
 ---
 
-## 👥 Development Team
-
-**Project Lead**: Jose Rubio
-**Architecture**: Full-stack MLOps solution
-**Methodology**: SCRUM/Agile development
-**Quality**: Enterprise-grade standards
-
----
-
-*This documentation serves as the comprehensive guide for the Car Price Prediction Platform's enterprise DevOps implementation, showcasing the transformation from a simple GitHub Actions pipeline to a full production-grade AWS deployment with comprehensive observability and monitoring.*
+*Enterprise DevOps documentation for Car Price Prediction Platform - Complete AWS deployment with comprehensive observability and monitoring.*
