@@ -137,7 +137,7 @@ flowchart LR
     style L fill:#e8f5e8
 ```
 
-
+**How It Works:** Jenkins orchestrates the entire deployment pipeline by first executing Terraform to provision AWS infrastructure (VPC, EC2, S3, Security Groups), then running Ansible to configure the application environment and deploy Flask services with Python dependencies. Simultaneously, OpenTelemetry collectors are installed and configured to stream metrics to Splunk Observability Cloud. The pipeline concludes with automated health checks on both backend (port 5002) and frontend (port 3000) services, ensuring the complete stack is operational before deployment completion.
 
 ---
 
