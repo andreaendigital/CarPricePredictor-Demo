@@ -350,7 +350,7 @@ flowchart LR
 ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff'}}}%%
 
-flowchart TB
+flowchart LR
     subgraph USERS ["👥 USER PERSONAS"]
         direction LR
 
