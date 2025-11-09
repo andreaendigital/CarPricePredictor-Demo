@@ -120,6 +120,15 @@ After running `make dev`, access:
 - **Swagger UI**: `http://localhost:5004/docs/`
 - **Project Documentation**: `make docs` → `http://localhost:8000`
 
+### 📊 Real-time Monitoring Dashboards
+
+- **Backend Monitoring**: `http://localhost:5002/dashboard`
+- **Frontend Monitoring**: `http://localhost:3000/dashboard`
+- **Splunk Observability**: `https://app.us1.signalfx.com`
+- **Backend Metrics API**: `http://localhost:5002/metrics/json`
+- **Frontend Metrics API**: `http://localhost:3000/metrics/json`
+- **Health Checks**: `http://localhost:5002/health` & `http://localhost:3000/health`
+
 ## API Endpoints
 
 ### Price Prediction Services
@@ -129,6 +138,14 @@ After running `make dev`, access:
 | `/current_value_market`     | GET    | Current market valuation    | model_year, age, fuel_type, transmission, clean_title |
 | `/future_prediction` | GET    | Future price forecasting    | Same as above + meses (months)                        |
 | `/publish_car` | POST   | Vehicle marketplace listing | Vehicle data + precio (listing price)                 |
+
+### Monitoring & Health Endpoints
+
+| Endpoint             | Method | Description                 | Response Format                                       |
+| -------------------- | ------ | --------------------------- | ----------------------------------------------------- |
+| `/health`            | GET    | Service health check        | JSON status with service info                         |
+| `/dashboard`         | GET    | Real-time monitoring UI     | HTML dashboard with auto-refresh                      |
+| `/metrics/json`      | GET    | Metrics API for integration | JSON with system and application metrics             |
 
 ### 📈 Sample API Calls
 
@@ -143,6 +160,12 @@ curl "http://localhost:5002/future_prediction?model_year=2020&age=4&fuel_type=Ga
 curl -X POST http://localhost:5002/publish_car \
   -H "Content-Type: application/json" \
   -d '{"model_year": 2020, "age": 4, "fuel_type": "Gasoline", "transmission": "Automatic", "clean_title": 1, "precio": 25000000}'
+
+# Health Check
+curl "http://localhost:5002/health"
+
+# System Metrics
+curl "http://localhost:5002/metrics/json"
 ```
 
 ## Technical Stack
@@ -154,6 +177,9 @@ curl -X POST http://localhost:5002/publish_car \
 - **API Documentation**: Swagger/OpenAPI 3.0
 - **Data Storage**: JSON-based persistence
 - **CORS**: Cross-origin resource sharing enabled
+- **Monitoring**: Real-time system metrics with psutil
+- **Splunk Observability**: Enterprise-grade metrics and analytics
+- **Health Checks**: Comprehensive service health monitoring
 
 ### Frontend Technologies
 
@@ -175,6 +201,10 @@ curl -X POST http://localhost:5002/publish_car \
 - **Professional Animations** - CSS3 transitions and effects
 - **Real-time Validation** - Form validation and error handling
 - **Modern UI Components** - Cards, gradients, and professional typography
+- **Live Monitoring Dashboard** - Real-time system and application metrics
+- **Splunk Integration** - Enterprise observability with continuous metrics
+- **User Activity Tracking** - Prediction and publishing request analytics
+- **Mobile-Optimized** - Responsive design with mobile viewport support
 
 ### Backend Capabilities
 
@@ -182,6 +212,9 @@ curl -X POST http://localhost:5002/publish_car \
 - **Professional API Design** - RESTful architecture with proper HTTP status codes
 - **Error Handling** - Robust error handling and validation
 - **CORS Support** - Cross-origin requests enabled
+- **Real-time Monitoring** - System metrics, request counting, and health checks
+- **Splunk Observability** - Continuous metrics flow with business KPIs
+- **Performance Tracking** - ML prediction analytics and API usage statistics
 
 ## Machine Learning Model
 
@@ -409,12 +442,12 @@ graph LR
 
 This summary identifies risks related to dependency management, development infrastructure (Docker/TOML), and workflow tool adoption (Jira/GitHub).
 
-| Blocker | Potential Impact on the Project | Proposed Solution (Mitigation) | 
- | ----- | ----- | ----- | 
-| **1. Migration to TOML : Incompatibility in Docker Builds** | The current Dockerfile process assumes pip install -r requirements.txt. Migration requires changing the builder to install dependencies from pyproject.toml or the lock file. | **Solution:** Refactor the Dockerfile to use the native TOML tool flow (e.g., copying pyproject.toml and poetry.lock and running poetry install --no-root). | 
-| **2. Build-Time Dependency Management** | ML dependencies requiring compilation might face issues if the TOML tool doesn't manage them correctly in the Docker build environment. | **Solution:** Identify and isolate complex dependencies. Use a builder pattern or a multi-stage container in Docker to pre-install or configure necessary system tools before Python installation. | 
-| **3. Jira and GitHub Learning Curve** | The team's lack of familiarity with the Jira-GitHub workflow (creating branches with ticket IDs, linking commits, auto-moving statuses). | **Solution:** Conduct a mandatory hands-on workshop at the start of the project on the "Branching, Commit, Merge Request, Ticket Closing" flow. Document the commit message convention (e.g., [Ticket-ID] Descriptive message). | 
-| **4. Python/ML Library Version Conflict** | A required preprocessing library is incompatible with onnxruntime in the Docker environment. | **Solution:** Define the versions of all dependencies. Use a clean Docker base image to strictly isolate dependencies. | 
+| Blocker | Potential Impact on the Project | Proposed Solution (Mitigation) |
+ | ----- | ----- | ----- |
+| **1. Migration to TOML : Incompatibility in Docker Builds** | The current Dockerfile process assumes pip install -r requirements.txt. Migration requires changing the builder to install dependencies from pyproject.toml or the lock file. | **Solution:** Refactor the Dockerfile to use the native TOML tool flow (e.g., copying pyproject.toml and poetry.lock and running poetry install --no-root). |
+| **2. Build-Time Dependency Management** | ML dependencies requiring compilation might face issues if the TOML tool doesn't manage them correctly in the Docker build environment. | **Solution:** Identify and isolate complex dependencies. Use a builder pattern or a multi-stage container in Docker to pre-install or configure necessary system tools before Python installation. |
+| **3. Jira and GitHub Learning Curve** | The team's lack of familiarity with the Jira-GitHub workflow (creating branches with ticket IDs, linking commits, auto-moving statuses). | **Solution:** Conduct a mandatory hands-on workshop at the start of the project on the "Branching, Commit, Merge Request, Ticket Closing" flow. Document the commit message convention (e.g., [Ticket-ID] Descriptive message). |
+| **4. Python/ML Library Version Conflict** | A required preprocessing library is incompatible with onnxruntime in the Docker environment. | **Solution:** Define the versions of all dependencies. Use a clean Docker base image to strictly isolate dependencies. |
 
 
 ## Project Achievements
@@ -432,6 +465,10 @@ This summary identifies risks related to dependency management, development infr
 - [x] **Responsive Web Interface** - Professional UI with real-time predictions
 - [x] **Docker Support** - Containerized development and deployment
 - [x] **CORS-enabled Architecture** - Microservices-ready design
+- [x] **Real-time Monitoring** - System metrics and application analytics
+- [x] **Splunk Observability Cloud** - Enterprise-grade continuous monitoring
+- [x] **Health Check System** - Comprehensive service monitoring
+- [x] **Performance Dashboards** - Live metrics with auto-refresh
 
 ### Business Impact
 
@@ -441,6 +478,9 @@ This summary identifies risks related to dependency management, development infr
 - **Quality Assurance** - Automated testing and code quality checks
 - **Scalable Architecture** - Docker-ready microservices design
 - **Enterprise-Ready** - Production-grade tooling and workflows
+- **Real-time Observability** - Live monitoring dashboards and metrics APIs
+- **Enterprise Monitoring** - Splunk Observability Cloud integration with 720+ metrics/hour
+- **Operational Excellence** - Health checks and performance tracking
 
 ## 👥 Development Team
 

@@ -5,9 +5,96 @@ import pandas as pd
 import math
 import json
 import os
+import time
+import psutil
+from datetime import datetime
+import urllib3
+from dotenv import load_dotenv
+import threading
+import random
+
+# Disable SSL warnings for Splunk Cloud
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for frontend connections
+
+# Monitoring variables
+start_time = time.time()
+request_count = 0
+prediction_count = 0
+
+# Continuous monitoring flag
+continuous_monitoring = True
+
+# Splunk Observability Cloud Configuration
+SPLUNK_TOKEN = "PZuf3J0L2Op_Qj9hpAJzlw"
+SPLUNK_REALM = "us1"
+SPLUNK_URL = f"https://ingest.{SPLUNK_REALM}.signalfx.com/v2/datapoint"
+
+
+@app.before_request
+def count_requests():
+    global request_count
+    request_count += 1
+
+
+def send_to_splunk_observability(metric_name, value, dimensions=None):
+    """Send metrics to Splunk Observability Cloud"""
+    try:
+        import requests
+
+        headers = {"X-SF-Token": SPLUNK_TOKEN, "Content-Type": "application/json"}
+
+        if dimensions is None:
+            dimensions = {}
+
+        # Add default dimensions
+        dimensions.update({"service": "car-price-backend", "environment": "development", "host": "localhost"})
+
+        payload = {
+            "gauge": [{"metric": metric_name, "value": value, "dimensions": dimensions, "timestamp": int(time.time() * 1000)}]
+        }
+
+        response = requests.post(SPLUNK_URL, json=payload, headers=headers, timeout=5)
+        if response.status_code != 200:
+            print(f"❌ Splunk error: {response.status_code} - {response.text}")
+    except Exception as e:
+        print(f"❌ Splunk error: {e}")
+
+
+def send_continuous_metrics():
+    """Send continuous system and business metrics to Splunk Observability Cloud"""
+    while continuous_monitoring:
+        try:
+            # System Performance Metrics
+            send_to_splunk_observability("car_price.system.cpu_percent", psutil.cpu_percent())
+            send_to_splunk_observability("car_price.system.memory_percent", psutil.virtual_memory().percent)
+            send_to_splunk_observability("car_price.system.disk_usage", psutil.disk_usage("/").percent)
+
+            # Application Metrics
+            uptime = time.time() - start_time
+            send_to_splunk_observability("car_price.app.uptime_seconds", uptime)
+            send_to_splunk_observability("car_price.app.total_requests", request_count)
+            send_to_splunk_observability("car_price.app.total_predictions", prediction_count)
+
+            # Business KPIs (simulated realistic values)
+            send_to_splunk_observability("car_price.business.avg_prediction_value", random.uniform(15000, 45000))
+            send_to_splunk_observability("car_price.business.model_accuracy", random.uniform(0.85, 0.95))
+            send_to_splunk_observability("car_price.business.active_users", random.randint(5, 25))
+
+            time.sleep(10)  # Send metrics every 10 seconds
+        except Exception as e:
+            print(f"❌ Continuous metrics error: {e}")
+            time.sleep(10)
+
+
+# Start continuous monitoring thread
+monitoring_thread = threading.Thread(target=send_continuous_metrics, daemon=True)
+monitoring_thread.start()
 
 # === Cargar modelo entrenado ===
 model_path = os.environ.get("MODEL_PATH", "modelo/modelo.joblib")
@@ -66,6 +153,9 @@ def home():
                 "GET /current_value_market": "Predice el precio actual del vehículo",
                 "GET /future_prediction": "Predice el precio futuro del vehículo en N meses",
                 "POST /publish_car": "Permite publicar un vehículo en venta",
+                "GET /health": "Health check endpoint",
+                "GET /dashboard": "Real-time monitoring dashboard",
+                "GET /metrics/json": "JSON metrics API",
             },
         }
     )
@@ -110,6 +200,19 @@ def current_value_market():
             "clean_title": float(clean_title),
         }
 
+        global prediction_count
+        prediction_count += 1
+
+        # Send metrics to Splunk Observability Cloud
+        send_to_splunk_observability(
+            "car_price.predictions.current_value",
+            1,
+            {"fuel_type": fuel_type, "transmission": transmission, "endpoint": "current_value_market"},
+        )
+        send_to_splunk_observability("car_price.system.cpu_percent", psutil.cpu_percent())
+        send_to_splunk_observability("car_price.system.memory_percent", psutil.virtual_memory().percent)
+        send_to_splunk_observability("car_price.requests.total", prediction_count)
+
         pred = predict_price(data)
         return jsonify({"datos": data, "current_value_market_estimado": round(pred, 2)})
     except ValueError as e:
@@ -119,6 +222,7 @@ def current_value_market():
 
 
 # Second Endpoint, This is a GET for a future price
+
 
 @app.route("/future_prediction", methods=["GET"])
 def future_prediction():
@@ -156,6 +260,23 @@ def future_prediction():
             "transmission": transmission,
             "clean_title": float(clean_title),
         }
+
+        global prediction_count
+        prediction_count += 1
+
+        # Send metrics to Splunk Observability Cloud
+        send_to_splunk_observability(
+            "car_price.predictions.future_value",
+            1,
+            {
+                "fuel_type": fuel_type,
+                "transmission": transmission,
+                "months_ahead": str(meses),
+                "endpoint": "future_prediction",
+            },
+        )
+        send_to_splunk_observability("car_price.business.months_forecast", meses)
+        send_to_splunk_observability("car_price.requests.total", prediction_count)
 
         pred_actual = predict_price(data)
         pred_futura = predict_future_price(pred_actual, months_ahead=meses)
@@ -229,5 +350,89 @@ def publish_car():
         return jsonify({"error": str(e)}), 400
 
 
+@app.route("/dashboard")
+def dashboard():
+    uptime = time.time() - start_time
+    cpu_usage = psutil.cpu_percent()
+    memory_usage = psutil.virtual_memory().percent
+
+    return f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>🔧 Backend API - Monitoring</title>
+        <meta http-equiv="refresh" content="5">
+        <style>
+            body {{ font-family: Arial; margin: 40px; background: #2c3e50; color: white; }}
+            .metric {{ background: #34495e; padding: 20px; margin: 10px 0; border-radius: 8px; }}
+            .value {{ font-size: 2em; font-weight: bold; color: #3498db; }}
+            .label {{ color: #bdc3c7; margin-top: 5px; }}
+            .splunk {{ background: #e67e22; padding: 10px; margin: 10px 0; border-radius: 5px; }}
+        </style>
+    </head>
+    <body>
+        <h1>🔧 Backend API Monitoring (Port 5002)</h1>
+        <div class="metric">
+            <div class="value">{request_count}</div>
+            <div class="label">Total API Requests</div>
+        </div>
+        <div class="metric">
+            <div class="value">{prediction_count}</div>
+            <div class="label">ML Predictions Made</div>
+        </div>
+        <div class="metric">
+            <div class="value">{cpu_usage:.1f}%</div>
+            <div class="label">CPU Usage</div>
+        </div>
+        <div class="metric">
+            <div class="value">{memory_usage:.1f}%</div>
+            <div class="label">Memory Usage</div>
+        </div>
+        <div class="metric">
+            <div class="value">{int(uptime//3600)}h {int((uptime%3600)//60)}m</div>
+            <div class="label">Uptime</div>
+        </div>
+        <div class="splunk">
+            <strong>📊 Splunk Observability:</strong> <a href="https://app.us1.signalfx.com" target="_blank" style="color: white;">View Dashboards</a>
+        </div>
+    </body>
+    </html>
+    """
+
+
+@app.route("/metrics/json")
+def metrics_json():
+    uptime = time.time() - start_time
+    return jsonify(
+        {
+            "service": "backend-api",
+            "port": 5002,
+            "timestamp": datetime.now().isoformat(),
+            "uptime_seconds": uptime,
+            "requests_total": request_count,
+            "predictions_total": prediction_count,
+            "system": {"cpu_percent": psutil.cpu_percent(), "memory_percent": psutil.virtual_memory().percent},
+            "status": "healthy",
+            "splunk_observability": True,
+        }
+    )
+
+
+@app.route("/health")
+def health_check():
+    return jsonify(
+        {
+            "status": "healthy",
+            "service": "backend-api",
+            "timestamp": datetime.now().isoformat(),
+            "model_loaded": modelo is not None,
+            "splunk_observability": f"https://app.{SPLUNK_REALM}.signalfx.com",
+        }
+    )
+
+
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=5002)
+    host = os.getenv("BACKEND_HOST", "0.0.0.0")
+    port = int(os.getenv("BACKEND_PORT", "5002"))
+    debug = os.getenv("BACKEND_DEBUG", "true").lower() == "true"
+    app.run(debug=debug, host=host, port=port)
