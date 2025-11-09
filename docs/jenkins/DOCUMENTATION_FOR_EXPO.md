@@ -104,14 +104,14 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    A[🚀 Jenkins<br/>Pipeline] --> B[🏗️ Terraform<br/>AWS Infrastructure]
-    B --> C[⚙️ Ansible<br/>App Configuration]
-    C --> D[📊 Monitoring<br/>Setup]
-    D --> E[✅ Health<br/>Validation]
+    A[📥 Checkout] --> B[🏗️ Terraform<br/>Infrastructure]
+    B --> C[⚙️ Ansible<br/>Configuration]
+    C --> D[🎯 Health Check<br/>Services]
+    D --> E[📊 Metrics<br/>Splunk Export]
 
     style A fill:#e1f5fe
-    style E fill:#c8e6c9
-    style D fill:#e8f5e8
+    style D fill:#c8e6c9
+    style E fill:#e8f5e8
 ```
 
 
@@ -169,6 +169,16 @@ flowchart LR
     | **Event-Driven Collection** | Custom instrumentation | Business KPIs & user actions | Real-time |
     | **Pipeline Integration** | Jenkins plugins | DevOps metrics & deployment tracking | Per build/deploy |
     | **Health Monitoring** | HTTP endpoints | Service availability & status | Continuous |
+
+=== "Architecture Components"
+
+    | Layer | Component | Technology | Purpose |
+    |-------|-----------|------------|----------|
+    | **Source** | Application | Flask + XGBoost | ML prediction service |
+    | **Pipeline** | CI/CD | Jenkins | Automated deployment |
+    | **Cloud** | Compute | EC2 t3.small | Application runtime |
+    | **Cloud** | Infrastructure | Terraform + AWS VPC | Resource provisioning |
+    | **Monitoring** | Platform | Splunk Cloud | Enterprise observability |
 
 === "Enterprise Benefits"
 
@@ -268,26 +278,6 @@ flowchart LR
     | `jenkins.ansible.deploy.duration` | Configuration deployment time | DevOps |
     | `terraform.ec2.deployment` | Infrastructure changes | DevOps |
     | `ansible.deployment.success` | Configuration success | DevOps |
-
----
-
-## 🔧 Jenkins Pipeline Implementation
-
-```mermaid
-flowchart LR
-    A[📥 Checkout] --> B[🏗️ Terraform<br/>Infrastructure]
-    B --> C[⚙️ Ansible<br/>Configuration]
-    C --> D[🎯 Health Check<br/>Services]
-    D --> E[📊 Metrics<br/>Splunk Export]
-
-    style A fill:#e1f5fe
-    style D fill:#c8e6c9
-    style E fill:#e8f5e8
-```
-
----
-
-
 
 ---
 
