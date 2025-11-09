@@ -14,124 +14,110 @@
 
 ## 🏗️ Enterprise Architecture Overview
 
-### System Architecture
-
 ```mermaid
-graph TB
-    subgraph "Source Control Layer"
-        A[🏗️ tf-infra-demoCar<br/>Infrastructure as Code<br/>Terraform Modules]
-        B[⚙️ configManagement-carPrice<br/>Configuration Management<br/>Ansible Playbooks]
-        C[🚀 CarPricePredictor-Demo<br/>ML Application<br/>Flask + XGBoost]
+flowchart LR
+    subgraph "Source Control"
+        A[🏗️ Infrastructure<br/>Terraform IaC]
+        B[⚙️ Configuration<br/>Ansible Automation]
+        C[🚀 Application<br/>Flask + XGBoost]
     end
 
-    subgraph "CI/CD Orchestration"
-        D[🔄 Jenkins Pipeline<br/>Automated Deployment<br/>Multi-Stage Validation]
+    subgraph "Deployment"
+        D[🔄 Jenkins CI/CD<br/>Automated Pipeline]
     end
 
-    subgraph "Cloud Infrastructure (AWS)"
-        E[🌐 Virtual Private Cloud<br/>Network Isolation<br/>Multi-AZ Subnets]
-        F[💻 EC2 Compute Instance<br/>Application Runtime<br/>Auto-Scaling Ready]
-        I[📦 S3 State Management<br/>Terraform Backend<br/>Version Control]
+    subgraph "AWS Cloud"
+        E[🌐 VPC Network<br/>Security & Isolation]
+        F[💻 EC2 Instance<br/>Application Runtime]
+        G[📦 S3 Storage<br/>State Management]
     end
 
-    subgraph "Observability Platform"
-        J[☁️ Splunk Observability Cloud<br/>Enterprise Monitoring<br/>Real-time Analytics]
-        K[📊 OpenTelemetry Collector<br/>Metrics Aggregation<br/>Multi-Protocol Support]
+    subgraph "Observability"
+        H[📊 OpenTelemetry<br/>Metrics Collection]
+        I[☁️ Splunk Cloud<br/>Enterprise Monitoring]
     end
 
     A --> D
     B --> D
+    C --> D
+
     D --> E
     D --> F
-    D --> I
-    C --> F
-    F --> K
-    K --> J
+    D --> G
 
-    style A fill:#e3f2fd
-    style B fill:#f3e5f5
-    style C fill:#e8f5e8
-    style D fill:#fff3e0
-    style J fill:#e1f5fe
+    F --> H
+    H --> I
+
+    style D fill:#e1f5fe
+    style I fill:#e8f5e8
 ```
 
-### Architecture Principles
+### Architecture Components
 
-**🔧 Infrastructure as Code**: Complete infrastructure automation using Terraform with modular design
-**📋 Configuration Management**: Ansible-driven application deployment and environment consistency
-**🔄 Continuous Integration**: Jenkins-orchestrated pipeline with automated testing and validation
-**☁️ Cloud-Native Design**: AWS-optimized architecture with scalability and resilience built-in
-**📊 Enterprise Observability**: Comprehensive monitoring with Splunk Observability Cloud integration
-**🛡️ Security by Design**: Network isolation, encrypted communications, and access controls
-
-### Technology Stack
-
-| Layer | Technology | Purpose | Integration |
-|-------|------------|---------|-------------|
-| **ML Framework** | XGBoost + Flask | Prediction Engine | RESTful API |
-| **Infrastructure** | Terraform + AWS | Cloud Provisioning | Modular IaC |
-| **Configuration** | Ansible | Environment Setup | Idempotent Deployment |
-| **CI/CD** | Jenkins | Pipeline Automation | Multi-Stage Validation |
-| **Monitoring** | Splunk + OpenTelemetry | Enterprise Observability | Real-time Metrics |
-| **Networking** | AWS VPC | Secure Connectivity | Multi-AZ Architecture |
-
-### Multi-Repository Architecture
-
-```mermaid
-flowchart LR
-    subgraph "Infrastructure Repository"
-        A1[🏗️ tf-infra-demoCar]
-        A2[Terraform Modules]
-        A3[AWS Resources]
-        A4[Network Configuration]
-        A1 --> A2
-        A2 --> A3
-        A3 --> A4
-    end
-
-    subgraph "Configuration Repository"
-        B1[⚙️ configManagement-carPrice]
-        B2[Ansible Playbooks]
-        B3[Application Roles]
-        B4[Monitoring Setup]
-        B1 --> B2
-        B2 --> B3
-        B3 --> B4
-    end
-
-    subgraph "Application Repository"
-        C1[🚀 CarPricePredictor-Demo]
-        C2[ML Application]
-        C3[Flask Services]
-        C4[XGBoost Model]
-        C1 --> C2
-        C2 --> C3
-        C3 --> C4
-    end
-
-    A1 -.-> B1
-    B1 -.-> C1
-
-    style A1 fill:#e3f2fd
-    style B1 fill:#f3e5f5
-    style C1 fill:#e8f5e8
-```
-
-**Repository Responsibilities:**
-
-- **🏗️ Infrastructure (tf-infra-demoCar)**: AWS resource provisioning, network setup, security configuration
-- **⚙️ Configuration (configManagement-carPrice)**: Application deployment, environment setup, monitoring integration
-- **🚀 Application (CarPricePredictor-Demo)**: ML prediction service, web interface, business logic
+| Layer | Component | Technology | Purpose |
+|-------|-----------|------------|----------|
+| **Source** | Infrastructure | Terraform | AWS resource provisioning |
+| **Source** | Configuration | Ansible | Environment setup & deployment |
+| **Source** | Application | Flask + XGBoost | ML prediction service |
+| **Pipeline** | CI/CD | Jenkins | Automated deployment orchestration |
+| **Cloud** | Network | AWS VPC | Secure network isolation |
+| **Cloud** | Compute | EC2 t3.small | Application runtime environment |
+| **Cloud** | Storage | S3 | Terraform state management |
+| **Monitoring** | Collection | OpenTelemetry | Metrics aggregation |
+| **Monitoring** | Platform | Splunk Cloud | Enterprise observability |
 
 ---
 
 ## 🔄 Deployment Flow
 
-**Pipeline Execution**: Jenkins → Terraform (Infrastructure) → Ansible (Configuration) → Health Validation
-**Infrastructure**: AWS VPC, EC2 t3.small, S3 state management, security groups
-**Application**: Flask services deployment with systemd, Python environment setup
-**Monitoring**: OpenTelemetry collector installation and Splunk Observability integration
-**Validation**: Automated health checks for backend (5002) and frontend (3000) services
+```mermaid
+flowchart LR
+    subgraph "Pipeline Execution"
+        A[🚀 Jenkins<br/>Orchestration]
+        B[🏗️ Terraform<br/>Infrastructure]
+        C[⚙️ Ansible<br/>Configuration]
+        D[🎯 Health<br/>Validation]
+    end
+
+    subgraph "Infrastructure Layer"
+        E[🌐 AWS VPC<br/>Network Isolation]
+        F[💻 EC2 t3.small<br/>Compute Instance]
+        G[📦 S3 Bucket<br/>State Management]
+        H[🔒 Security Groups<br/>Access Control]
+    end
+
+    subgraph "Application Layer"
+        I[🐍 Flask Services<br/>systemd Deployment]
+        J[🔧 Python Environment<br/>Dependencies Setup]
+    end
+
+    subgraph "Monitoring Layer"
+        K[📊 OpenTelemetry<br/>Collector Installation]
+        L[☁️ Splunk Integration<br/>Observability Cloud]
+    end
+
+    A --> B
+    B --> C
+    C --> D
+
+    B --> E
+    B --> F
+    B --> G
+    B --> H
+
+    C --> I
+    C --> J
+    C --> K
+
+    K --> L
+
+    D --> M[✅ Backend :5002<br/>Health Check]
+    D --> N[✅ Frontend :3000<br/>Health Check]
+
+    style A fill:#e1f5fe
+    style D fill:#c8e6c9
+    style L fill:#e8f5e8
+```
 
 
 
@@ -263,10 +249,55 @@ flowchart LR
 
 ## 🔧 Jenkins Pipeline Implementation
 
-**Pipeline Stages**: Checkout → Terraform Plan → Terraform Apply → Ansible Deploy → Health Check
-**Metrics Integration**: Each stage sends duration and status metrics to Splunk Observability Cloud
-**Health Validation**: Automated backend and frontend service health verification
-**Monitoring**: Real-time pipeline performance tracking with success/failure notifications
+```mermaid
+flowchart TD
+    subgraph "Pipeline Stages"
+        A[📥 Checkout<br/>Source Code]
+        B[📋 Terraform Plan<br/>Infrastructure Preview]
+        C[🚀 Terraform Apply<br/>Resource Provisioning]
+        D[⚙️ Ansible Deploy<br/>Configuration Management]
+        E[🎯 Health Check<br/>Service Validation]
+    end
+
+    subgraph "Metrics Integration"
+        F[📊 Duration Tracking<br/>Stage Performance]
+        G[📈 Status Metrics<br/>Success/Failure]
+        H[☁️ Splunk Export<br/>Real-time Analytics]
+    end
+
+    subgraph "Health Validation"
+        I[🔍 Backend Check<br/>Port 5002]
+        J[🔍 Frontend Check<br/>Port 3000]
+        K[✅ Service Status<br/>Verification]
+    end
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+
+    A --> F
+    B --> F
+    C --> F
+    D --> F
+    E --> F
+
+    F --> G
+    G --> H
+
+    E --> I
+    E --> J
+    I --> K
+    J --> K
+
+    K --> L[📱 Notifications<br/>Success/Failure Alerts]
+    H --> M[📈 Performance Dashboard<br/>Real-time Tracking]
+
+    style A fill:#e1f5fe
+    style E fill:#c8e6c9
+    style H fill:#e8f5e8
+    style L fill:#fff3e0
+```
 
 ---
 
@@ -428,11 +459,13 @@ curl http://13.220.64.167:3000/health
 
 ## Implementation Summary
 
-**Platform Status**: Production-ready ML prediction service with enterprise DevOps architecture
-**Monitoring Coverage**: Application, infrastructure, and pipeline metrics with Splunk Observability Cloud
-**Architecture**: 3-repository structure with Terraform IaC, Ansible configuration, and Flask application
-**Deployment**: Jenkins CI/CD pipeline with automated AWS provisioning and monitoring integration
-**Team**: Jose Rubio (Project Lead) | Full-stack MLOps | SCRUM methodology
+| Component | Details | Status |
+|-----------|---------|--------|
+| **Platform Status** | Production-ready ML prediction service with enterprise DevOps architecture | ✅ Active |
+| **Monitoring Coverage** | Application, infrastructure, and pipeline metrics with Splunk Observability Cloud | ✅ Integrated |
+| **Architecture** | 3-repository structure with Terraform IaC, Ansible configuration, and Flask application | ✅ Deployed |
+| **Deployment** | Jenkins CI/CD pipeline with automated AWS provisioning and monitoring integration | ✅ Automated |
+| **Team** | Jose Rubio (Project Lead) \| Full-stack MLOps \| SCRUM methodology | ✅ Operational |
 
 ---
 
