@@ -33,24 +33,14 @@
     | **Multi-environment** | Development, staging, production workflows | Risk mitigation |
     | **Quality Assurance** | Automated testing and code quality gates | Production reliability |
 
-=== "Production Ready"
+=== "Enterprise Architecture"
 
-    | Feature | Description | Impact |
-    |---------|-------------|--------|
-    | **High Availability** | Auto-scaling and load balancing | Business continuity |
-    | **Security** | Enterprise-grade security controls | Compliance ready |
-    | **Monitoring Integration** | Comprehensive observability stack | Operational excellence |
-    | **Documentation** | Complete technical and business docs | Knowledge management |
-
-=== "Architecture Components"
-
-    | Layer | Component | Technology | Purpose |
-    |-------|-----------|------------|----------|
-    | **Source** | Application | Flask + XGBoost | ML prediction service |
-    | **Pipeline** | CI/CD | Jenkins | Automated deployment |
-    | **Cloud** | Compute | EC2 t3.small | Application runtime |
-    | **Cloud** | Infrastructure | Terraform + AWS VPC | Resource provisioning |
-    | **Monitoring** | Platform | Splunk Cloud | Enterprise observability |
+    | Component | Technology | Purpose | Business Value |
+    |-----------|------------|---------|----------------|
+    | **Source Control** | Terraform + Ansible + Flask | 3-repository structure for separation of concerns | Maintainable codebase |
+    | **Deployment Pipeline** | Jenkins CI/CD | Automated orchestration of infrastructure and applications | Rapid, reliable delivery |
+    | **AWS Cloud Platform** | VPC + EC2 + S3 | Secure, scalable cloud infrastructure | Enterprise-grade hosting |
+    | **Observability Stack** | OpenTelemetry + Splunk Cloud | End-to-end monitoring and analytics | Operational excellence |
 
 ---
 
