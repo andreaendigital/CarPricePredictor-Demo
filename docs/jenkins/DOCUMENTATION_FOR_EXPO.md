@@ -5,10 +5,42 @@
 **Professional full-stack machine learning platform** for automotive price prediction with enterprise-grade DevOps architecture, comprehensive observability, and modern cloud deployment strategies.
 
 ### Business Value
-- **Real-time ML Predictions** - Instant vehicle valuations using XGBoost algorithms
-- **Enterprise Observability** - 1,070+ metrics per hour with Splunk Observability Cloud
-- **Infrastructure as Code** - Complete AWS deployment automation
-- **Production-Ready** - High availability, auto-scaling, and comprehensive monitoring
+
+=== "ML Intelligence"
+
+    | Feature | Description | Impact |
+    |---------|-------------|--------|
+    | **Real-time Predictions** | Instant vehicle valuations using XGBoost algorithms | Immediate business decisions |
+    | **Future Forecasting** | AI-powered depreciation modeling | Investment planning |
+    | **Model Accuracy** | Production-grade ML with continuous validation | Reliable valuations |
+    | **Scalable Processing** | High-throughput prediction engine | Enterprise capacity |
+
+=== "Enterprise Operations"
+
+    | Feature | Description | Impact |
+    |---------|-------------|--------|
+    | **Observability Platform** | 1,070+ metrics per hour with Splunk Cloud | Complete visibility |
+    | **Real-time Monitoring** | Live dashboards with 5-second refresh | Proactive management |
+    | **Health Monitoring** | Comprehensive service health checks | 99.9% availability |
+    | **Performance Analytics** | Business and technical KPIs tracking | Data-driven optimization |
+
+=== "DevOps Excellence"
+
+    | Feature | Description | Impact |
+    |---------|-------------|--------|
+    | **Infrastructure as Code** | Complete AWS deployment automation | Consistent environments |
+    | **CI/CD Pipeline** | Jenkins-based automated deployment | Rapid delivery |
+    | **Multi-environment** | Development, staging, production workflows | Risk mitigation |
+    | **Quality Assurance** | Automated testing and code quality gates | Production reliability |
+
+=== "Production Ready"
+
+    | Feature | Description | Impact |
+    |---------|-------------|--------|
+    | **High Availability** | Auto-scaling and load balancing | Business continuity |
+    | **Security** | Enterprise-grade security controls | Compliance ready |
+    | **Monitoring Integration** | Comprehensive observability stack | Operational excellence |
+    | **Documentation** | Complete technical and business docs | Knowledge management |
 
 ---
 
@@ -72,51 +104,14 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    subgraph "Pipeline Execution"
-        A[🚀 Jenkins<br/>Orchestration]
-        B[🏗️ Terraform<br/>Infrastructure]
-        C[⚙️ Ansible<br/>Configuration]
-        D[🎯 Health<br/>Validation]
-    end
-
-    subgraph "Infrastructure Layer"
-        E[🌐 AWS VPC<br/>Network Isolation]
-        F[💻 EC2 t3.small<br/>Compute Instance]
-        G[📦 S3 Bucket<br/>State Management]
-        H[🔒 Security Groups<br/>Access Control]
-    end
-
-    subgraph "Application Layer"
-        I[🐍 Flask Services<br/>systemd Deployment]
-        J[🔧 Python Environment<br/>Dependencies Setup]
-    end
-
-    subgraph "Monitoring Layer"
-        K[📊 OpenTelemetry<br/>Collector Installation]
-        L[☁️ Splunk Integration<br/>Observability Cloud]
-    end
-
-    A --> B
-    B --> C
-    C --> D
-
-    B --> E
-    B --> F
-    B --> G
-    B --> H
-
-    C --> I
-    C --> J
-    C --> K
-
-    K --> L
-
-    D --> M[✅ Backend :5002<br/>Health Check]
-    D --> N[✅ Frontend :3000<br/>Health Check]
+    A[🚀 Jenkins<br/>Pipeline] --> B[🏗️ Terraform<br/>AWS Infrastructure]
+    B --> C[⚙️ Ansible<br/>App Configuration]
+    C --> D[📊 Monitoring<br/>Setup]
+    D --> E[✅ Health<br/>Validation]
 
     style A fill:#e1f5fe
-    style D fill:#c8e6c9
-    style L fill:#e8f5e8
+    style E fill:#c8e6c9
+    style D fill:#e8f5e8
 ```
 
 
@@ -125,35 +120,64 @@ flowchart LR
 
 ## 📊 Enterprise Observability Framework
 
-### Telemetry Architecture
+=== "Telemetry Architecture"
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    SPLUNK OBSERVABILITY CLOUD                  │
-│                     Enterprise Monitoring Platform              │
-└─────────────────────────────────────────────────────────────────┘
-                                    ▲
-                                    │ Metrics & Telemetry
-                    ┌───────────────┼───────────────┐
-                    │               │               │
-            ┌───────▼──────┐ ┌──────▼──────┐ ┌─────▼─────┐
-            │ Application  │ │Infrastructure│ │ Pipeline  │
-            │   Layer      │ │   Layer      │ │  Layer    │
-            │              │ │              │ │           │
-            │ • Backend    │ │ • EC2 Metrics│ │ • Jenkins │
-            │ • Frontend   │ │ • CPU/Memory │ │ • Terraform│
-            │ • ML Models  │ │ • Network    │ │ • Ansible │
-            │ • Business   │ │ • Disk Usage │ │ • Health  │
-            │   KPIs       │ │ • System     │ │   Checks  │
-            └──────────────┘ └─────────────┘ └───────────┘
-                    │               │               │
-            ┌───────▼──────┐ ┌──────▼──────┐ ┌─────▼─────┐
-            │ OpenTelemetry│ │HostMetrics  │ │ Jenkins   │
-            │ Collector    │ │ Collector   │ │ Pipeline  │
-            │ (Port 3000)  │ │ (10s int.)  │ │ Metrics   │
-            │ (Port 5002)  │ │             │ │           │
-            └──────────────┘ └─────────────┘ └───────────┘
-```
+    ```
+    ┌─────────────────────────────────────────────────────────────────┐
+    │                    SPLUNK OBSERVABILITY CLOUD                  │
+    │                     Enterprise Monitoring Platform              │
+    └─────────────────────────────────────────────────────────────────┘
+                                        ▲
+                                        │ Metrics & Telemetry
+                        ┌───────────────┼───────────────┐
+                        │               │               │
+                ┌───────▼──────┐ ┌──────▼──────┐ ┌─────▼─────┐
+                │ Application  │ │Infrastructure│ │ Pipeline  │
+                │   Layer      │ │   Layer      │ │  Layer    │
+                │              │ │              │ │           │
+                │ • Backend    │ │ • EC2 Metrics│ │ • Jenkins │
+                │ • Frontend   │ │ • CPU/Memory │ │ • Terraform│
+                │ • ML Models  │ │ • Network    │ │ • Ansible │
+                │ • Business   │ │ • Disk Usage │ │ • Health  │
+                │   KPIs       │ │ • System     │ │   Checks  │
+                └──────────────┘ └─────────────┘ └───────────┘
+                        │               │               │
+                ┌───────▼──────┐ ┌──────▼──────┐ ┌─────▼─────┐
+                │ OpenTelemetry│ │HostMetrics  │ │ Jenkins   │
+                │ Collector    │ │ Collector   │ │ Pipeline  │
+                │ (Port 3000)  │ │ (10s int.)  │ │ Metrics   │
+                │ (Port 5002)  │ │             │ │           │
+                └──────────────┘ └─────────────┘ └───────────┘
+    ```
+
+=== "Metrics Volume"
+
+    | Layer | Component | Metrics/Hour | Collection Interval |
+    |-------|-----------|--------------|--------------------|
+    | **Application** | Backend Service | ~360 | 30 seconds |
+    | **Application** | Frontend Service | ~360 | 30 seconds |
+    | **Infrastructure** | EC2 Host Metrics | ~200 | 10 seconds |
+    | **Pipeline** | Jenkins Deployment | ~50 | Per deployment |
+    | **Cloud** | AWS Resources | ~100 | 60 seconds |
+    | **Total** | **Enterprise Platform** | **~1,070** | **Real-time** |
+
+=== "Collection Strategy"
+
+    | Strategy | Technology | Purpose | Frequency |
+    |----------|------------|---------|----------|
+    | **Continuous Monitoring** | OpenTelemetry Collector | Application & system metrics | 10-30s intervals |
+    | **Event-Driven Collection** | Custom instrumentation | Business KPIs & user actions | Real-time |
+    | **Pipeline Integration** | Jenkins plugins | DevOps metrics & deployment tracking | Per build/deploy |
+    | **Health Monitoring** | HTTP endpoints | Service availability & status | Continuous |
+
+=== "Enterprise Benefits"
+
+    | Benefit | Description | Business Value |
+    |---------|-------------|----------------|
+    | **Complete Visibility** | 1,070+ metrics across all layers | Operational excellence |
+    | **Real-time Insights** | Live streaming to Splunk Cloud | Proactive management |
+    | **Historical Analysis** | 30-day retention with trend analysis | Strategic planning |
+    | **Custom Dashboards** | Business and technical KPI views | Executive reporting |
 
 ### Data Collection Flow
 
@@ -250,53 +274,15 @@ flowchart LR
 ## 🔧 Jenkins Pipeline Implementation
 
 ```mermaid
-flowchart TD
-    subgraph "Pipeline Stages"
-        A[📥 Checkout<br/>Source Code]
-        B[📋 Terraform Plan<br/>Infrastructure Preview]
-        C[🚀 Terraform Apply<br/>Resource Provisioning]
-        D[⚙️ Ansible Deploy<br/>Configuration Management]
-        E[🎯 Health Check<br/>Service Validation]
-    end
-
-    subgraph "Metrics Integration"
-        F[📊 Duration Tracking<br/>Stage Performance]
-        G[📈 Status Metrics<br/>Success/Failure]
-        H[☁️ Splunk Export<br/>Real-time Analytics]
-    end
-
-    subgraph "Health Validation"
-        I[🔍 Backend Check<br/>Port 5002]
-        J[🔍 Frontend Check<br/>Port 3000]
-        K[✅ Service Status<br/>Verification]
-    end
-
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-
-    A --> F
-    B --> F
-    C --> F
-    D --> F
-    E --> F
-
-    F --> G
-    G --> H
-
-    E --> I
-    E --> J
-    I --> K
-    J --> K
-
-    K --> L[📱 Notifications<br/>Success/Failure Alerts]
-    H --> M[📈 Performance Dashboard<br/>Real-time Tracking]
+flowchart LR
+    A[📥 Checkout] --> B[🏗️ Terraform<br/>Infrastructure]
+    B --> C[⚙️ Ansible<br/>Configuration]
+    C --> D[🎯 Health Check<br/>Services]
+    D --> E[📊 Metrics<br/>Splunk Export]
 
     style A fill:#e1f5fe
-    style E fill:#c8e6c9
-    style H fill:#e8f5e8
-    style L fill:#fff3e0
+    style D fill:#c8e6c9
+    style E fill:#e8f5e8
 ```
 
 ---
@@ -375,51 +361,14 @@ flowchart LR
 ### Real-time Monitoring Flow
 
 ```mermaid
-flowchart TD
-    subgraph "User Interactions"
-        A[👤 User Prediction Request]
-        B[📝 Vehicle Publish Action]
-        C[🔍 Dashboard Access]
-    end
+flowchart LR
+    A[👤 User Actions] --> B[🖥️ Services<br/>Backend/Frontend]
+    B --> C[📊 Metrics<br/>System + Business]
+    C --> D[📈 Live Collection<br/>10s intervals]
+    D --> E[☁️ Splunk Cloud<br/>1,070+ metrics/hour]
 
-    subgraph "Application Layer"
-        D[🖥️ Backend Service<br/>Port 5002]
-        E[🌐 Frontend Service<br/>Port 3000]
-    end
-
-    subgraph "Metrics Generation"
-        F[📊 System Metrics<br/>CPU, Memory, Disk]
-        G[🔢 Business KPIs<br/>Predictions, Accuracy]
-        H[⚡ Event Metrics<br/>User Actions]
-    end
-
-    subgraph "Real-time Processing"
-        I[📈 10s Continuous Collection]
-        J[🎯 Event-driven Collection]
-        K[💓 Health Monitoring]
-    end
-
-    A --> D
-    B --> E
-    C --> E
-
-    D --> F
-    D --> G
-    E --> F
-    E --> H
-
-    F --> I
-    G --> J
-    H --> J
-
-    I --> L[📊 Live Dashboards]
-    J --> L
-    K --> L
-
-    L --> M[☁️ Splunk Observability]
-
-    style M fill:#e1f5fe
-    style L fill:#f3e5f5
+    style E fill:#e1f5fe
+    style C fill:#f3e5f5
 ```
 
 
