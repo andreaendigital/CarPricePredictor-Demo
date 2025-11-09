@@ -94,20 +94,6 @@ flowchart LR
     style I fill:#e8f5e8
 ```
 
-### Architecture Components
-
-| Layer | Component | Technology | Purpose |
-|-------|-----------|------------|----------|
-| **Source** | Infrastructure | Terraform | AWS resource provisioning |
-| **Source** | Configuration | Ansible | Environment setup & deployment |
-| **Source** | Application | Flask + XGBoost | ML prediction service |
-| **Pipeline** | CI/CD | Jenkins | Automated deployment orchestration |
-| **Cloud** | Network | AWS VPC | Secure network isolation |
-| **Cloud** | Compute | EC2 t3.small | Application runtime environment |
-| **Cloud** | Storage | S3 | Terraform state management |
-| **Monitoring** | Collection | OpenTelemetry | Metrics aggregation |
-| **Monitoring** | Platform | Splunk Cloud | Enterprise observability |
-
 ---
 
 ## 🔄 Deployment Flow
