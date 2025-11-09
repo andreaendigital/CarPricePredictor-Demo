@@ -29,6 +29,7 @@ This document provides comprehensive documentation for the observability and mon
 **Purpose**: Business and technical metrics collection from Flask application services
 
 **Application Architecture:**
+
 - **Backend API**: Flask REST API service (Port 5002)
 - **Frontend Web**: Web interface service (Port 3000)
 - **ML Models**: Machine learning prediction engine
@@ -37,6 +38,7 @@ This document provides comprehensive documentation for the observability and mon
 **Key Performance Indicators:**
 
 **Business Metrics:**
+
 ```python
 # Revenue and Performance Tracking
 request_count = 0                    # Total API requests
@@ -52,12 +54,13 @@ disk_usage = psutil.disk_usage('/').percent
 ```
 
 **User Experience Metrics:**
+
 ```python
 # Engagement and Conversion Tracking
 user_sessions = 0                    # Active user sessions
 page_views = 0                       # Frontend page views
 form_submissions = 0                 # User interactions
-user_satisfaction_score = 4.2        # Experience quality score
+
 
 # Market Intelligence
 car_searches_per_hour = 45           # Search volume trends
@@ -67,16 +70,17 @@ average_session_duration = 180       # Session engagement time
 
 **Metrics Value Framework:**
 
-| Metric Category | Business Impact | Technical Impact |
-|----------------|-----------------|------------------|
-| **Revenue Metrics** | Prediction volume tracking | Performance scaling baseline |
-| **Quality Metrics** | Customer trust and accuracy | ML model performance validation |
-| **Market Intelligence** | Pricing trends and demand analysis | Business intelligence reporting |
-| **Performance Metrics** | User experience optimization | System performance tuning |
-| **Engagement Metrics** | Customer retention tracking | Capacity planning and scaling |
-| **Resource Metrics** | Cost optimization insights | Infrastructure scaling decisions |
+| Metric Category         | Business Impact                    | Technical Impact                 |
+| ----------------------- | ---------------------------------- | -------------------------------- |
+| **Revenue Metrics**     | Prediction volume tracking         | Performance scaling baseline     |
+| **Quality Metrics**     | Customer trust and accuracy        | ML model performance validation  |
+| **Market Intelligence** | Pricing trends and demand analysis | Business intelligence reporting  |
+| **Performance Metrics** | User experience optimization       | System performance tuning        |
+| **Engagement Metrics**  | Customer retention tracking        | Capacity planning and scaling    |
+| **Resource Metrics**    | Cost optimization insights         | Infrastructure scaling decisions |
 
 **Key Metrics Collected:**
+
 ```python
 # Backend Metrics (Port 5002) - CarPricePredictor-Demo/backend/
 car_price.system.cpu_percent          # Application CPU usage
@@ -89,12 +93,11 @@ car_price.business.revenue_potential   # Estimated business value
 # Frontend Metrics (Port 3000) - CarPricePredictor-Demo/frontend/
 car_price.frontend.user_sessions      # Active user sessions
 car_price.frontend.page_views         # Page view count
-car_price.frontend.user_satisfaction  # User experience score
-car_price.frontend.conversion_rate    # Form submission success
-car_price.business.market_demand      # Search volume trends
+
 ```
 
 **Monitoring Endpoints:**
+
 - `http://<instance-ip>:3000/dashboard` - Frontend monitoring dashboard
 - `http://<instance-ip>:5002/dashboard` - Backend monitoring dashboard
 - `http://<instance-ip>:5002/metrics/json` - Metrics API endpoint
@@ -104,6 +107,7 @@ car_price.business.market_demand      # Search volume trends
 - `http://<instance-ip>:3000/` - Application interface
 
 **Application File Structure:**
+
 ```
 CarPricePredictor-Demo/
 ├── backend/
@@ -123,11 +127,13 @@ CarPricePredictor-Demo/
 
 **Configuration**: Terraform monitoring module
 **Components**:
+
 - **Compute Resources**: EC2 instance performance monitoring
 - **AWS Services**: Infrastructure health and availability tracking
 - **Telemetry Collection**: OpenTelemetry Collector for metrics aggregation
 
 **Infrastructure Metrics:**
+
 ```yaml
 # EC2 System Metrics
 system.cpu.utilization              # CPU usage percentage
@@ -151,11 +157,13 @@ aws.alb.response_time               # Load balancer latency
 
 **Pipeline Integration**: Jenkins-based deployment tracking
 **Components**:
+
 - **Deployment Pipeline**: Build and deployment success/failure tracking
 - **Infrastructure Changes**: Terraform operation monitoring
 - **Configuration Management**: Ansible deployment validation
 
 **Pipeline Metrics:**
+
 ```bash
 # Jenkins Pipeline Metrics
 jenkins.pipeline.success             # Successful deployments
@@ -185,6 +193,7 @@ monitoring.config.applied           # Config deployment
 **Access**: Web-based dashboard and API interfaces
 
 **Terraform Configuration:**
+
 ```hcl
 variable "splunk_observability_token" {
   description = "Splunk Observability Cloud authentication token"
@@ -200,6 +209,7 @@ variable "splunk_realm" {
 ```
 
 **Ansible Configuration:**
+
 ```yaml
 splunk_token: "{{ vault_splunk_token }}"
 splunk_realm: "{{ splunk_deployment_realm }}"
@@ -219,16 +229,16 @@ receivers:
   prometheus:
     config:
       scrape_configs:
-        - job_name: 'car-price-backend'
+        - job_name: "car-price-backend"
           static_configs:
-            - targets: ['localhost:5002']
-          metrics_path: '/metrics/json'
+            - targets: ["localhost:5002"]
+          metrics_path: "/metrics/json"
           scrape_interval: 30s
 
-        - job_name: 'car-price-frontend'
+        - job_name: "car-price-frontend"
           static_configs:
-            - targets: ['localhost:3000']
-          metrics_path: '/metrics/json'
+            - targets: ["localhost:3000"]
+          metrics_path: "/metrics/json"
           scrape_interval: 30s
 
 processors:
@@ -254,14 +264,14 @@ exporters:
 
 ### Data Collection Framework
 
-| Component | Metrics/Hour | Collection Interval |
-|-----------|--------------|-------------------|
-| **Application Backend** | ~360 | 30 seconds |
-| **Application Frontend** | ~360 | 30 seconds |
-| **EC2 Infrastructure** | ~200 | 10 seconds |
-| **Jenkins Pipeline** | ~50 | Per deployment |
-| **AWS Resources** | ~100 | 60 seconds |
-| **Total** | **~1,070** | Various |
+| Component                | Metrics/Hour | Collection Interval |
+| ------------------------ | ------------ | ------------------- |
+| **Application Backend**  | ~360         | 30 seconds          |
+| **Application Frontend** | ~360         | 30 seconds          |
+| **EC2 Infrastructure**   | ~200         | 10 seconds          |
+| **Jenkins Pipeline**     | ~50          | Per deployment      |
+| **AWS Resources**        | ~100         | 60 seconds          |
+| **Total**                | **~1,070**   | Various             |
 
 ### Data Retention Policy
 
@@ -296,16 +306,19 @@ exporters:
 ## Dashboard Framework
 
 ### Application Performance Dashboard
+
 - **Access**: Application-hosted monitoring interface
 - **Metrics**: API performance, ML predictions, user engagement
 - **Refresh**: Real-time data updates
 
 ### Infrastructure Health Dashboard
+
 - **Platform**: Splunk Observability Cloud
 - **Metrics**: System performance, AWS resource health
 - **Views**: Real-time monitoring and historical analysis
 
 ### Pipeline Operations Dashboard
+
 - **Integration**: Jenkins and Splunk Observability
 - **Metrics**: Deployment tracking and pipeline performance
 - **Coverage**: End-to-end CI/CD visibility
@@ -314,12 +327,12 @@ exporters:
 
 ### Troubleshooting Framework
 
-| Issue | Symptoms | Solution |
-|-------|----------|----------|
-| **Missing Metrics** | No data in Splunk | Check OpenTelemetry Collector status |
-| **High CPU Usage** | System slow, alerts firing | Scale EC2 instance or optimize app |
-| **Pipeline Failures** | Deployment errors | Check Jenkins logs and Terraform state |
-| **App Downtime** | Health checks failing | Restart services, check logs |
+| Issue                 | Symptoms                   | Solution                               |
+| --------------------- | -------------------------- | -------------------------------------- |
+| **Missing Metrics**   | No data in Splunk          | Check OpenTelemetry Collector status   |
+| **High CPU Usage**    | System slow, alerts firing | Scale EC2 instance or optimize app     |
+| **Pipeline Failures** | Deployment errors          | Check Jenkins logs and Terraform state |
+| **App Downtime**      | Health checks failing      | Restart services, check logs           |
 
 ### Diagnostic Procedures
 
@@ -402,28 +415,31 @@ ml.feature.importance_changes      # Feature relevance tracking
 
 ```javascript
 // Frontend Performance Metrics
-ux.page_load_time                  // Page loading performance
-ux.user_journey_completion         // Conversion funnel analysis
-ux.error_rate_by_browser          // Browser-specific issues
-ux.mobile_vs_desktop_usage        // Device usage patterns
-ux.geographic_performance          // Regional performance differences
+ux.page_load_time; // Page loading performance
+ux.user_journey_completion; // Conversion funnel analysis
+ux.error_rate_by_browser; // Browser-specific issues
+ux.mobile_vs_desktop_usage; // Device usage patterns
+ux.geographic_performance; // Regional performance differences
 ```
 
 ## 📊 **Enterprise Dashboards**
 
 ### **Executive Dashboard**
+
 - **Business Metrics**: Revenue, user growth, system availability
 - **Cost Analysis**: Infrastructure spend, ROI metrics
 - **Performance Summary**: High-level system health
 - **Trend Analysis**: Month-over-month comparisons
 
 ### **Operations Dashboard**
+
 - **System Health**: Real-time infrastructure status
 - **Alert Management**: Active incidents and resolution times
 - **Capacity Planning**: Resource utilization trends
 - **Performance Metrics**: Response times and throughput
 
 ### **Development Dashboard**
+
 - **Deployment Metrics**: Success rates and rollback frequency
 - **Code Quality**: Test coverage and bug rates
 - **Performance Impact**: Feature performance analysis
@@ -463,13 +479,13 @@ cost_optimization:
 
 ### **Observability Maturity**
 
-| Level | Capabilities | Metrics Coverage |
-|-------|--------------|------------------|
-| **Level 1** | Basic monitoring | System metrics only |
-| **Level 2** | Application monitoring | App + system metrics |
-| **Level 3** | Business monitoring | Full stack + business KPIs |
-| **Level 4** | Predictive monitoring | AI-driven insights |
-| **Level 5** | Self-healing systems | Automated remediation |
+| Level       | Capabilities           | Metrics Coverage           |
+| ----------- | ---------------------- | -------------------------- |
+| **Level 1** | Basic monitoring       | System metrics only        |
+| **Level 2** | Application monitoring | App + system metrics       |
+| **Level 3** | Business monitoring    | Full stack + business KPIs |
+| **Level 4** | Predictive monitoring  | AI-driven insights         |
+| **Level 5** | Self-healing systems   | Automated remediation      |
 
 ### **Current Implementation Status**
 
@@ -485,22 +501,26 @@ cost_optimization:
 # Incident Response Runbook
 
 ## Alert: High CPU Usage
+
 **Severity**: Critical
 **Threshold**: CPU > 85% for 5 minutes
 
 ### Immediate Actions:
+
 1. Check system load: `top` or `htop`
 2. Identify resource-heavy processes
 3. Scale EC2 instance if needed
 4. Notify stakeholders
 
 ### Investigation Steps:
+
 1. Review application logs
 2. Check for memory leaks
 3. Analyze traffic patterns
 4. Verify auto-scaling configuration
 
 ### Resolution:
+
 1. Optimize application code
 2. Adjust resource allocation
 3. Update monitoring thresholds
@@ -517,12 +537,14 @@ cost_optimization:
 ## 🔮 **Future Enhancements**
 
 ### **Phase 2: Advanced Analytics**
+
 - **Anomaly Detection**: AI-powered pattern recognition
 - **Predictive Scaling**: Proactive resource management
 - **Root Cause Analysis**: Automated issue correlation
 - **Capacity Forecasting**: Long-term planning insights
 
 ### **Phase 3: Intelligent Operations**
+
 - **Self-Healing Infrastructure**: Automated problem resolution
 - **Dynamic Optimization**: Real-time performance tuning
 - **Predictive Maintenance**: Prevent issues before they occur
@@ -532,12 +554,12 @@ cost_optimization:
 
 ### **Quantifiable Benefits**
 
-| Metric | Before Monitoring | After Implementation | Improvement |
-|--------|------------------|---------------------|-------------|
-| **MTTR** | 4 hours | 30 minutes | 87% reduction |
-| **Uptime** | 95% | 99.9% | 4.9% improvement |
-| **Cost Efficiency** | Baseline | 25% reduction | $X,XXX savings |
-| **User Satisfaction** | 3.2/5 | 4.7/5 | 47% improvement |
+| Metric                | Before Monitoring | After Implementation | Improvement      |
+| --------------------- | ----------------- | -------------------- | ---------------- |
+| **MTTR**              | 4 hours           | 30 minutes           | 87% reduction    |
+| **Uptime**            | 95%               | 99.9%                | 4.9% improvement |
+| **Cost Efficiency**   | Baseline          | 25% reduction        | $X,XXX savings   |
+| **User Satisfaction** | 3.2/5             | 4.7/5                | 47% improvement  |
 
 ### **Strategic Advantages**
 
@@ -555,8 +577,7 @@ cost_optimization:
 **Security**: Comprehensive security monitoring and compliance
 **Cost**: Optimized resource usage with cost tracking
 
-**Achievement Unlocked**: 🥇 **Observability Champion** - Complete end-to-end monitoring implementation with enterprise capabilities and future-ready architecture.aselines**: Establish normal operating ranges
-4. **Regular Reviews**: Weekly monitoring health checks
+**Achievement Unlocked**: 🥇 **Observability Champion** - Complete end-to-end monitoring implementation with enterprise capabilities and future-ready architecture.aselines**: Establish normal operating ranges 4. **Regular Reviews\*\*: Weekly monitoring health checks
 
 ### Performance Optimization
 
@@ -568,11 +589,13 @@ cost_optimization:
 ## Support Framework
 
 ### Documentation Resources
+
 - **Splunk Observability**: https://docs.splunk.com/Observability
 - **OpenTelemetry**: https://opentelemetry.io/docs/
 - **Flask Monitoring**: Application-specific documentation
 
 ### Incident Response
+
 - **Infrastructure Issues**: Check AWS Console + Splunk Dashboards
 - **Application Issues**: Review application logs + metrics
 - **Pipeline Issues**: Jenkins console + Terraform state
@@ -592,12 +615,14 @@ This enterprise observability framework delivers comprehensive monitoring capabi
 ### Monitoring Coverage
 
 **Application Layer:**
+
 - **Backend Services**: Flask API monitoring (Port 5002)
 - **Frontend Services**: Web interface monitoring (Port 3000)
 - **Business Intelligence**: Revenue tracking, ML accuracy, user engagement metrics
 - **Technical Performance**: Response times, resource utilization, system health
 
 **Key Performance Indicators:**
+
 - **Business Metrics**: Prediction volume, model accuracy, user engagement
 - **Technical Metrics**: Response times, resource efficiency, system availability
 - **Operational Metrics**: Pipeline success rates, deployment frequency

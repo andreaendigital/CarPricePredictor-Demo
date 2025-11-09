@@ -98,8 +98,6 @@ def send_continuous_metrics():
 
             # User Experience Metrics (simulated)
             send_to_splunk_observability("car_price.frontend.page_load_time", random.uniform(0.5, 2.0))
-            send_to_splunk_observability("car_price.frontend.user_satisfaction", random.uniform(4.0, 5.0))
-            send_to_splunk_observability("car_price.frontend.conversion_rate", random.uniform(0.15, 0.35))
 
             time.sleep(10)  # Send metrics every 10 seconds
         except Exception as e:

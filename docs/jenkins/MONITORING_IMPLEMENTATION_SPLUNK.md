@@ -17,7 +17,7 @@ The CarPricePredictor app now has **full Splunk Observability Cloud integration*
 - **Splunk Observability Cloud** token configured (`PZuf3J0L2Op_Qj9hpAJzlw`)
 - **Continuous metrics** every 10 seconds via background thread
 - **Event-driven metrics** on user interactions
-- **User experience** metrics (page load, satisfaction, conversion)
+- **User experience** metrics (page load performance)
 - **Application metrics** (requests, predictions, publishes)
 
 ## 📈 **Metrics Flowing to Splunk Observability**
@@ -43,8 +43,7 @@ The CarPricePredictor app now has **full Splunk Observability Cloud integration*
 - `car_price.frontend.prediction_requests` - Prediction requests
 - `car_price.frontend.publish_requests` - Vehicle publish requests
 - `car_price.frontend.page_load_time` - Page load performance
-- `car_price.frontend.user_satisfaction` - User satisfaction score
-- `car_price.frontend.conversion_rate` - Conversion rate
+
 
 ## 🚀 **Key Features**
 

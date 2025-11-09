@@ -489,7 +489,7 @@ SERVICE_NAME=car-price-predictor
 - `car_price.system.cpu_percent` - App CPU usage
 - `car_price.app.total_requests` - API requests
 - `car_price.business.avg_prediction_value` - ML predictions
-- `car_price.frontend.user_satisfaction` - User experience
+
 
 #### **DevOps Pipeline Metrics**
 - `jenkins.pipeline.success/failure` - Pipeline results
