@@ -52,65 +52,48 @@
 ## 🏗️ Enterprise Architecture Overview
 
 ```mermaid
-%%{init: {
-  'theme': 'base',
-  'themeVariables': {
-    'primaryColor': '#2563eb',
-    'primaryTextColor': '#ffffff',
-    'primaryBorderColor': '#1e40af',
-    'lineColor': '#374151',
-    'secondaryColor': '#f3f4f6',
-    'tertiaryColor': '#e5e7eb',
-    'background': '#ffffff',
-    'mainBkg': '#f8fafc',
-    'secondBkg': '#f1f5f9',
-    'tertiaryBkg': '#e2e8f0'
-  }
-}}%%
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff', 'lineColor': '#374151'}}}%%
 
-flowchart TB
-    subgraph SC ["🏛️ SOURCE CONTROL LAYER"]
+flowchart LR
+    subgraph SC ["🏛️ SOURCE CONTROL"]
         direction TB
-        A["🏗️ Infrastructure<br/><b>Terraform IaC</b><br/><small>AWS Resources</small>"]
-        B["⚙️ Configuration<br/><b>Ansible Automation</b><br/><small>System Setup</small>"]
-        C["🚀 Application<br/><b>Flask + XGBoost</b><br/><small>ML Platform</small>"]
+        A["🏗️ Infrastructure<br/><b>Terraform IaC</b>"]
+        B["⚙️ Configuration<br/><b>Ansible</b>"]
+        C["🚀 Application<br/><b>Flask + XGBoost</b>"]
     end
 
-    subgraph DP ["🔄 DEPLOYMENT PIPELINE"]
-        direction TB
-        D["🎯 Jenkins CI/CD<br/><b>Orchestration Engine</b><br/><small>Automated Deployment</small>"]
+    subgraph DP ["🔄 CI/CD PIPELINE"]
+        D["🎯 Jenkins<br/><b>Orchestration</b>"]
     end
 
-    subgraph AWS ["☁️ AWS CLOUD INFRASTRUCTURE"]
+    subgraph AWS ["☁️ AWS CLOUD"]
         direction TB
-        E["🌐 VPC Network<br/><b>Security & Isolation</b><br/><small>10.0.0.0/16</small>"]
-        F["💻 EC2 Instance<br/><b>Application Runtime</b><br/><small>t3.small</small>"]
-        G["📦 S3 Storage<br/><b>State Management</b><br/><small>Terraform Backend</small>"]
+        E["🌐 VPC<br/><b>10.0.0.0/16</b>"]
+        F["💻 EC2<br/><b>t3.small</b>"]
+        G["📦 S3<br/><b>State Store</b>"]
     end
 
-    subgraph OBS ["📊 OBSERVABILITY PLATFORM"]
+    subgraph OBS ["📊 OBSERVABILITY"]
         direction TB
-        H["📈 OpenTelemetry<br/><b>Metrics Collection</b><br/><small>Real-time Data</small>"]
-        I["☁️ Splunk Cloud<br/><b>Enterprise Monitoring</b><br/><small>1,070+ metrics/hour</small>"]
+        H["📈 OpenTelemetry<br/><b>Metrics</b>"]
+        I["☁️ Splunk Cloud<br/><b>1,070+ metrics/hr</b>"]
     end
 
-    %% Connections with labels
-    A -.->|"Infrastructure Code"| D
-    B -.->|"Configuration Scripts"| D
-    C -.->|"Application Code"| D
+    A -.-> D
+    B -.-> D
+    C -.-> D
 
-    D ==>|"Provisions"| E
-    D ==>|"Deploys"| F
-    D ==>|"Manages"| G
+    D ==> E
+    D ==> F
+    D ==> G
 
-    F ==>|"Streams Metrics"| H
-    H ==>|"Exports Data"| I
+    F ==> H
+    H ==> I
 
-    %% Professional styling
-    classDef sourceControl fill:#e3f2fd,stroke:#1976d2,stroke-width:3px,color:#000
-    classDef deployment fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px,color:#000
-    classDef aws fill:#e8f5e8,stroke:#388e3c,stroke-width:3px,color:#000
-    classDef observability fill:#fff3e0,stroke:#f57c00,stroke-width:3px,color:#000
+    classDef sourceControl fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
+    classDef deployment fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
+    classDef aws fill:#e8f5e8,stroke:#388e3c,stroke-width:3px
+    classDef observability fill:#fff3e0,stroke:#f57c00,stroke-width:3px
 
     class A,B,C sourceControl
     class D deployment
