@@ -1,12 +1,12 @@
-site_name: AutoML Intelligence Platform
-site_description: Next-Generation AI-Powered Automotive Valuation & Market Intelligence Platform
+site_name: Car Price Prediction Platform
+site_description: Professional ML-powered automotive price prediction with enterprise DevOps
 site_author: Enterprise AI Solutions Team
-site_url: https://andreaendigital.github.io/CarPricePredictor-MLOps-Demo/
+site_url: https://andreaendigital.github.io/CarPricePredictor-Demo/
 
 docs_dir: docs
 
-repo_name: andreaendigital/CarPricePredictor-MLOps-Demo
-repo_url: https://github.com/andreaendigital/CarPricePredictor-MLOps-Demo
+repo_name: andreaendigital/CarPricePredictor-Demo
+repo_url: https://github.com/andreaendigital/CarPricePredictor-Demo
 
 theme:
   name: material
@@ -60,7 +60,6 @@ theme:
     edit: material/pencil
     view: material/eye
 
-
 plugins:
   - search:
       separator: '[\s\-,:!=\[\]()"/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
@@ -97,7 +96,7 @@ markdown_extensions:
       normalize_issue_symbols: true
       repo_url_shorthand: true
       user: andreaendigital
-      repo: CarPricePredictor-MLOps-Demo
+      repo: CarPricePredictor-Demo
   - pymdownx.mark
   - pymdownx.smartsymbols
   - pymdownx.snippets:
@@ -118,11 +117,12 @@ nav:
   - Frontend: architecture/components.md
   - Backend: api/endpoints.md
   - CI/CD Pipeline: cicd/pipeline.md
+  - Enterprise DevOps: jenkins/DOCUMENTATION_FOR_EXPO.md
 
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/andreaendigital/CarPricePredictor-MLOps-Demo
+      link: https://github.com/andreaendigital/CarPricePredictor-Demo
     - icon: fontawesome/brands/python
       link: https://www.python.org/
   version:
