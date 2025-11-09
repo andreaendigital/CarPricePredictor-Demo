@@ -137,62 +137,7 @@ flowchart TD
     style H fill:#fff3e0
 ```
 
-### Infrastructure Provisioning Flow
 
-```mermaid
-graph LR
-    subgraph "AWS Account"
-        A[🌐 VPC<br/>10.0.0.0/16] --> B[📍 Subnet 1a<br/>10.0.1.0/24]
-        A --> C[📍 Subnet 1b<br/>10.0.2.0/24]
-
-        D[🔒 Security Groups] --> E[SSH :22]
-        D --> F[HTTP :80,443]
-        D --> G[App :3000,5002]
-
-        H[💻 EC2 Instance] --> I[Amazon Linux 2]
-        H --> J[Public IP]
-        H --> K[Key Pair Auth]
-
-        L[📦 S3 Bucket] --> M[Terraform State]
-    end
-
-    style A fill:#e3f2fd
-    style H fill:#fff3e0
-    style L fill:#f3e5f5
-```
-
-### Application Deployment Flow
-
-```mermaid
-flowchart TD
-    A[🔧 Ansible Playbook] --> B[🐍 Flask App Role]
-    A --> C[📊 Monitoring Role]
-
-    B --> D[System Updates]
-    D --> E[Python 3 + pip]
-    E --> F[Git Clone Repo]
-    F --> G[Virtual Environment]
-    G --> H[Install Dependencies]
-    H --> I[Create Services]
-
-    I --> J[carprice.service<br/>Backend :5002]
-    I --> K[carprice-frontend.service<br/>Frontend :3000]
-
-    C --> L[Resolve curl conflicts]
-    L --> M[Install OpenTelemetry]
-    M --> N[Deploy Configuration]
-    N --> O[Host Metrics]
-    N --> P[Prometheus Scraping]
-    N --> Q[Splunk Export]
-
-    J --> R[🎯 Service Health]
-    K --> R
-    Q --> R
-    R --> S[✅ Production Ready]
-
-    style A fill:#e8f5e8
-    style S fill:#c8e6c9
-```
 
 ---
 
@@ -270,47 +215,7 @@ flowchart LR
     style L fill:#e1f5fe
 ```
 
-### OpenTelemetry Collector Configuration
 
-```yaml
-receivers:
-  hostmetrics:
-    collection_interval: 10s
-    scrapers: [cpu, disk, filesystem, memory, network, process]
-
-  prometheus:
-    config:
-      scrape_configs:
-        - job_name: "car-price-backend"
-          static_configs:
-            - targets: ["localhost:5002"]
-          metrics_path: "/metrics/json"
-          scrape_interval: 30s
-
-        - job_name: "car-price-frontend"
-          static_configs:
-            - targets: ["localhost:3000"]
-          metrics_path: "/metrics/json"
-          scrape_interval: 30s
-
-processors:
-  resourcedetection:
-    detectors: [env, ec2, system]
-
-  attributes:
-    actions:
-      - key: service.name
-        value: "car-price-predictor"
-        action: upsert
-      - key: environment
-        value: "production"
-        action: upsert
-
-exporters:
-  signalfx:
-    access_token: "{{ splunk_token }}"
-    realm: "{{ splunk_realm }}"
-```
 
 ### Monitoring Metrics Available
 
@@ -548,76 +453,7 @@ def sendSplunkMetric(metricName, value, dimensions) {
 
 ---
 
-## 🎯 Alerting Framework
 
-### Alert Flow Architecture
-
-```mermaid
-flowchart TD
-    subgraph "Monitoring Sources"
-        A[💻 Infrastructure<br/>CPU > 85%<br/>Memory > 90%<br/>Disk > 95%]
-        B[🚀 Application<br/>Response > 2s<br/>Error Rate > 5%<br/>Accuracy < 80%]
-        C[🔧 Pipeline<br/>Deploy Failure<br/>Terraform Error<br/>Ansible Failure]
-    end
-
-    subgraph "Alert Processing"
-        D[🚨 Threshold Detection]
-        E[🔄 Alert Correlation]
-        F[📱 Notification Routing]
-    end
-
-    subgraph "Response Actions"
-        G[📧 Email Alerts]
-        H[📱 Slack Notifications]
-        I[🔧 Auto-remediation]
-        J[📈 Dashboard Updates]
-    end
-
-    A --> D
-    B --> D
-    C --> D
-
-    D --> E
-    E --> F
-
-    F --> G
-    F --> H
-    F --> I
-    F --> J
-
-    style D fill:#ffebee
-    style I fill:#e8f5e8
-```
-
-### Critical Alert Thresholds
-
-```yaml
-# Infrastructure Alerts
-- CPU Usage > 85%
-- Memory Usage > 90%
-- Disk Usage > 95%
-- Network Errors > 5%
-
-# Application Alerts
-- API Response Time > 2 seconds
-- Error Rate > 5%
-- Prediction Accuracy < 80%
-- Service Downtime > 1 minute
-
-# Pipeline Alerts
-- Deployment Failure
-- Terraform Apply Failure
-- Ansible Configuration Failure
-```
-
-### Troubleshooting Framework
-
-| Issue                 | Symptoms                   | Solution                               |
-| --------------------- | -------------------------- | -------------------------------------- |
-| **Missing Metrics**   | No data in Splunk          | Check OpenTelemetry Collector status   |
-| **High CPU Usage**    | System slow, alerts firing | Scale EC2 instance or optimize app     |
-| **Pipeline Failures** | Deployment errors          | Check Jenkins logs and Terraform state |
-| **App Downtime**      | Health checks failing      | Restart services, check logs           |
 
 ---
 
