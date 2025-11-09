@@ -113,52 +113,67 @@ flowchart LR
 ## 🔄 Deployment Flow
 
 ```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff', 'lineColor': '#374151'}}}%%
+
 flowchart LR
-    subgraph "Pipeline Execution"
-        A[🚀 Jenkins<br/>Orchestration]
-        B[🏗️ Terraform<br/>Infrastructure]
-        C[⚙️ Ansible<br/>Configuration]
-        D[🎯 Health<br/>Validation]
+    subgraph TRIGGER ["🚀 PIPELINE TRIGGER"]
+        T1["📝 Code Commit<br/><b>Git Push</b><br/><small>~30s</small>"]
     end
 
-    subgraph "Infrastructure Layer"
-        E[🌐 AWS VPC<br/>Network Isolation]
-        F[💻 EC2 t3.small<br/>Compute Instance]
-        G[📦 S3 Bucket<br/>State Management]
-        H[🔒 Security Groups<br/>Access Control]
+    subgraph PIPELINE ["🔄 DEPLOYMENT STAGES"]
+        direction TB
+        P1["🏗️ Terraform<br/><b>Infrastructure</b><br/><small>~5 min</small>"]
+        P2["⚙️ Ansible<br/><b>Configuration</b><br/><small>~3 min</small>"]
+        P3["🎯 Health Check<br/><b>Validation</b><br/><small>~1 min</small>"]
     end
 
-    subgraph "Application Layer"
-        I[🐍 Flask Services<br/>systemd Deployment]
-        J[🔧 Python Environment<br/>Dependencies Setup]
+    subgraph INFRA ["☁️ AWS INFRASTRUCTURE"]
+        direction TB
+        I1["🌐 VPC<br/><b>10.0.0.0/16</b>"]
+        I2["💻 EC2<br/><b>t3.small</b>"]
+        I3["📦 S3<br/><b>State</b>"]
+        I4["🗄️ RDS<br/><b>MySQL</b>"]
     end
 
-    subgraph "Monitoring Layer"
-        K[📊 OpenTelemetry<br/>Collector Installation]
-        L[☁️ Splunk Integration<br/>Observability Cloud]
+    subgraph APPS ["🚀 APPLICATION SERVICES"]
+        direction TB
+        A1["🎨 Frontend<br/><b>Port 3000</b>"]
+        A2["🔌 Backend<br/><b>Port 5002</b>"]
     end
 
-    A --> B
-    B --> C
-    C --> D
+    subgraph MONITOR ["📊 MONITORING"]
+        direction TB
+        M1["📈 OpenTelemetry<br/><b>Collector</b>"]
+        M2["☁️ Splunk Cloud<br/><b>Analytics</b>"]
+    end
 
-    B --> E
-    B --> F
-    B --> G
-    B --> H
+    T1 ==>|"Triggers"| P1
+    P1 ==>|"Provisions"| I1
+    P1 ==>|"Creates"| I2
+    P1 ==>|"Sets up"| I3
+    P1 ==>|"Deploys"| I4
+    P1 --> P2
+    P2 ==>|"Configures"| A1
+    P2 ==>|"Deploys"| A2
+    P2 ==>|"Installs"| M1
+    P2 --> P3
+    P3 -.->|"Validates"| A1
+    P3 -.->|"Validates"| A2
+    A1 ==> M1
+    A2 ==> M1
+    M1 ==> M2
 
-    C --> I
-    C --> J
-    C --> K
+    classDef trigger fill:#fef3c7,stroke:#f59e0b,stroke-width:3px
+    classDef pipeline fill:#dbeafe,stroke:#3b82f6,stroke-width:3px
+    classDef infra fill:#dcfce7,stroke:#10b981,stroke-width:3px
+    classDef apps fill:#fce7f3,stroke:#ec4899,stroke-width:3px
+    classDef monitor fill:#f3e8ff,stroke:#8b5cf6,stroke-width:3px
 
-    K --> L
-
-    D --> M[✅ Backend :5002<br/>Health Check]
-    D --> N[✅ Frontend :3000<br/>Health Check]
-
-    style A fill:#e1f5fe
-    style D fill:#c8e6c9
-    style L fill:#e8f5e8
+    class T1 trigger
+    class P1,P2,P3 pipeline
+    class I1,I2,I3,I4 infra
+    class A1,A2 apps
+    class M1,M2 monitor
 ```
 
 **Deployment Process:**
