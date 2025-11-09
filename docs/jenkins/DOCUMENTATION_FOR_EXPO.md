@@ -12,29 +12,31 @@
 
 ---
 
-## 🏗️ Architecture Overview
+## 🏗️ Enterprise Architecture Overview
+
+### System Architecture
 
 ```mermaid
 graph TB
-    subgraph "GitHub Repositories"
-        A[tf-infra-demoCar<br/>Infrastructure Code]
-        B[configManagement-carPrice<br/>Ansible Configuration]
-        C[CarPricePredictor-Demo<br/>Flask Application]
+    subgraph "Source Control Layer"
+        A[🏗️ tf-infra-demoCar<br/>Infrastructure as Code<br/>Terraform Modules]
+        B[⚙️ configManagement-carPrice<br/>Configuration Management<br/>Ansible Playbooks]
+        C[🚀 CarPricePredictor-Demo<br/>ML Application<br/>Flask + XGBoost]
     end
 
-    subgraph "Jenkins CI/CD"
-        D[Jenkinsfile<br/>Pipeline Orchestration]
+    subgraph "CI/CD Orchestration"
+        D[🔄 Jenkins Pipeline<br/>Automated Deployment<br/>Multi-Stage Validation]
     end
 
-    subgraph "AWS Infrastructure"
-        E[VPC + Subnets<br/>Network Layer]
-        F[EC2 Instance<br/>Application Server]
-        I[S3 Bucket<br/>Terraform State]
+    subgraph "Cloud Infrastructure (AWS)"
+        E[🌐 Virtual Private Cloud<br/>Network Isolation<br/>Multi-AZ Subnets]
+        F[💻 EC2 Compute Instance<br/>Application Runtime<br/>Auto-Scaling Ready]
+        I[📦 S3 State Management<br/>Terraform Backend<br/>Version Control]
     end
 
-    subgraph "Monitoring Stack"
-        J[Splunk Observability<br/>Metrics & Dashboards]
-        K[OpenTelemetry<br/>Collector]
+    subgraph "Observability Platform"
+        J[☁️ Splunk Observability Cloud<br/>Enterprise Monitoring<br/>Real-time Analytics]
+        K[📊 OpenTelemetry Collector<br/>Metrics Aggregation<br/>Multi-Protocol Support]
     end
 
     A --> D
@@ -45,97 +47,91 @@ graph TB
     C --> F
     F --> K
     K --> J
+
+    style A fill:#e3f2fd
+    style B fill:#f3e5f5
+    style C fill:#e8f5e8
+    style D fill:#fff3e0
+    style J fill:#e1f5fe
 ```
 
-### Repository Architecture
+### Architecture Principles
 
-**Infrastructure Repository**: tf-infra-demoCar
-```
-tf-infra-demoCar/
-├── Jenkinsfile                    # CI/CD Pipeline Definition
-├── infra/
-│   ├── main.tf                   # Main Infrastructure Configuration
-│   ├── variables.tf              # Input Variables
-│   ├── outputs.tf                # Output Values
-│   ├── terraform.tfvars          # Variable Values
-│   ├── monitoring.tf             # Observability Integration
-│   ├── remote_backend_s3.tf      # Remote State Configuration
-│   └── modules/
-│       ├── networking/           # VPC, Subnets, Routing
-│       ├── security-groups/      # Security Group Rules
-│       ├── ec2/                  # EC2 Instance Configuration
+**🔧 Infrastructure as Code**: Complete infrastructure automation using Terraform with modular design
+**📋 Configuration Management**: Ansible-driven application deployment and environment consistency
+**🔄 Continuous Integration**: Jenkins-orchestrated pipeline with automated testing and validation
+**☁️ Cloud-Native Design**: AWS-optimized architecture with scalability and resilience built-in
+**📊 Enterprise Observability**: Comprehensive monitoring with Splunk Observability Cloud integration
+**🛡️ Security by Design**: Network isolation, encrypted communications, and access controls
 
-│       └── s3/                   # S3 Bucket for State
-└── README.md                     # Infrastructure Documentation
+### Technology Stack
+
+| Layer | Technology | Purpose | Integration |
+|-------|------------|---------|-------------|
+| **ML Framework** | XGBoost + Flask | Prediction Engine | RESTful API |
+| **Infrastructure** | Terraform + AWS | Cloud Provisioning | Modular IaC |
+| **Configuration** | Ansible | Environment Setup | Idempotent Deployment |
+| **CI/CD** | Jenkins | Pipeline Automation | Multi-Stage Validation |
+| **Monitoring** | Splunk + OpenTelemetry | Enterprise Observability | Real-time Metrics |
+| **Networking** | AWS VPC | Secure Connectivity | Multi-AZ Architecture |
+
+### Multi-Repository Architecture
+
+```mermaid
+flowchart LR
+    subgraph "Infrastructure Repository"
+        A1[🏗️ tf-infra-demoCar]
+        A2[Terraform Modules]
+        A3[AWS Resources]
+        A4[Network Configuration]
+        A1 --> A2
+        A2 --> A3
+        A3 --> A4
+    end
+
+    subgraph "Configuration Repository"
+        B1[⚙️ configManagement-carPrice]
+        B2[Ansible Playbooks]
+        B3[Application Roles]
+        B4[Monitoring Setup]
+        B1 --> B2
+        B2 --> B3
+        B3 --> B4
+    end
+
+    subgraph "Application Repository"
+        C1[🚀 CarPricePredictor-Demo]
+        C2[ML Application]
+        C3[Flask Services]
+        C4[XGBoost Model]
+        C1 --> C2
+        C2 --> C3
+        C3 --> C4
+    end
+
+    A1 -.-> B1
+    B1 -.-> C1
+
+    style A1 fill:#e3f2fd
+    style B1 fill:#f3e5f5
+    style C1 fill:#e8f5e8
 ```
 
-**Configuration Management Repository**: configManagement-carPrice
-```
-configManagement-carPrice/
-├── playbook.yml                  # Main Ansible Playbook
-├── generate_inventory.sh         # Dynamic Inventory Generator
-├── inventory.ini                 # Ansible Inventory File
-└── roles/
-    ├── flask_app/               # Flask Application Role
-    │   ├── defaults/main.yml    # Default variables
-    │   ├── tasks/main.yml       # Application deployment tasks
-    │   └── templates/
-    │       ├── app.service.j2   # Backend systemd service
-    │       ├── frontend.service.j2 # Frontend systemd service
-    │       └── start-production.sh.j2 # Production startup script
-    └── splunk_monitoring/       # Monitoring Role
-        ├── tasks/main.yml       # OpenTelemetry installation
-        ├── templates/
-        │   └── agent_config.yaml.j2 # OTel Collector config
-        ├── handlers/main.yml    # Service restart handlers
-        └── vars/main.yml        # Configuration variables
-```
+**Repository Responsibilities:**
+
+- **🏗️ Infrastructure (tf-infra-demoCar)**: AWS resource provisioning, network setup, security configuration
+- **⚙️ Configuration (configManagement-carPrice)**: Application deployment, environment setup, monitoring integration
+- **🚀 Application (CarPricePredictor-Demo)**: ML prediction service, web interface, business logic
 
 ---
 
-## 🔄 Deployment Flow Architecture
+## 🔄 Deployment Flow
 
-### Complete Pipeline Flow
-
-```mermaid
-flowchart TD
-    A[🚀 Jenkins Pipeline Start] --> B[📥 Clone Repositories]
-    B --> C[tf-infra-demoCar]
-    B --> D[configManagement-carPrice]
-
-    C --> E[🏗️ Terraform Init]
-    E --> F[📋 Terraform Plan]
-    F --> G[🚀 Terraform Apply]
-
-    G --> H[🌐 AWS Infrastructure]
-    H --> I[VPC + Subnets<br/>10.0.0.0/16]
-    H --> J[🔒 Security Groups<br/>SSH, HTTP, App Ports]
-    H --> K[💻 EC2 Instance<br/>t3.small Amazon Linux]
-    H --> L[📦 S3 Bucket<br/>Terraform State]
-
-    D --> M[📝 Generate Inventory]
-    M --> N[🔧 Ansible Deployment]
-
-    N --> O[🐍 Flask App Role]
-    N --> P[📊 Monitoring Role]
-
-    O --> Q[System Updates]
-    O --> R[Python Setup]
-    O --> S[App Deployment]
-    O --> T[Service Creation]
-
-    P --> U[OpenTelemetry Install]
-    P --> V[Metrics Configuration]
-    P --> W[Splunk Integration]
-
-    T --> X[🎯 Health Checks]
-    W --> X
-    X --> Y[✅ Production Ready]
-
-    style A fill:#e1f5fe
-    style Y fill:#c8e6c9
-    style H fill:#fff3e0
-```
+**Pipeline Execution**: Jenkins → Terraform (Infrastructure) → Ansible (Configuration) → Health Validation
+**Infrastructure**: AWS VPC, EC2 t3.small, S3 state management, security groups
+**Application**: Flask services deployment with systemd, Python environment setup
+**Monitoring**: OpenTelemetry collector installation and Splunk Observability integration
+**Validation**: Automated health checks for backend (5002) and frontend (3000) services
 
 
 
@@ -217,239 +213,60 @@ flowchart LR
 
 
 
-### Monitoring Metrics Available
+### Implemented Metrics
 
-#### **Backend Metrics**
-- `car_price.system.cpu_percent` - System CPU usage
-- `car_price.system.memory_percent` - Memory utilization
-- `car_price.system.disk_usage` - Disk usage percentage
-- `car_price.app.uptime_seconds` - Application uptime
-- `car_price.app.total_requests` - Total API requests
-- `car_price.app.total_predictions` - ML predictions made
-- `car_price.business.avg_prediction_value` - Average car price predicted
-- `car_price.business.model_accuracy` - ML model accuracy
-- `car_price.business.active_users` - Active user count
+=== "Backend Metrics"
 
-#### **Frontend Metrics**
-- `car_price.frontend.cpu_percent` - Frontend CPU usage
-- `car_price.frontend.memory_percent` - Frontend memory usage
-- `car_price.frontend.uptime_seconds` - Frontend uptime
-- `car_price.frontend.total_requests` - Web requests
-- `car_price.frontend.prediction_requests` - Prediction requests
-- `car_price.frontend.publish_requests` - Vehicle publish requests
-- `car_price.frontend.page_load_time` - Page load performance
+    | Metric Name | Description | Type |
+    |-------------|-------------|------|
+    | `car_price.system.cpu_percent` | System CPU usage | Performance |
+    | `car_price.system.memory_percent` | Memory utilization | Performance |
+    | `car_price.system.disk_usage` | Disk usage percentage | Performance |
+    | `car_price.app.uptime_seconds` | Application uptime | Availability |
+    | `car_price.app.total_requests` | Total API requests | Usage |
+    | `car_price.app.total_predictions` | ML predictions made | Business |
+    | `car_price.business.avg_prediction_value` | Average car price predicted | Business |
+    | `car_price.business.model_accuracy` | ML model accuracy | Business |
+    | `car_price.business.active_users` | Active user count | Business |
+    | `car_price.predictions.current_value` | Current price predictions | Business |
+    | `car_price.predictions.future_value` | Future price predictions | Business |
+    | `car_price.business.months_forecast` | Forecast months requested | Business |
+    | `car_price.requests.total` | Total requests counter | Usage |
 
-#### **DevOps Pipeline Metrics**
-- `jenkins.pipeline.success/failure` - Pipeline results
-- `jenkins.terraform.apply.duration` - Infrastructure deployment time
-- `jenkins.ansible.deploy.duration` - Configuration deployment time
-- `terraform.ec2.deployment` - Infrastructure changes
-- `ansible.deployment.success` - Configuration success
+=== "Frontend Metrics"
+
+    | Metric Name | Description | Type |
+    |-------------|-------------|------|
+    | `car_price.frontend.cpu_percent` | Frontend CPU usage | Performance |
+    | `car_price.frontend.memory_percent` | Frontend memory usage | Performance |
+    | `car_price.frontend.uptime_seconds` | Frontend uptime | Availability |
+    | `car_price.frontend.total_requests` | Web requests | Usage |
+    | `car_price.frontend.prediction_requests` | Prediction requests | Business |
+    | `car_price.frontend.publish_requests` | Vehicle publish requests | Business |
+    | `car_price.frontend.page_load_time` | Page load performance | Performance |
+    | `car_price.frontend.predictions` | User prediction actions | Business |
+    | `car_price.frontend.publishes` | User publish actions | Business |
+    | `car_price.frontend.requests.total` | Frontend request counter | Usage |
+    | `car_price.frontend.publish.total` | Publish counter | Usage |
+
+=== "Pipeline Metrics"
+
+    | Metric Name | Description | Type |
+    |-------------|-------------|------|
+    | `jenkins.pipeline.success/failure` | Pipeline results | DevOps |
+    | `jenkins.terraform.apply.duration` | Infrastructure deployment time | DevOps |
+    | `jenkins.ansible.deploy.duration` | Configuration deployment time | DevOps |
+    | `terraform.ec2.deployment` | Infrastructure changes | DevOps |
+    | `ansible.deployment.success` | Configuration success | DevOps |
 
 ---
 
 ## 🔧 Jenkins Pipeline Implementation
 
-### Pipeline Execution Flow
-
-```mermaid
-flowchart TD
-    A[🚀 Pipeline Start] --> B[📥 Checkout Stage]
-    B --> C[📊 Send Checkout Metric]
-
-    C --> D[🏗️ Terraform Plan]
-    D --> E[⏱️ Measure Duration]
-    E --> F[📊 Send Plan Metric]
-
-    F --> G[🚀 Terraform Apply]
-    G --> H[⏱️ Measure Duration]
-    H --> I[📊 Send Apply Metric]
-
-    I --> J[🔧 Ansible Deploy]
-    J --> K[⏱️ Measure Duration]
-    K --> L[📊 Send Deploy Metric]
-
-    L --> M[🎯 Health Check]
-    M --> N[🔍 Backend Health]
-    M --> O[🔍 Frontend Health]
-
-    N --> P[📊 Send Health Metrics]
-    O --> P
-
-    P --> Q{✅ Success?}
-    Q -->|Yes| R[📊 Success Metric]
-    Q -->|No| S[❌ Failure Metric]
-
-    R --> T[☁️ Splunk Observability]
-    S --> T
-
-    style A fill:#e1f5fe
-    style T fill:#e8f5e8
-    style Q fill:#fff3e0
-```
-
-### Jenkins Pipeline with Splunk Metrics
-
-```groovy
-pipeline {
-    agent any
-
-    environment {
-        SPLUNK_TOKEN = 'PZuf3J0L2Op_Qj9hpAJzlw'
-        SPLUNK_REALM = 'us1'
-        SPLUNK_URL = "https://ingest.${SPLUNK_REALM}.signalfx.com/v2/datapoint"
-    }
-
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-                script {
-                    sendSplunkMetric('jenkins.stage.checkout', 1, [
-                        stage: 'checkout',
-                        job: env.JOB_NAME,
-                        build: env.BUILD_NUMBER
-                    ])
-                }
-            }
-        }
-
-        stage('Terraform Plan') {
-            steps {
-                script {
-                    def startTime = System.currentTimeMillis()
-
-                    sh '''
-                        cd terraform
-                        terraform init
-                        terraform plan -out=tfplan
-                    '''
-
-                    def duration = (System.currentTimeMillis() - startTime) / 1000
-                    sendSplunkMetric('jenkins.terraform.plan.duration', duration, [
-                        stage: 'terraform-plan',
-                        job: env.JOB_NAME
-                    ])
-                }
-            }
-        }
-
-        stage('Terraform Apply') {
-            steps {
-                script {
-                    def startTime = System.currentTimeMillis()
-
-                    sh '''
-                        cd terraform
-                        terraform apply -auto-approve tfplan
-                    '''
-
-                    def duration = (System.currentTimeMillis() - startTime) / 1000
-                    sendSplunkMetric('jenkins.terraform.apply.duration', duration, [
-                        stage: 'terraform-apply',
-                        job: env.JOB_NAME
-                    ])
-                }
-            }
-        }
-
-        stage('Ansible Deploy') {
-            steps {
-                script {
-                    def startTime = System.currentTimeMillis()
-
-                    sh '''
-                        cd ansible
-                        ansible-playbook -i inventory splunk-observability.yml
-                        ansible-playbook -i inventory deploy-app.yml
-                    '''
-
-                    def duration = (System.currentTimeMillis() - startTime) / 1000
-                    sendSplunkMetric('jenkins.ansible.deploy.duration', duration, [
-                        stage: 'ansible-deploy',
-                        job: env.JOB_NAME
-                    ])
-                }
-            }
-        }
-
-        stage('Health Check') {
-            steps {
-                script {
-                    def ec2Ip = sh(
-                        script: 'cd terraform && terraform output -raw ec2_public_ip',
-                        returnStdout: true
-                    ).trim()
-
-                    // Check backend health
-                    def backendHealth = sh(
-                        script: "curl -f http://${ec2Ip}:5002/health",
-                        returnStatus: true
-                    )
-
-                    // Check frontend health
-                    def frontendHealth = sh(
-                        script: "curl -f http://${ec2Ip}:3000/health",
-                        returnStatus: true
-                    )
-
-                    sendSplunkMetric('jenkins.health.backend', backendHealth == 0 ? 1 : 0, [
-                        service: 'backend',
-                        ec2_ip: ec2Ip
-                    ])
-
-                    sendSplunkMetric('jenkins.health.frontend', frontendHealth == 0 ? 1 : 0, [
-                        service: 'frontend',
-                        ec2_ip: ec2Ip
-                    ])
-                }
-            }
-        }
-    }
-
-    post {
-        success {
-            script {
-                sendSplunkMetric('jenkins.pipeline.success', 1, [
-                    job: env.JOB_NAME,
-                    build: env.BUILD_NUMBER,
-                    result: 'success'
-                ])
-            }
-        }
-        failure {
-            script {
-                sendSplunkMetric('jenkins.pipeline.failure', 1, [
-                    job: env.JOB_NAME,
-                    build: env.BUILD_NUMBER,
-                    result: 'failure'
-                ])
-            }
-        }
-    }
-}
-
-def sendSplunkMetric(metricName, value, dimensions) {
-    def payload = [
-        gauge: [[
-            metric: metricName,
-            value: value,
-            dimensions: dimensions + [
-                timestamp: System.currentTimeMillis(),
-                jenkins_url: env.JENKINS_URL,
-                node_name: env.NODE_NAME
-            ]
-        ]]
-    ]
-
-    sh """
-        curl -X POST ${SPLUNK_URL} \
-        -H "X-SF-Token: ${SPLUNK_TOKEN}" \
-        -H "Content-Type: application/json" \
-        -d '${groovy.json.JsonBuilder(payload).toString()}'
-    """
-}
-```
+**Pipeline Stages**: Checkout → Terraform Plan → Terraform Apply → Ansible Deploy → Health Check
+**Metrics Integration**: Each stage sends duration and status metrics to Splunk Observability Cloud
+**Health Validation**: Automated backend and frontend service health verification
+**Monitoring**: Real-time pipeline performance tracking with success/failure notifications
 
 ---
 
@@ -489,73 +306,40 @@ flowchart LR
     style B fill:#f3e5f5
 ```
 
-### **Backend Dashboard** (Port 5002/dashboard)
-- **System Metrics**: CPU, Memory, Uptime
-- **API Performance**: Total requests, ML predictions
-- **Real-time Updates**: Auto-refresh every 5 seconds
-- **Splunk Integration**: Direct link to observability platform
+=== "Backend Dashboard"
 
-### **Frontend Dashboard** (Port 3000/dashboard)
-- **Web Metrics**: User requests, predictions, publishes
-- **System Performance**: CPU, Memory usage
-- **User Activity**: Real-time interaction tracking
-- **Health Status**: Service connectivity monitoring
+    **Access**: Port 5002/dashboard | **URL**: http://13.220.64.167:5002/dashboard
 
-### **Splunk Observability Cloud**
-- **Comprehensive Metrics**: 1,070+ metrics/hour
-- **Real-time Visualization**: Live data streaming
-- **Historical Analysis**: 30-day data retention
-- **Custom Dashboards**: Business and technical KPIs
+    | Feature | Description | Update Frequency |
+    |---------|-------------|------------------|
+    | **System Metrics** | CPU, Memory, Uptime | Real-time |
+    | **API Performance** | Total requests, ML predictions | Live tracking |
+    | **Real-time Updates** | Auto-refresh dashboard | Every 5 seconds |
+    | **Splunk Integration** | Direct link to observability platform | On-demand |
 
----
+=== "Frontend Dashboard"
 
-## 🚀 Implemented Metrics
+    **Access**: Port 3000/dashboard | **URL**: http://13.220.64.167:3000/dashboard
 
-### **Backend Metrics (Actually Implemented)**
+    | Feature | Description | Update Frequency |
+    |---------|-------------|------------------|
+    | **Web Metrics** | User requests, predictions, publishes | Real-time |
+    | **System Performance** | CPU, Memory usage | Live monitoring |
+    | **User Activity** | Real-time interaction tracking | Instant |
+    | **Health Status** | Service connectivity monitoring | Continuous |
 
-```python
-# System Performance Metrics
-car_price.system.cpu_percent        # Real-time CPU usage
-car_price.system.memory_percent     # Real-time memory usage
-car_price.system.disk_usage         # Disk usage percentage
+=== "Splunk Observability"
 
-# Application Metrics
-car_price.app.uptime_seconds        # Application uptime
-car_price.app.total_requests        # Total API requests
-car_price.app.total_predictions     # ML predictions made
+    **Access**: Enterprise Platform | **URL**: https://app.us1.signalfx.com
 
-# Business KPIs (Simulated)
-car_price.business.avg_prediction_value  # Average car price predicted
-car_price.business.model_accuracy        # ML model accuracy (simulated)
-car_price.business.active_users          # Active user count (simulated)
+    | Feature | Description | Capability |
+    |---------|-------------|------------|
+    | **Comprehensive Metrics** | 1,070+ metrics/hour | Enterprise scale |
+    | **Real-time Visualization** | Live data streaming | Instant insights |
+    | **Historical Analysis** | 30-day data retention | Trend analysis |
+    | **Custom Dashboards** | Business and technical KPIs | Configurable views |
 
-# Prediction Tracking
-car_price.predictions.current_value      # Current price predictions
-car_price.predictions.future_value       # Future price predictions
-car_price.business.months_forecast       # Forecast months requested
-car_price.requests.total                 # Total requests counter
-```
 
-### **Frontend Metrics (Actually Implemented)**
-
-```python
-# System Performance Metrics
-car_price.frontend.cpu_percent           # Frontend CPU usage
-car_price.frontend.memory_percent        # Frontend memory usage
-
-# Application Metrics
-car_price.frontend.uptime_seconds        # Frontend uptime
-car_price.frontend.total_requests        # Total web requests
-car_price.frontend.prediction_requests   # Prediction requests
-car_price.frontend.publish_requests      # Vehicle publish requests
-
-# User Experience Metrics
-car_price.frontend.page_load_time        # Page load performance (simulated)
-car_price.frontend.predictions           # User prediction actions
-car_price.frontend.publishes             # User publish actions
-car_price.frontend.requests.total        # Frontend request counter
-car_price.frontend.publish.total         # Publish counter
-```
 
 ### Real-time Monitoring Flow
 
