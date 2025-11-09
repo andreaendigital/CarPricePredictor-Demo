@@ -353,7 +353,7 @@ flowchart LR
 flowchart TB
     subgraph USERS ["👥 USER PERSONAS"]
         direction LR
-        U1["👔 Executives<br/><small>Strategic KPIs</small>"]
+
         U2["🔧 Operations<br/><small>System Health</small>"]
         U3["👨‍💻 Developers<br/><small>Technical Metrics</small>"]
     end
@@ -369,21 +369,21 @@ flowchart TB
         E1["📊 Splunk Observability<br/><b>app.us1.signalfx.com</b><br/><small>• 1,070+ metrics/hour<br/>• 30-day retention<br/>• Custom dashboards<br/>• Real-time alerts</small>"]
     end
 
-    subgraph ANALYTICS ["📈 BUSINESS ANALYTICS"]
+    subgraph ANALYTICS ["📈 ANALYTICS VIEWS"]
         direction LR
-        A1["💼 Executive View<br/><small>Revenue & KPIs</small>"]
+
         A2["🎯 Operational View<br/><small>Performance & SLA</small>"]
         A3["🔍 Technical View<br/><small>Infrastructure & Code</small>"]
     end
 
-    U1 --> A1
+
     U2 --> A2
     U3 --> A3
 
     L1 --> E1
     L2 --> E1
 
-    E1 --> A1
+
     E1 --> A2
     E1 --> A3
 
@@ -392,10 +392,10 @@ flowchart TB
     classDef enterprise fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
     classDef analytics fill:#e8f5e8,stroke:#388e3c,stroke-width:3px
 
-    class U1,U2,U3 users
+    class U2,U3 users
     class L1,L2 local
     class E1 enterprise
-    class A1,A2,A3 analytics
+    class A2,A3 analytics
 ```
 
 **Dashboard Ecosystem:**
