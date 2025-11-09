@@ -44,6 +44,10 @@
 
 ---
 
+# 📋 PART I: ENTERPRISE ARCHITECTURE & DEPLOYMENT
+
+---
+
 ## 🏗️ Enterprise Architecture Overview
 
 ```mermaid
@@ -151,6 +155,10 @@ flowchart LR
 - **Ansible Configuration** - Automated setup deploys **Flask services** with Python dependencies
 - **OpenTelemetry Integration** - Collectors installed for **real-time metrics** streaming to Splunk Cloud
 - **Health Validation** - Automated checks verify **backend and frontend** services before completion
+
+---
+
+# 📊 PART II: OBSERVABILITY & MONITORING FRAMEWORK
 
 ---
 
@@ -379,6 +387,10 @@ flowchart LR
     | **Custom Dashboards** | Business and technical KPIs | Configurable views |
 
 
+
+---
+
+# 🚀 PART III: DEPLOYMENT & OPERATIONS
 
 ---
 
