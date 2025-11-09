@@ -351,15 +351,15 @@ flowchart LR
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff'}}}%%
 
 flowchart LR
-    subgraph USERS ["👥 USER PERSONAS"]
-        direction LR
+    subgraph USERS ["👥 TARGET USERS"]
+        direction TB
 
         U2["🔧 Operations<br/><small>System Health</small>"]
         U3["👨‍💻 Developers<br/><small>Technical Metrics</small>"]
     end
 
     subgraph LOCAL ["🖥️ LOCAL DASHBOARDS"]
-        direction LR
+        direction TB
         L1["🎨 Frontend Dashboard<br/><b>Port 3000/dashboard</b><br/><small>• User Activity<br/>• Page Performance<br/>• 5s Auto-refresh</small>"]
         L2["🔌 Backend Dashboard<br/><b>Port 5002/dashboard</b><br/><small>• API Performance<br/>• ML Predictions<br/>• System Health</small>"]
     end
@@ -370,22 +370,19 @@ flowchart LR
     end
 
     subgraph ANALYTICS ["📈 ANALYTICS VIEWS"]
-        direction LR
+        direction TB
 
         A2["🎯 Operational View<br/><small>Performance & SLA</small>"]
         A3["🔍 Technical View<br/><small>Infrastructure & Code</small>"]
     end
 
 
-    U2 --> A2
-    U3 --> A3
-
-    L1 --> E1
-    L2 --> E1
-
-
-    E1 --> A2
-    E1 --> A3
+    L1 ==> E1
+    L2 ==> E1
+    E1 ==> A2
+    E1 ==> A3
+    A2 -.-> U2
+    A3 -.-> U3
 
     classDef users fill:#fef3c7,stroke:#f59e0b,stroke-width:3px
     classDef local fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
