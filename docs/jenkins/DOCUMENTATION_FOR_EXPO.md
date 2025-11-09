@@ -185,13 +185,14 @@ flowchart LR
                 │ (Port 5002)  │ │             │ │           │
                 └──────────────┘ └─────────────┘ └───────────┘
 
-    **Telemetry Flow:**
-
-    - **Three-Layer Architecture** - Application, Infrastructure, and Pipeline layers provide **comprehensive coverage**
-    - **Specialized Collectors** - OpenTelemetry, HostMetrics, and Jenkins collectors ensure **targeted data capture**
-    - **Enterprise Platform** - Splunk Observability Cloud delivers **centralized monitoring** and analytics
-    - **Real-Time Streaming** - Continuous metrics flow enables **proactive operational management**
     ```
+
+**Telemetry Flow:**
+
+- **Three-Layer Architecture** - Application, Infrastructure, and Pipeline layers provide **comprehensive coverage**
+- **Specialized Collectors** - OpenTelemetry, HostMetrics, and Jenkins collectors ensure **targeted data capture**
+- **Enterprise Platform** - Splunk Observability Cloud delivers **centralized monitoring** and analytics
+- **Real-Time Streaming** - Continuous metrics flow enables **proactive operational management**
 
 === "Metrics Volume"
 
