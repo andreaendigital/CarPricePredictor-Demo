@@ -44,7 +44,10 @@
 
 ---
 
-# 📋 PART I: ENTERPRISE ARCHITECTURE & DEPLOYMENT
+<div style="text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+<h1 style="margin: 0; font-size: 2.2em; font-weight: bold;">🏗️ PART I: ENTERPRISE ARCHITECTURE & DEPLOYMENT</h1>
+<p style="margin: 10px 0 0 0; font-size: 1.1em; opacity: 0.9;">Infrastructure as Code • CI/CD Pipeline • AWS Cloud Platform</p>
+</div>
 
 ---
 
@@ -158,7 +161,10 @@ flowchart LR
 
 ---
 
-# 📊 PART II: OBSERVABILITY & MONITORING FRAMEWORK
+<div style="text-align: center; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+<h1 style="margin: 0; font-size: 2.2em; font-weight: bold;">📊 PART II: OBSERVABILITY & MONITORING FRAMEWORK</h1>
+<p style="margin: 10px 0 0 0; font-size: 1.1em; opacity: 0.9;">Splunk Cloud • 1,070+ Metrics/Hour • Real-time Dashboards</p>
+</div>
 
 ---
 
@@ -388,7 +394,10 @@ flowchart LR
 
 ---
 
-# 🚀 PART III: DEPLOYMENT & OPERATIONS
+<div style="text-align: center; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+<h1 style="margin: 0; font-size: 2.2em; font-weight: bold;">🚀 PART III: DEPLOYMENT & OPERATIONS</h1>
+<p style="margin: 10px 0 0 0; font-size: 1.1em; opacity: 0.9;">Production Environment • Health Monitoring • Access Points</p>
+</div>
 
 ---
 
