@@ -55,40 +55,40 @@
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff', 'lineColor': '#374151'}}}%%
 
 flowchart LR
-    subgraph SC ["🏛️ SOURCE CONTROL"]
+    subgraph SC ["🏛️ SOURCE CONTROL LAYER"]
         direction TB
-        A["🏗️ Infrastructure<br/><b>Terraform IaC</b>"]
-        B["⚙️ Configuration<br/><b>Ansible</b>"]
-        C["🚀 Application<br/><b>Flask + XGBoost</b>"]
+        A["🏗️ Infrastructure<br/><b>Terraform IaC</b><br/><small>AWS Resources</small>"]
+        B["⚙️ Configuration<br/><b>Ansible Automation</b><br/><small>System Setup</small>"]
+        C["🚀 Application<br/><b>Flask + XGBoost</b><br/><small>ML Platform</small>"]
     end
 
-    subgraph DP ["🔄 CI/CD PIPELINE"]
-        D["🎯 Jenkins<br/><b>Orchestration</b>"]
+    subgraph DP ["🔄 DEPLOYMENT PIPELINE"]
+        D["🎯 Jenkins CI/CD<br/><b>Orchestration Engine</b><br/><small>Automated Deployment</small>"]
     end
 
-    subgraph AWS ["☁️ AWS CLOUD"]
+    subgraph AWS ["☁️ AWS CLOUD INFRASTRUCTURE"]
         direction TB
-        E["🌐 VPC<br/><b>10.0.0.0/16</b>"]
-        F["💻 EC2<br/><b>t3.small</b>"]
-        G["📦 S3<br/><b>State Store</b>"]
+        E["🌐 VPC Network<br/><b>Security & Isolation</b><br/><small>10.0.0.0/16</small>"]
+        F["💻 EC2 Instance<br/><b>Application Runtime</b><br/><small>t3.small</small>"]
+        G["📦 S3 Storage<br/><b>State Management</b><br/><small>Terraform Backend</small>"]
     end
 
-    subgraph OBS ["📊 OBSERVABILITY"]
+    subgraph OBS ["📊 OBSERVABILITY PLATFORM"]
         direction TB
-        H["📈 OpenTelemetry<br/><b>Metrics</b>"]
-        I["☁️ Splunk Cloud<br/><b>1,070+ metrics/hr</b>"]
+        H["📈 OpenTelemetry<br/><b>Metrics Collection</b><br/><small>Real-time Data</small>"]
+        I["☁️ Splunk Cloud<br/><b>Enterprise Monitoring</b><br/><small>1,070+ metrics/hour</small>"]
     end
 
-    A -.-> D
-    B -.-> D
-    C -.-> D
+    A -.->|"Infrastructure Code"| D
+    B -.->|"Configuration Scripts"| D
+    C -.->|"Application Code"| D
 
-    D ==> E
-    D ==> F
-    D ==> G
+    D ==>|"Provisions"| E
+    D ==>|"Deploys"| F
+    D ==>|"Manages"| G
 
-    F ==> H
-    H ==> I
+    F ==>|"Streams Metrics"| H
+    H ==>|"Exports Data"| I
 
     classDef sourceControl fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
     classDef deployment fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
