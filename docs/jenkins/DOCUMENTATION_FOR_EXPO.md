@@ -85,10 +85,11 @@ flowchart LR
 ```
 
 **Architecture Flow:**
-• **Three-Repository Structure** - Infrastructure, Configuration, and Application repositories provide **separation of concerns**
-• **Jenkins CI/CD Orchestration** - Automated pipeline manages **end-to-end deployment** across all environments
-• **AWS Cloud Infrastructure** - VPC, EC2, and S3 deliver **enterprise-grade hosting** with security isolation
-• **Comprehensive Observability** - OpenTelemetry collectors stream **real-time metrics** to Splunk Cloud for analytics
+
+- **Three-Repository Structure** - Infrastructure, Configuration, and Application repositories provide **separation of concerns**
+- **Jenkins CI/CD Orchestration** - Automated pipeline manages **end-to-end deployment** across all environments
+- **AWS Cloud Infrastructure** - VPC, EC2, and S3 deliver **enterprise-grade hosting** with security isolation
+- **Comprehensive Observability** - OpenTelemetry collectors stream **real-time metrics** to Splunk Cloud for analytics
 
 ---
 
@@ -144,11 +145,12 @@ flowchart LR
 ```
 
 **Deployment Process:**
-• **Jenkins Orchestration** - Central pipeline manages **automated deployment** across all infrastructure layers
-• **Terraform Provisioning** - Infrastructure as Code creates **AWS resources** (VPC, EC2, S3, Security Groups)
-• **Ansible Configuration** - Automated setup deploys **Flask services** with Python dependencies
-• **OpenTelemetry Integration** - Collectors installed for **real-time metrics** streaming to Splunk Cloud
-• **Health Validation** - Automated checks verify **backend and frontend** services before completion
+
+- **Jenkins Orchestration** - Central pipeline manages **automated deployment** across all infrastructure layers
+- **Terraform Provisioning** - Infrastructure as Code creates **AWS resources** (VPC, EC2, S3, Security Groups)
+- **Ansible Configuration** - Automated setup deploys **Flask services** with Python dependencies
+- **OpenTelemetry Integration** - Collectors installed for **real-time metrics** streaming to Splunk Cloud
+- **Health Validation** - Automated checks verify **backend and frontend** services before completion
 
 ---
 
@@ -184,10 +186,11 @@ flowchart LR
                 └──────────────┘ └─────────────┘ └───────────┘
 
     **Telemetry Flow:**
-    • **Three-Layer Architecture** - Application, Infrastructure, and Pipeline layers provide **comprehensive coverage**
-    • **Specialized Collectors** - OpenTelemetry, HostMetrics, and Jenkins collectors ensure **targeted data capture**
-    • **Enterprise Platform** - Splunk Observability Cloud delivers **centralized monitoring** and analytics
-    • **Real-Time Streaming** - Continuous metrics flow enables **proactive operational management**
+
+    - **Three-Layer Architecture** - Application, Infrastructure, and Pipeline layers provide **comprehensive coverage**
+    - **Specialized Collectors** - OpenTelemetry, HostMetrics, and Jenkins collectors ensure **targeted data capture**
+    - **Enterprise Platform** - Splunk Observability Cloud delivers **centralized monitoring** and analytics
+    - **Real-Time Streaming** - Continuous metrics flow enables **proactive operational management**
     ```
 
 === "Metrics Volume"
@@ -246,11 +249,12 @@ flowchart LR
 ```
 
 **Data Collection Process:**
-• **Multiple Data Sources** - Backend/Frontend apps, EC2 infrastructure, Jenkins pipeline generate **diverse metrics**
-• **Specialized Collectors** - OpenTelemetry, HostMetrics, and Pipeline collectors provide **targeted monitoring**
-• **Unified Processing** - Resource detection and attribute processing ensure **data consistency**
-• **Splunk Integration** - Real-time export delivers **1,070+ metrics per hour** for enterprise analytics
-• **Comprehensive Visibility** - Complete platform monitoring from **application to infrastructure**
+
+- **Multiple Data Sources** - Backend/Frontend apps, EC2 infrastructure, Jenkins pipeline generate **diverse metrics**
+- **Specialized Collectors** - OpenTelemetry, HostMetrics, and Pipeline collectors provide **targeted monitoring**
+- **Unified Processing** - Resource detection and attribute processing ensure **data consistency**
+- **Splunk Integration** - Real-time export delivers **1,070+ metrics per hour** for enterprise analytics
+- **Comprehensive Visibility** - Complete platform monitoring from **application to infrastructure**
 
 ### Implemented Metrics
 
@@ -333,11 +337,12 @@ flowchart LR
 ```
 
 **Dashboard Ecosystem:**
-• **Multi-Tier Visibility** - Local dashboards provide **application-level insights** for Backend and Frontend services
-• **Real-Time Processing** - Unified data flow ensures **live metric collection** and processing
-• **Dual Visualization** - Local interfaces and **Splunk Observability** platform offer comprehensive views
-• **Enterprise Analytics** - Complete operational awareness from **granular details to strategic insights**
-• **Operational Excellence** - Continuous monitoring enables **proactive management** and optimization
+
+- **Multi-Tier Visibility** - Local dashboards provide **application-level insights** for Backend and Frontend services
+- **Real-Time Processing** - Unified data flow ensures **live metric collection** and processing
+- **Dual Visualization** - Local interfaces and **Splunk Observability** platform offer comprehensive views
+- **Enterprise Analytics** - Complete operational awareness from **granular details to strategic insights**
+- **Operational Excellence** - Continuous monitoring enables **proactive management** and optimization
 
 === "Backend Dashboard"
 
