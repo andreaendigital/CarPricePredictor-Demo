@@ -42,6 +42,16 @@
     | **Monitoring Integration** | Comprehensive observability stack | Operational excellence |
     | **Documentation** | Complete technical and business docs | Knowledge management |
 
+=== "Architecture Components"
+
+    | Layer | Component | Technology | Purpose |
+    |-------|-----------|------------|----------|
+    | **Source** | Application | Flask + XGBoost | ML prediction service |
+    | **Pipeline** | CI/CD | Jenkins | Automated deployment |
+    | **Cloud** | Compute | EC2 t3.small | Application runtime |
+    | **Cloud** | Infrastructure | Terraform + AWS VPC | Resource provisioning |
+    | **Monitoring** | Platform | Splunk Cloud | Enterprise observability |
+
 ---
 
 ## 🏗️ Enterprise Architecture Overview
@@ -104,14 +114,51 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    A[📥 Checkout] --> B[🏗️ Terraform<br/>Infrastructure]
-    B --> C[⚙️ Ansible<br/>Configuration]
-    C --> D[🎯 Health Check<br/>Services]
-    D --> E[📊 Metrics<br/>Splunk Export]
+    subgraph "Pipeline Execution"
+        A[🚀 Jenkins<br/>Orchestration]
+        B[🏗️ Terraform<br/>Infrastructure]
+        C[⚙️ Ansible<br/>Configuration]
+        D[🎯 Health<br/>Validation]
+    end
+
+    subgraph "Infrastructure Layer"
+        E[🌐 AWS VPC<br/>Network Isolation]
+        F[💻 EC2 t3.small<br/>Compute Instance]
+        G[📦 S3 Bucket<br/>State Management]
+        H[🔒 Security Groups<br/>Access Control]
+    end
+
+    subgraph "Application Layer"
+        I[🐍 Flask Services<br/>systemd Deployment]
+        J[🔧 Python Environment<br/>Dependencies Setup]
+    end
+
+    subgraph "Monitoring Layer"
+        K[📊 OpenTelemetry<br/>Collector Installation]
+        L[☁️ Splunk Integration<br/>Observability Cloud]
+    end
+
+    A --> B
+    B --> C
+    C --> D
+
+    B --> E
+    B --> F
+    B --> G
+    B --> H
+
+    C --> I
+    C --> J
+    C --> K
+
+    K --> L
+
+    D --> M[✅ Backend :5002<br/>Health Check]
+    D --> N[✅ Frontend :3000<br/>Health Check]
 
     style A fill:#e1f5fe
     style D fill:#c8e6c9
-    style E fill:#e8f5e8
+    style L fill:#e8f5e8
 ```
 
 
@@ -161,33 +208,7 @@ flowchart LR
     | **Cloud** | AWS Resources | ~100 | 60 seconds |
     | **Total** | **Enterprise Platform** | **~1,070** | **Real-time** |
 
-=== "Collection Strategy"
 
-    | Strategy | Technology | Purpose | Frequency |
-    |----------|------------|---------|----------|
-    | **Continuous Monitoring** | OpenTelemetry Collector | Application & system metrics | 10-30s intervals |
-    | **Event-Driven Collection** | Custom instrumentation | Business KPIs & user actions | Real-time |
-    | **Pipeline Integration** | Jenkins plugins | DevOps metrics & deployment tracking | Per build/deploy |
-    | **Health Monitoring** | HTTP endpoints | Service availability & status | Continuous |
-
-=== "Architecture Components"
-
-    | Layer | Component | Technology | Purpose |
-    |-------|-----------|------------|----------|
-    | **Source** | Application | Flask + XGBoost | ML prediction service |
-    | **Pipeline** | CI/CD | Jenkins | Automated deployment |
-    | **Cloud** | Compute | EC2 t3.small | Application runtime |
-    | **Cloud** | Infrastructure | Terraform + AWS VPC | Resource provisioning |
-    | **Monitoring** | Platform | Splunk Cloud | Enterprise observability |
-
-=== "Enterprise Benefits"
-
-    | Benefit | Description | Business Value |
-    |---------|-------------|----------------|
-    | **Complete Visibility** | 1,070+ metrics across all layers | Operational excellence |
-    | **Real-time Insights** | Live streaming to Splunk Cloud | Proactive management |
-    | **Historical Analysis** | 30-day retention with trend analysis | Strategic planning |
-    | **Custom Dashboards** | Business and technical KPI views | Executive reporting |
 
 ### Data Collection Flow
 
@@ -345,21 +366,6 @@ flowchart LR
     | **Real-time Visualization** | Live data streaming | Instant insights |
     | **Historical Analysis** | 30-day data retention | Trend analysis |
     | **Custom Dashboards** | Business and technical KPIs | Configurable views |
-
-
-
-### Real-time Monitoring Flow
-
-```mermaid
-flowchart LR
-    A[👤 User Actions] --> B[🖥️ Services<br/>Backend/Frontend]
-    B --> C[📊 Metrics<br/>System + Business]
-    C --> D[📈 Live Collection<br/>10s intervals]
-    D --> E[☁️ Splunk Cloud<br/>1,070+ metrics/hour]
-
-    style E fill:#e1f5fe
-    style C fill:#f3e5f5
-```
 
 
 
