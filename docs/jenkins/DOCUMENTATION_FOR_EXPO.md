@@ -495,44 +495,30 @@
 
     | Metric Name | Description | Type |
     |-------------|-------------|------|
-    | `car_price.system.cpu_percent` | System CPU usage | Performance |
-    | `car_price.system.memory_percent` | Memory utilization | Performance |
-    | `car_price.system.disk_usage` | Disk usage percentage | Performance |
-    | `car_price.app.uptime_seconds` | Application uptime | Availability |
-    | `car_price.app.total_requests` | Total API requests | Usage |
     | `car_price.app.total_predictions` | ML predictions made | Business |
-    | `car_price.business.avg_prediction_value` | Average car price predicted | Business |
-    | `car_price.business.model_accuracy` | ML model accuracy | Business |
-    | `car_price.business.active_users` | Active user count | Business |
+    | `car_price.system.cpu_percent` | System CPU usage | Performance |
+    | `car_price.app.uptime_seconds` | Application uptime | Availability |
     | `car_price.predictions.current_value` | Current price predictions | Business |
     | `car_price.predictions.future_value` | Future price predictions | Business |
-    | `car_price.business.months_forecast` | Forecast months requested | Business |
-    | `car_price.requests.total` | Total requests counter | Usage |
 
 === "Frontend Metrics"
 
     | Metric Name | Description | Type |
     |-------------|-------------|------|
-    | `car_price.frontend.cpu_percent` | Frontend CPU usage | Performance |
-    | `car_price.frontend.memory_percent` | Frontend memory usage | Performance |
-    | `car_price.frontend.uptime_seconds` | Frontend uptime | Availability |
-    | `car_price.frontend.total_requests` | Web requests | Usage |
-    | `car_price.frontend.prediction_requests` | Prediction requests | Business |
-    | `car_price.frontend.publish_requests` | Vehicle publish requests | Business |
-    | `car_price.frontend.page_load_time` | Page load performance | Performance |
     | `car_price.frontend.predictions` | User prediction actions | Business |
-    | `car_price.frontend.publishes` | User publish actions | Business |
-    | `car_price.frontend.requests.total` | Frontend request counter | Usage |
-    | `car_price.frontend.publish.total` | Publish counter | Usage |
+    | `car_price.frontend.total_requests` | Web requests | Usage |
+    | `car_price.frontend.uptime_seconds` | Frontend uptime | Availability |
+    | `car_price.frontend.prediction_requests` | Prediction requests | Business |
+    | `car_price.frontend.cpu_percent` | Frontend CPU usage | Performance |
 
 === "Pipeline Metrics"
 
     | Metric Name | Description | Type |
     |-------------|-------------|------|
-    | `jenkins.pipeline.success/failure` | Pipeline results | DevOps |
+    | `jenkins.pipeline.success` | Pipeline success results | DevOps |
+    | `jenkins.pipeline.failure` | Pipeline failure results | DevOps |
     | `jenkins.terraform.apply.duration` | Infrastructure deployment time | DevOps |
     | `jenkins.ansible.deploy.duration` | Configuration deployment time | DevOps |
-    | `terraform.ec2.deployment` | Infrastructure changes | DevOps |
     | `ansible.deployment.success` | Configuration success | DevOps |
 
 ---
