@@ -549,7 +549,6 @@
 flowchart LR
     subgraph USERS ["👥 TARGET USERS"]
         direction TB
-
         U2["🔧 Operations<br/><small>System Health</small>"]
         U3["👨‍💻 Developers<br/><small>Technical Metrics</small>"]
     end
@@ -567,11 +566,9 @@ flowchart LR
 
     subgraph ANALYTICS ["📈 ANALYTICS VIEWS"]
         direction TB
-
         A2["🎯 Operational View<br/><small>Performance & SLA</small>"]
         A3["🔍 Technical View<br/><small>Infrastructure & Code</small>"]
     end
-
 
     L1 ==> E1
     L2 ==> E1
