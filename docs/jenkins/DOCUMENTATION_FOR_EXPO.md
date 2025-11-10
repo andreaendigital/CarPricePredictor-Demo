@@ -539,8 +539,6 @@
 
 ## 📊 Available Dashboards
 
-### Dashboard Architecture
-
 === "Interactive Diagram"
 
     ```mermaid
@@ -602,6 +600,12 @@
     ![Frontend Dashboard](../assets/images/photo4.png)
 
     *Frontend monitoring dashboard showing user activity, web metrics, system performance, and real-time interaction tracking with live updates.*
+
+=== "Splunk Example"
+
+    ![Splunk Example](../assets/images/photo5.png)
+
+    *Splunk Observability Cloud dashboard showing enterprise-grade monitoring with 1,070+ metrics per hour, real-time analytics, and comprehensive system visibility.*
 
 **Dashboard Ecosystem:**
 
