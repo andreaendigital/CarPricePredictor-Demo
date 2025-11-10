@@ -661,46 +661,35 @@
 
 ## 🔧 Deployment Commands
 
-### **Infrastructure Deployment**
-```bash
-# 1. Deploy infrastructure
-cd terraform
-terraform init
-terraform plan
-terraform apply
+=== "Infrastructure Deployment"
 
-# 2. Configure monitoring
-cd ../ansible
-ansible-playbook -i inventory splunk-observability.yml
+    | Step | Command | Description |
+    |------|---------|-------------|
+    | **1. Deploy Infrastructure** | `cd terraform`<br/>`terraform init`<br/>`terraform plan`<br/>`terraform apply` | Initialize and deploy AWS infrastructure |
+    | **2. Configure Monitoring** | `cd ../ansible`<br/>`ansible-playbook -i inventory splunk-observability.yml` | Setup Splunk observability collectors |
+    | **3. Deploy Application** | `ansible-playbook -i inventory deploy-app.yml` | Deploy Flask ML application |
+    | **4. Verify Monitoring** | `curl http://13.220.64.167:5002/health`<br/>`curl http://13.220.64.167:3000/health` | Validate service health |
 
-# 3. Deploy application
-ansible-playbook -i inventory deploy-app.yml
+=== "Access Points"
 
-# 4. Verify monitoring
-curl http://13.220.64.167:5002/health
-curl http://13.220.64.167:3000/health
-```
+    | Service | URL | Description |
+    |---------|-----|-------------|
+    | **Splunk Observability** | https://app.us1.signalfx.com | Enterprise monitoring platform |
+    | **Production Application** | http://13.220.64.167:3000/ | Main ML prediction interface |
+    | **Backend Dashboard** | http://13.220.64.167:5002/dashboard | API performance monitoring |
+    | **Frontend Dashboard** | http://13.220.64.167:3000/dashboard | User activity monitoring |
+    | **Backend Health** | http://13.220.64.167:5002/health | Backend service status |
+    | **Frontend Health** | http://13.220.64.167:3000/health | Frontend service status |
 
-### **Access Points**
-- **Splunk Observability**: https://app.us1.signalfx.com
-- **Production Application**: http://13.220.64.167:3000/
-- **Backend Dashboard**: http://13.220.64.167:5002/dashboard
-- **Frontend Dashboard**: http://13.220.64.167:3000/dashboard
-- **Health Checks**: http://13.220.64.167:5002/health & http://13.220.64.167:3000/health
+=== "Implementation Summary"
 
----
-
-## Implementation Summary
-
-| Component | Details | Status |
-|-----------|---------|--------|
-| **Platform Status** | Production-ready ML prediction service with enterprise DevOps architecture | ✅ Active |
-| **Monitoring Coverage** | Application, infrastructure, and pipeline metrics with Splunk Observability Cloud | ✅ Integrated |
-| **Architecture** | 3-repository structure with Terraform IaC, Ansible configuration, and Flask application | ✅ Deployed |
-| **Deployment** | Jenkins CI/CD pipeline with automated AWS provisioning and monitoring integration | ✅ Automated |
-| **Team** | Jose Rubio (Project Lead) \| Full-stack MLOps \| SCRUM methodology | ✅ Operational |
-
----
+    | Component | Details | Status |
+    |-----------|---------|--------|
+    | **Platform Status** | Production-ready ML prediction service with enterprise DevOps architecture | ✅ Active |
+    | **Monitoring Coverage** | Application, infrastructure, and pipeline metrics with Splunk Observability Cloud | ✅ Integrated |
+    | **Architecture** | 3-repository structure with Terraform IaC, Ansible configuration, and Flask application | ✅ Deployed |
+    | **Deployment** | Jenkins CI/CD pipeline with automated AWS provisioning and monitoring integration | ✅ Automated |
+    | **Team** | Jose Rubio (Project Lead) \| Full-stack MLOps \| SCRUM methodology | ✅ Operational |
 
 ---
 
