@@ -544,10 +544,10 @@
 === "Interactive Diagram"
 
     ```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff'}}}%%
+    %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff'}}}%%
 
-flowchart LR
-    subgraph USERS ["👥 TARGET USERS"]
+    flowchart LR
+        subgraph USERS ["👥 TARGET USERS"]
         direction TB
 
         U2["🔧 Operations<br/><small>System Health</small>"]
@@ -604,12 +604,6 @@ flowchart LR
 - **Dual Visualization** - Local interfaces and **Splunk Observability** platform offer comprehensive views
 - **Enterprise Analytics** - Complete operational awareness from **granular details to strategic insights**
 - **Operational Excellence** - Continuous monitoring enables **proactive management** and optimization
-
-=== "Backend Monitoring"
-
-    ![Backend Dashboard](../assets/images/photo3.png)
-
-    *Backend monitoring dashboard showing API performance, ML predictions, system health metrics, and real-time service status with 5-second auto-refresh.*
 
 === "Backend Dashboard"
 
