@@ -541,14 +541,13 @@
 
 ### Dashboard Architecture
 
-=== "Interactive Diagram"
-
-    ```mermaid
+```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff'}}}%%
 
 flowchart LR
     subgraph USERS ["👥 TARGET USERS"]
         direction TB
+
         U2["🔧 Operations<br/><small>System Health</small>"]
         U3["👨‍💻 Developers<br/><small>Technical Metrics</small>"]
     end
@@ -566,9 +565,11 @@ flowchart LR
 
     subgraph ANALYTICS ["📈 ANALYTICS VIEWS"]
         direction TB
+
         A2["🎯 Operational View<br/><small>Performance & SLA</small>"]
         A3["🔍 Technical View<br/><small>Infrastructure & Code</small>"]
     end
+
 
     L1 ==> E1
     L2 ==> E1
@@ -586,25 +587,7 @@ flowchart LR
     class L1,L2 local
     class E1 enterprise
     class A2,A3 analytics
-    ```
-
-=== "Backend Monitoring"
-
-    ![Backend Dashboard](../assets/images/photo3.png)
-
-    *Backend monitoring dashboard showing API performance, ML predictions, system health metrics, and real-time service status with 5-second auto-refresh.*
-
-=== "Frontend Monitoring"
-
-    ![Frontend Dashboard](../assets/images/photo4.png)
-
-    *Frontend monitoring dashboard displaying user activity, web requests, prediction actions, and system performance metrics with live interaction tracking.*
-
-=== "Splunk Observability"
-
-    ![Splunk Platform](../assets/images/photo5.png)
-
-    *Splunk Observability Cloud enterprise platform with 1,070+ metrics per hour, custom dashboards, real-time alerts, and 30-day data retention.*
+```
 
 **Dashboard Ecosystem:**
 
