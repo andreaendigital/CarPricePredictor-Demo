@@ -331,70 +331,144 @@
 
     ```
 
-**Telemetry Flow:**
+    **Telemetry Flow:**
 
-- **Three-Layer Architecture** - Application, Infrastructure, and Pipeline layers provide **comprehensive coverage**
-- **Specialized Collectors** - OpenTelemetry, HostMetrics, and Jenkins collectors ensure **targeted data capture**
-- **Enterprise Platform** - Splunk Observability Cloud delivers **centralized monitoring** and analytics
-- **Real-Time Streaming** - Continuous metrics flow enables **proactive operational management**
+    - **Three-Layer Architecture** - Application, Infrastructure, and Pipeline layers provide **comprehensive coverage**
+    - **Specialized Collectors** - OpenTelemetry, HostMetrics, and Jenkins collectors ensure **targeted data capture**
+    - **Enterprise Platform** - Splunk Observability Cloud delivers **centralized monitoring** and analytics
+    - **Real-Time Streaming** - Continuous metrics flow enables **proactive operational management**
+
+=== "Observability Image"
+
+    ![Enterprise Observability](../assets/images/photo2.png)
+
+    *Complete observability framework with Splunk Cloud integration, multi-layer telemetry collection, and enterprise-grade monitoring capabilities.*
 
 ### Data Collection Flow
 
-```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff'}}}%%
+=== "Interactive Diagram"
 
-flowchart LR
-    subgraph SOURCES ["📊 DATA SOURCES"]
-        direction TB
-        S1["🖥️ Backend App<br/><b>~360/hour</b><br/><small>30s interval</small>"]
-        S2["🌐 Frontend App<br/><b>~360/hour</b><br/><small>30s interval</small>"]
-        S3["🏗️ EC2 Infrastructure<br/><b>~200/hour</b><br/><small>10s interval</small>"]
-        S4["🔧 Jenkins Pipeline<br/><b>~50/deployment</b><br/><small>Per build</small>"]
-        S5["☁️ AWS Resources<br/><b>~100/hour</b><br/><small>60s interval</small>"]
-    end
+    ```mermaid
+    %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff'}}}%%
 
-    subgraph COLLECTORS ["🔄 COLLECTION LAYER"]
-        direction TB
-        C1["📈 OpenTelemetry<br/><b>App Metrics</b>"]
-        C2["📊 HostMetrics<br/><b>System Data</b>"]
-        C3["🔄 Pipeline<br/><b>DevOps Metrics</b>"]
-    end
+    flowchart LR
+        subgraph SOURCES ["📊 DATA SOURCES"]
+            direction TB
+            S1["🖥️ Backend App<br/><b>~360/hour</b><br/><small>30s interval</small>"]
+            S2["🌐 Frontend App<br/><b>~360/hour</b><br/><small>30s interval</small>"]
+            S3["🏗️ EC2 Infrastructure<br/><b>~200/hour</b><br/><small>10s interval</small>"]
+            S4["🔧 Jenkins Pipeline<br/><b>~50/deployment</b><br/><small>Per build</small>"]
+            S5["☁️ AWS Resources<br/><b>~100/hour</b><br/><small>60s interval</small>"]
+        end
 
-    subgraph PROCESSING ["⚙️ PROCESSING"]
-        direction TB
-        P1["🔍 Resource Detection<br/><b>Auto-discovery</b><br/><small>Service identification</small>"]
-        P2["🏷️ Attribute Processing<br/><b>Data Enrichment</b><br/><small>Metadata tagging</small>"]
-        P3["📤 Splunk Export<br/><b>Real-time Stream</b><br/><small>Enterprise delivery</small>"]
-    end
+        subgraph COLLECTORS ["🔄 COLLECTION LAYER"]
+            direction TB
+            C1["📈 OpenTelemetry<br/><b>App Metrics</b>"]
+            C2["📊 HostMetrics<br/><b>System Data</b>"]
+            C3["🔄 Pipeline<br/><b>DevOps Metrics</b>"]
+        end
 
-    subgraph ANALYTICS ["📊 ANALYTICS PLATFORM"]
-        A1["☁️ Splunk Observability<br/><b>1,070+ metrics/hour</b><br/><small>Enterprise Analytics</small>"]
-    end
+        subgraph PROCESSING ["⚙️ PROCESSING"]
+            direction TB
+            P1["🔍 Resource Detection<br/><b>Auto-discovery</b><br/><small>Service identification</small>"]
+            P2["🏷️ Attribute Processing<br/><b>Data Enrichment</b><br/><small>Metadata tagging</small>"]
+            P3["📤 Splunk Export<br/><b>Real-time Stream</b><br/><small>Enterprise delivery</small>"]
+        end
 
-    S1 --> C1
-    S2 --> C1
-    S3 --> C2
-    S4 --> C3
-    S5 --> C2
+        subgraph ANALYTICS ["📊 ANALYTICS PLATFORM"]
+            A1["☁️ Splunk Observability<br/><b>1,070+ metrics/hour</b><br/><small>Enterprise Analytics</small>"]
+        end
 
-    C1 --> P1
-    C2 --> P1
-    C3 --> P1
+        S1 --> C1
+        S2 --> C1
+        S3 --> C2
+        S4 --> C3
+        S5 --> C2
 
-    P1 --> P2
-    P2 --> P3
-    P3 --> A1
+        C1 --> P1
+        C2 --> P1
+        C3 --> P1
 
-    classDef sources fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
-    classDef collectors fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
-    classDef processing fill:#e8f5e8,stroke:#388e3c,stroke-width:3px
-    classDef analytics fill:#fff3e0,stroke:#f57c00,stroke-width:3px
+        P1 --> P2
+        P2 --> P3
+        P3 --> A1
 
-    class S1,S2,S3,S4,S5 sources
-    class C1,C2,C3 collectors
-    class P1,P2,P3 processing
-    class A1 analytics
-```
+        classDef sources fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
+        classDef collectors fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
+        classDef processing fill:#e8f5e8,stroke:#388e3c,stroke-width:3px
+        classDef analytics fill:#fff3e0,stroke:#f57c00,stroke-width:3px
+
+        class S1,S2,S3,S4,S5 sources
+        class C1,C2,C3 collectors
+        class P1,P2,P3 processing
+        class A1 analytics
+    ```
+
+=== "Splunk Collection Code"
+
+    <div style="font-size: 0.7em; font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace; line-height: 1.3; background: #1e1e1e; border-radius: 8px; padding: 12px; overflow-x: auto; color: #d4d4d4;">
+
+    ```python
+    # Frontend Prediction Metrics Collection (car_price.frontend.predictions)
+
+    @app.route("/predict", methods=["POST"])
+    def predict():
+        global prediction_requests
+        prediction_requests += 1
+
+        # Send metrics to Splunk Observability Cloud
+        send_to_splunk_observability(
+            "car_price.frontend.predictions", 1,
+            {"user_ip": request.remote_addr or "unknown", "action": "current_prediction"}
+        )
+        send_to_splunk_observability("car_price.frontend.requests.total", prediction_requests)
+
+    def send_to_splunk_observability(metric_name, value, dimensions=None):
+        """Send metrics to Splunk Observability Cloud"""
+        try:
+            headers = {"X-SF-Token": SPLUNK_TOKEN, "Content-Type": "application/json"}
+
+            if dimensions is None: dimensions = {}
+
+            # Add default dimensions
+            dimensions.update({
+                "service": "car-price-frontend",
+                "environment": "development",
+                "host": "localhost"
+            })
+
+            payload = {
+                "gauge": [{
+                    "metric": metric_name,
+                    "value": value,
+                    "dimensions": dimensions,
+                    "timestamp": int(time.time() * 1000)
+                }]
+            }
+
+            response = requests.post(SPLUNK_URL, json=payload, headers=headers, timeout=5)
+            if response.status_code != 200:
+                print(f"❌ Splunk error: {response.status_code} - {response.text}")
+        except Exception as e:
+            print(f"❌ Splunk error: {e}")
+
+    # Continuous Metrics Collection (every 10 seconds)
+    def send_continuous_metrics():
+        while continuous_monitoring:
+            try:
+                send_to_splunk_observability("car_price.frontend.cpu_percent", psutil.cpu_percent())
+                send_to_splunk_observability("car_price.frontend.memory_percent", psutil.virtual_memory().percent)
+                send_to_splunk_observability("car_price.frontend.uptime_seconds", time.time() - start_time)
+                send_to_splunk_observability("car_price.frontend.total_requests", request_count)
+                send_to_splunk_observability("car_price.frontend.prediction_requests", prediction_requests)
+                time.sleep(10)  # Send metrics every 10 seconds
+            except Exception as e:
+                print(f"❌ Frontend continuous metrics error: {e}")
+    ```
+
+    </div>
+
+    *Real-time metrics collection showing how `car_price.frontend.predictions` and other business metrics are captured and streamed to Splunk Observability Cloud with user context and dimensional data.*
 
 **Data Collection Process:**
 
@@ -467,7 +541,9 @@ flowchart LR
 
 ### Dashboard Architecture
 
-```mermaid
+=== "Interactive Diagram"
+
+    ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff'}}}%%
 
 flowchart LR
@@ -513,7 +589,25 @@ flowchart LR
     class L1,L2 local
     class E1 enterprise
     class A2,A3 analytics
-```
+    ```
+
+=== "Backend Monitoring"
+
+    ![Backend Dashboard](../assets/images/photo3.png)
+
+    *Backend monitoring dashboard showing API performance, ML predictions, system health metrics, and real-time service status with 5-second auto-refresh.*
+
+=== "Frontend Monitoring"
+
+    ![Frontend Dashboard](../assets/images/photo4.png)
+
+    *Frontend monitoring dashboard displaying user activity, web requests, prediction actions, and system performance metrics with live interaction tracking.*
+
+=== "Splunk Observability"
+
+    ![Splunk Platform](../assets/images/photo5.png)
+
+    *Splunk Observability Cloud enterprise platform with 1,070+ metrics per hour, custom dashboards, real-time alerts, and 30-day data retention.*
 
 **Dashboard Ecosystem:**
 
