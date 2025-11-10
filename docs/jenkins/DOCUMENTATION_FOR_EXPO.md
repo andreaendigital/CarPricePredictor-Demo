@@ -541,9 +541,7 @@
 
 ### Dashboard Architecture
 
-=== "Interactive Diagram"
-
-    ```mermaid
+```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff'}}}%%
 
 flowchart LR
@@ -589,7 +587,7 @@ flowchart LR
     class L1,L2 local
     class E1 enterprise
     class A2,A3 analytics
-    ```
+```
 
 **Dashboard Ecosystem:**
 
