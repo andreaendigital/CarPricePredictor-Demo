@@ -51,55 +51,63 @@
 
 ## 🏗️ Enterprise Architecture Overview
 
-```mermaid
-%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff', 'lineColor': '#374151'}}}%%
+=== "Interactive Diagram"
 
-flowchart LR
-    subgraph SC ["🏛️ SOURCE CONTROL LAYER"]
-        direction TB
-        A["🏗️ Infrastructure<br/><b>Terraform IaC</b><br/><small>AWS Resources</small>"]
-        B["⚙️ Configuration<br/><b>Ansible Automation</b><br/><small>System Setup</small>"]
-        C["🚀 Application<br/><b>Flask + XGBoost</b><br/><small>ML Platform</small>"]
-    end
+    ```mermaid
+    %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff', 'lineColor': '#374151'}}}%%
 
-    subgraph DP ["🔄 DEPLOYMENT PIPELINE"]
-        D["🎯 Jenkins CI/CD<br/><b>Orchestration Engine</b><br/><small>Automated Deployment</small>"]
-    end
+    flowchart LR
+        subgraph SC ["🏛️ SOURCE CONTROL LAYER"]
+            direction TB
+            A["🏗️ Infrastructure<br/><b>Terraform IaC</b><br/><small>AWS Resources</small>"]
+            B["⚙️ Configuration<br/><b>Ansible Automation</b><br/><small>System Setup</small>"]
+            C["🚀 Application<br/><b>Flask + XGBoost</b><br/><small>ML Platform</small>"]
+        end
 
-    subgraph AWS ["☁️ AWS CLOUD INFRASTRUCTURE"]
-        direction TB
-        E["🌐 VPC Network<br/><b>Security & Isolation</b><br/><small>10.0.0.0/16</small>"]
-        F["💻 EC2 Instance<br/><b>Application Runtime</b><br/><small>t3.small</small>"]
-        G["📦 S3 Storage<br/><b>State Management</b><br/><small>Terraform Backend</small>"]
-    end
+        subgraph DP ["🔄 DEPLOYMENT PIPELINE"]
+            D["🎯 Jenkins CI/CD<br/><b>Orchestration Engine</b><br/><small>Automated Deployment</small>"]
+        end
 
-    subgraph OBS ["📊 OBSERVABILITY PLATFORM"]
-        direction TB
-        H["📈 OpenTelemetry<br/><b>Metrics Collection</b><br/><small>Real-time Data</small>"]
-        I["☁️ Splunk Cloud<br/><b>Enterprise Monitoring</b><br/><small>1,070+ metrics/hour</small>"]
-    end
+        subgraph AWS ["☁️ AWS CLOUD INFRASTRUCTURE"]
+            direction TB
+            E["🌐 VPC Network<br/><b>Security & Isolation</b><br/><small>10.0.0.0/16</small>"]
+            F["💻 EC2 Instance<br/><b>Application Runtime</b><br/><small>t3.small</small>"]
+            G["📦 S3 Storage<br/><b>State Management</b><br/><small>Terraform Backend</small>"]
+        end
 
-    A -.->|"Infrastructure Code"| D
-    B -.->|"Configuration Scripts"| D
-    C -.->|"Application Code"| D
+        subgraph OBS ["📊 OBSERVABILITY PLATFORM"]
+            direction TB
+            H["📈 OpenTelemetry<br/><b>Metrics Collection</b><br/><small>Real-time Data</small>"]
+            I["☁️ Splunk Cloud<br/><b>Enterprise Monitoring</b><br/><small>1,070+ metrics/hour</small>"]
+        end
 
-    D ==>|"Provisions"| E
-    D ==>|"Deploys"| F
-    D ==>|"Manages"| G
+        A -.->|"Infrastructure Code"| D
+        B -.->|"Configuration Scripts"| D
+        C -.->|"Application Code"| D
 
-    F ==>|"Streams Metrics"| H
-    H ==>|"Exports Data"| I
+        D ==>|"Provisions"| E
+        D ==>|"Deploys"| F
+        D ==>|"Manages"| G
 
-    classDef sourceControl fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
-    classDef deployment fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
-    classDef aws fill:#e8f5e8,stroke:#388e3c,stroke-width:3px
-    classDef observability fill:#fff3e0,stroke:#f57c00,stroke-width:3px
+        F ==>|"Streams Metrics"| H
+        H ==>|"Exports Data"| I
 
-    class A,B,C sourceControl
-    class D deployment
-    class E,F,G aws
-    class H,I observability
-```
+        classDef sourceControl fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
+        classDef deployment fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
+        classDef aws fill:#e8f5e8,stroke:#388e3c,stroke-width:3px
+        classDef observability fill:#fff3e0,stroke:#f57c00,stroke-width:3px
+
+        class A,B,C sourceControl
+        class D deployment
+        class E,F,G aws
+        class H,I observability
+    ```
+
+=== "Architecture Image"
+
+    ![Enterprise Architecture](../assets/images/photo1.png)
+
+    *Professional visualization of the complete enterprise architecture with AWS cloud infrastructure, CI/CD pipeline, and observability platform.*
 
 **Architecture Flow:**
 
