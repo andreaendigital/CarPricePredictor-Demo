@@ -1,6 +1,6 @@
 # 🚀 Car Price Prediction Platform
 
-**Enterprise-grade ML automotive valuation platform** showcasing advanced DevOps engineering practices with production-ready infrastructure automation, comprehensive observability analytics, and scalable cloud-native deployment strategies. Built with Infrastructure as Code (Terraform), configuration management automation (Ansible), Jenkins CI/CD orchestration, containerized microservices architecture, comprehensive telemetry collection (OpenTelemetry), enterprise monitoring (Splunk Observability Cloud), automated testing pipelines, security-first deployment strategies, multi-environment orchestration, real-time health monitoring, performance analytics, AWS cloud provisioning, automated rollback mechanisms, blue-green deployment capabilities, secrets management, compliance automation, and continuous integration workflows optimized for zero-downtime production environments with full observability and operational excellence.
+**Enterprise-grade ML automotive valuation platform** showcasing advanced DevOps engineering practices with production-ready infrastructure automation, comprehensive observability analytics, and scalable cloud-native deployment strategies. Built with Infrastructure as Code (Terraform), configuration management automation (Ansible), Jenkins CI/CD orchestration, containerized microservices architecture, comprehensive telemetry collection (OpenTelemetry), and enterprise monitoring (Splunk Observability Cloud).
 
 ### Business Value
 
