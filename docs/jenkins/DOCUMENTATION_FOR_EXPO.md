@@ -589,6 +589,12 @@ flowchart LR
     class A2,A3 analytics
 ```
 
+=== "Backend Monitoring"
+
+    ![Backend Dashboard](../assets/images/photo3.png)
+
+    *Backend monitoring dashboard showing API performance, ML predictions, system health metrics, and real-time service status with 5-second auto-refresh.*
+
 **Dashboard Ecosystem:**
 
 - **Multi-Tier Visibility** - Local dashboards provide **application-level insights** for Backend and Frontend services
