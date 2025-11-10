@@ -597,6 +597,12 @@
 
     *Backend monitoring dashboard showing API performance, ML predictions, system health metrics, and real-time service status with 5-second auto-refresh.*
 
+=== "Frontend Dashboard Image"
+
+    ![Frontend Dashboard](../assets/images/photo4.png)
+
+    *Frontend monitoring dashboard showing user activity, web metrics, system performance, and real-time interaction tracking with live updates.*
+
 **Dashboard Ecosystem:**
 
 - **Multi-Tier Visibility** - Local dashboards provide **application-level insights** for Backend and Frontend services
