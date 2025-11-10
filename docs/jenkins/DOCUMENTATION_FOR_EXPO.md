@@ -541,7 +541,9 @@
 
 ### Dashboard Architecture
 
-```mermaid
+=== "Interactive Diagram"
+
+    ```mermaid
 %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff'}}}%%
 
 flowchart LR
@@ -587,7 +589,13 @@ flowchart LR
     class L1,L2 local
     class E1 enterprise
     class A2,A3 analytics
-```
+    ```
+
+=== "Backend Dashboard Image"
+
+    ![Backend Dashboard](../assets/images/photo3.png)
+
+    *Backend monitoring dashboard showing API performance, ML predictions, system health metrics, and real-time service status with 5-second auto-refresh.*
 
 **Dashboard Ecosystem:**
 
