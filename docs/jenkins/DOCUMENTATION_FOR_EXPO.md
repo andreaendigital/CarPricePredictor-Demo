@@ -28,7 +28,6 @@
     |---------|-------------|--------|
     | **Infrastructure as Code** | Complete AWS deployment automation | Consistent environments |
     | **CI/CD Pipeline** | Jenkins-based automated deployment | Rapid delivery |
-    | **Multi-environment** | Development, staging, production workflows | Risk mitigation |
     | **Quality Assurance** | Automated testing and code quality gates | Production reliability |
 
 === "Enterprise Architecture"
