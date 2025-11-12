@@ -1,52 +1,55 @@
 # 🚀 Car Price Prediction Platform
 
-**Enterprise-grade ML automotive valuation platform** showcasing advanced DevOps engineering practices with production-ready infrastructure automation, comprehensive observability analytics, and scalable cloud-native deployment strategies. Built with Infrastructure as Code (Terraform), configuration management automation (Ansible), Jenkins CI/CD orchestration, containerized microservices architecture, comprehensive telemetry collection (OpenTelemetry), and enterprise monitoring (Splunk Observability Cloud).
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff', 'lineColor': '#374151'}}}%%
 
-### Business Value
+flowchart TD
+    P["🚗 Car Price Prediction<br/><b>Enterprise ML Platform</b>"]
 
-=== "ML Intelligence"
+    subgraph TECH ["🛠️ Technology Stack"]
+        T1["🏗️ Terraform"]
+        T2["⚙️ Ansible"]
+        T3["🔄 Jenkins"]
+        T4["☁️ Splunk"]
+    end
 
-    | Feature | Description | Impact |
-    |---------|-------------|--------|
-    | **Real-time Predictions** | Instant vehicle valuations using XGBoost algorithms | Immediate business decisions |
-    | **Future Forecasting** | AI-powered depreciation modeling | Investment planning |
-    | **Model Accuracy** | Production-grade ML with continuous validation | Reliable valuations |
-    | **Scalable Processing** | High-throughput prediction engine | Enterprise capacity |
+    subgraph CAPABILITIES ["🎯 Core Capabilities"]
+        C1["🧠 ML Intelligence"]
+        C2["🏢 Enterprise Ops"]
+        C3["🚀 DevOps Excellence"]
+    end
 
-=== "Enterprise Operations"
+    subgraph IMPACT ["💼 Business Impact"]
+        I1["⚡ Real-time Decisions"]
+        I2["📊 Strategic Planning"]
+        I3["🎯 99.9% Reliability"]
+    end
 
-    | Feature | Description | Impact |
-    |---------|-------------|--------|
-    | **Observability Platform** | 1,070+ metrics per hour with Splunk Cloud | Complete visibility |
-    | **Real-time Monitoring** | Live dashboards with 5-second refresh | Proactive management |
-    | **Health Monitoring** | Comprehensive service health checks | 99.9% availability |
-    | **Performance Analytics** | Business and technical KPIs tracking | Data-driven optimization |
+    P --> TECH
+    TECH --> CAPABILITIES
+    CAPABILITIES --> IMPACT
 
-=== "DevOps Excellence"
+    classDef platform fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
+    classDef tech fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+    classDef capabilities fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+    classDef impact fill:#e0f2f1,stroke:#00695c,stroke-width:3px
 
-    | Feature | Description | Impact |
-    |---------|-------------|--------|
-    | **Infrastructure as Code** | Complete AWS deployment automation | Consistent environments |
-    | **CI/CD Pipeline** | Jenkins-based automated deployment | Rapid delivery |
-    | **Quality Assurance** | Automated testing and code quality gates | Production reliability |
+    class P platform
+    class T1,T2,T3,T4 tech
+    class C1,C2,C3 capabilities
+    class I1,I2,I3 impact
+```
 
-=== "Enterprise Architecture"
+**Development Excellence:**
 
-    | Component | Technology | Purpose | Business Value |
-    |-----------|------------|---------|----------------|
-    | **Source Control** | Terraform + Ansible + Flask | 3-repository structure for separation of concerns | Maintainable codebase |
-    | **Deployment Pipeline** | Jenkins CI/CD | Automated orchestration of infrastructure and applications | Rapid, reliable delivery |
-    | **AWS Cloud Platform** | VPC + EC2 + S3 | Secure, scalable cloud infrastructure | Enterprise-grade hosting |
-    | **Observability Stack** | OpenTelemetry + Splunk Cloud | End-to-end monitoring and analytics | Operational excellence |
+- **🧠 Advanced ML Engineering** - Production-ready XGBoost models with real-time inference capabilities
+- **🏢 Enterprise Observability** - Comprehensive monitoring architecture with high-frequency metrics collection
+- **🚀 Modern DevOps Practices** - Full automation pipeline from infrastructure to deployment
+- **🌟 Cloud-Native Architecture** - Scalable, containerized microservices on AWS infrastructure
 
 ---
 
-<div style="text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-<h1 style="margin: 0; font-size: 2.2em; font-weight: bold;">🏗️ PART I: ENTERPRISE ARCHITECTURE & DEPLOYMENT</h1>
-<p style="margin: 10px 0 0 0; font-size: 1.1em; opacity: 0.9;">Infrastructure as Code • CI/CD Pipeline • AWS Cloud Platform</p>
-</div>
 
----
 
 ## 🏗️ Enterprise Architecture Overview
 
@@ -77,7 +80,7 @@
         subgraph OBS ["📊 OBSERVABILITY PLATFORM"]
             direction TB
             H["📈 OpenTelemetry<br/><b>Metrics Collection</b><br/><small>Real-time Data</small>"]
-            I["☁️ Splunk Cloud<br/><b>Enterprise Monitoring</b><br/><small>1,070+ metrics/hour</small>"]
+            I["☁️ Splunk Cloud<br/><b>Enterprise Monitoring</b><br/><small>High-frequency metrics</small>"]
         end
 
         A -.->|"Infrastructure Code"| D
@@ -102,11 +105,61 @@
         class H,I observability
     ```
 
-=== "Architecture Image"
+=== "AWS RBAC Security"
 
-    ![Enterprise Architecture](../assets/images/photo1.png)
+    ```mermaid
+    %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#C6FA6B', 'primaryTextColor': '#000', 'lineColor': '#000'}}}%%
 
-    *Professional visualization of the complete enterprise architecture with AWS cloud infrastructure, CI/CD pipeline, and observability platform.*
+    flowchart TD
+        subgraph Users
+            U3(👤 seba)
+            U1(👤 andrea)
+            U2(👤 jose)
+            U4(⚙️ terraform-user)
+        end
+
+        subgraph IAM Groups
+            G1[👥 Group: devops]
+            G2[👥 Group: dev]
+            G3[⚙️ Group: terraform-service]
+        end
+
+        subgraph AWS Permissions Roles
+            P1(Policy: PowerUserAccess + IAMReadOnly)
+            P2(Policy: Developer/Read-Only)
+        end
+
+        U1 --> G1
+        U2 --> G1
+        U3 --> G2
+        U4 --> G3
+
+        G1 --> P1
+        G3 --> P1
+        G2 --> P2
+
+        style U4 fill:#ffeb3b,stroke:#7005A6,color:#000000
+        style G1 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+        style G2 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+
+        linkStyle 0 stroke:#0d47a1,stroke-width:2px
+        linkStyle 1 stroke:#0d47a1,stroke-width:2px
+        linkStyle 2 stroke:#0d47a1,stroke-width:2px
+        linkStyle 3 stroke:#4caf50,stroke-width:2px
+    ```
+
+    **Security Architecture:**
+
+    - **Role Separation** - Human users (andrea, jose, seba) and service accounts (terraform-user) have **distinct access patterns**
+    - **Group-Based Permissions** - DevOps team gets PowerUserAccess, developers get read-only access for **principle of least privilege**
+    - **Service Isolation** - Terraform service user has dedicated group for **auditable infrastructure operations**
+    - **Policy Management** - Centralized IAM policies ensure **consistent security controls** across all environments
+
+=== "Architecture AWS"
+
+    ![AWS Architecture](../assets/images/18.jpeg)
+
+    *Complete AWS infrastructure architecture showing VPC networking, EC2 compute instances, security groups, load balancers, and integrated monitoring components for the Car Price Prediction Platform.*
 
 **Architecture Flow:**
 
@@ -114,6 +167,14 @@
 - **Jenkins CI/CD Orchestration** - Automated pipeline manages **end-to-end deployment** across all environments
 - **AWS Cloud Infrastructure** - VPC, EC2, and S3 deliver **enterprise-grade hosting** with security isolation
 - **Comprehensive Observability** - OpenTelemetry collectors stream **real-time metrics** to Splunk Cloud for analytics
+- **Enterprise Security** - Role-based access control ensures **secure operations** with proper user and service account separation
+
+---
+
+<div style="text-align: center; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+<h1 style="margin: 0; font-size: 2.2em; font-weight: bold;">📊 PART II: OBSERVABILITY & MONITORING FRAMEWORK</h1>
+<p style="margin: 10px 0 0 0; font-size: 1.1em; opacity: 0.9;">Splunk Cloud • High-frequency Metrics • Real-time Dashboards</p>
+</div>
 
 ---
 
@@ -169,6 +230,45 @@
         style D fill:#c8e6c9
         style L fill:#e8f5e8
     ```
+
+=== "PR Example"
+
+    ```markdown
+    ## Pull Request: SCRUM-95 - Add Real-time Monitoring Dashboard
+
+    ### 📋 Description
+    Implements comprehensive monitoring dashboard with live metrics collection and Splunk integration for the Car Price Prediction Platform.
+
+    ### 🔧 Changes Made
+    - ✅ Added real-time dashboard endpoint (`/dashboard`)
+    - ✅ Integrated OpenTelemetry metrics collection
+    - ✅ Configured Splunk Observability Cloud streaming
+    - ✅ Implemented 5-second auto-refresh functionality
+    - ✅ Added system health monitoring (CPU, Memory, Uptime)
+
+    ### 🧪 Testing
+    - [x] Unit tests for dashboard endpoints
+    - [x] Integration tests with Splunk API
+    - [x] Load testing for metrics collection
+    - [x] Cross-browser compatibility testing
+
+    ### 📊 Metrics Impact
+    - **Before**: No real-time monitoring
+    - **After**: 1,070+ metrics/hour streaming to Splunk Cloud
+
+    ### 🚀 Deployment Notes
+    - Requires Splunk token configuration
+    - Auto-deploys via Jenkins CI/CD pipeline
+    - Health checks validate service connectivity
+
+    ### 📸 Screenshots
+    ![Dashboard Preview](../assets/images/photo3.png)
+
+    **Reviewers**: @andrea @jose
+    **JIRA**: [SCRUM-95](https://jira.company.com/browse/SCRUM-95)
+    ```
+
+    *Example pull request demonstrating professional development workflow with comprehensive testing, metrics impact analysis, and deployment considerations for the monitoring dashboard feature.*
 
 === "Jenkins Pipeline Code"
 
@@ -280,6 +380,107 @@
 
     *Complete Jenkins pipeline implementing Infrastructure as Code with Terraform, configuration management with Ansible, and Splunk observability integration.*
 
+=== "Terraform Workflow"
+
+    ```mermaid
+    %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff', 'lineColor': '#374151'}}}%%
+
+    flowchart TD
+         subgraph Repo ["tf-infra-demoCar"]
+            direction TB
+            A["main.tf <br/><b>Orchestration Layer</b><br/><small>Calls all modules</small>"]
+            B["remote_backend_s3.tf <br/><b>Remote State Config</b>"]
+            C["variables.tf / terraform.tfvars <br/><b>Input Customization</b>"]
+        end
+
+        subgraph IaC ["infra/ Modules"]
+            direction LR
+            M1["networking/<br/><b>VPC, Subnets</b>"]
+            M2["security-groups/<br/><b>Firewall Rules</b>"]
+            M3["ec2/<br/><b>Compute Instance</b>"]
+            M4["rds/<br/><b>DB Deployment</b>"]
+            M5["load-balancer/<br/><b>ALB Setup</b>"]
+            M6["load-balancer-target-group/<br/><b>Traffic Routing</b>"]
+            M7["s3/<br/><b>State Backend</b>"]
+        end
+
+        AWS["☁️ AWS Cloud<br/><b>Deployed Resources</b>"]
+        S3["📦 AWS S3/DynamoDB<br/><b>Remote State Locking</b>"]
+
+        A --> M1
+        M1 --> M2
+        M1 --> M3
+        M1 --> M5
+        M3 --> M6
+        M4 --> M2
+        B --> M7
+        A --> AWS
+        B --> S3
+
+        classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+        classDef module fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+        classDef remote fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+        classDef cloud fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+
+        class A,C main
+        class M1,M2,M3,M4,M5,M6,M7 module
+        class B,M7 remote
+        class AWS,S3 cloud
+    ```
+
+    *Terraform architecture based on local-per-service module pattern to manage infrastructure complexity. The main.tf file acts as central orchestration layer, focusing on invoking and passing variables to each specialized module.*
+
+=== "Architecture Image"
+
+    ![Enterprise Architecture](../assets/images/photo1.png){: style="width: 60%; height: auto; display: block; margin: 0 auto;"}
+
+    *Professional visualization of the complete enterprise architecture with AWS cloud infrastructure, CI/CD pipeline, and observability platform.*
+
+=== "Ansible Workflow"
+
+    ```mermaid
+    %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff', 'lineColor': '#374151'}}}%%
+
+    flowchart TD
+        A["Jenkins Ansible Stage"]
+        B["Generate Dynamic Inventory"]
+        C["EC2 Target Host"]
+
+        subgraph ROLES ["Ansible Roles"]
+            D["Flask App Setup"]
+            E["Splunk Monitoring"]
+        end
+
+        subgraph TASKS ["Task Execution"]
+            F["Install Dependencies"]
+            G["Configure Services"]
+            H["Start Applications"]
+        end
+
+        I["Deployment Complete"]
+
+        A --> B
+        B --> C
+        C --> ROLES
+        D --> TASKS
+        E --> TASKS
+        F --> G
+        G --> H
+        H --> I
+
+        classDef main fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+        classDef roles fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px
+        classDef tasks fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+        classDef complete fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+
+        class A,B,C main
+        class D,E roles
+        class F,G,H tasks
+        class I complete
+    ```
+
+    *The Dynamic Inventory step is crucial: because we're working with a dynamic IP address for the EC2 instance (a common setup in the free tier), the generate_inventory.sh script is indispensable. This script resolves the coupling by programmatically extracting the IP address from the Terraform output, creating the inventory.ini file that Ansible requires.*
+
 **Deployment Process:**
 
 - **Jenkins Orchestration** - Central pipeline manages **automated deployment** across all infrastructure layers
@@ -287,13 +488,6 @@
 - **Ansible Configuration** - Automated setup deploys **Flask services** with Python dependencies
 - **OpenTelemetry Integration** - Collectors installed for **real-time metrics** streaming to Splunk Cloud
 - **Health Validation** - Automated checks verify **backend and frontend** services before completion
-
----
-
-<div style="text-align: center; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-<h1 style="margin: 0; font-size: 2.2em; font-weight: bold;">📊 PART II: OBSERVABILITY & MONITORING FRAMEWORK</h1>
-<p style="margin: 10px 0 0 0; font-size: 1.1em; opacity: 0.9;">Splunk Cloud • 1,070+ Metrics/Hour • Real-time Dashboards</p>
-</div>
 
 ---
 
@@ -343,6 +537,13 @@
 
     *Complete observability framework with Splunk Cloud integration, multi-layer telemetry collection, and enterprise-grade monitoring capabilities.*
 
+<div style="text-align: center; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+<h1 style="margin: 0; font-size: 2.2em; font-weight: bold;">🚀 PART III: DEPLOYMENT & OPERATIONS</h1>
+<p style="margin: 10px 0 0 0; font-size: 1.1em; opacity: 0.9;">Production Environment • Health Monitoring • Access Points</p>
+</div>
+
+---
+
 ### Data Collection Flow
 
 === "Interactive Diagram"
@@ -375,7 +576,7 @@
         end
 
         subgraph ANALYTICS ["📊 ANALYTICS PLATFORM"]
-            A1["☁️ Splunk Observability<br/><b>1,070+ metrics/hour</b><br/><small>Enterprise Analytics</small>"]
+            A1["☁️ Splunk Observability<br/><b>High-frequency metrics</b><br/><small>Enterprise Analytics</small>"]
         end
 
         S1 --> C1
@@ -474,7 +675,7 @@
 - **Multiple Data Sources** - Backend/Frontend apps, EC2 infrastructure, Jenkins pipeline generate **diverse metrics**
 - **Specialized Collectors** - OpenTelemetry, HostMetrics, and Pipeline collectors provide **targeted monitoring**
 - **Unified Processing** - Resource detection and attribute processing ensure **data consistency**
-- **Splunk Integration** - Real-time export delivers **1,070+ metrics per hour** for enterprise analytics
+- **Splunk Integration** - Real-time export delivers **high-frequency metrics collection** for enterprise analytics
 - **Comprehensive Visibility** - Complete platform monitoring from **application to infrastructure**
 
 ### Implemented Metrics
@@ -488,7 +689,7 @@
     | **Infrastructure** | EC2 Host Metrics | ~200 | 10 seconds |
     | **Pipeline** | Jenkins Deployment | ~50 | Per deployment |
     | **Cloud** | AWS Resources | ~100 | 60 seconds |
-    | **Total** | **Enterprise Platform** | **~1,070** | **Real-time** |
+    | **Total** | **Enterprise Platform** | **High-volume** | **Real-time** |
 
 === "Backend Metrics"
 
@@ -545,7 +746,7 @@
 
     subgraph ENTERPRISE ["☁️ ENTERPRISE PLATFORM"]
         direction TB
-        E1["📊 Splunk Observability<br/><b>app.us1.signalfx.com</b><br/><small>• 1,070+ metrics/hour<br/>• 30-day retention<br/>• Custom dashboards<br/>• Real-time alerts</small>"]
+        E1["📊 Splunk Observability<br/><b>app.us1.signalfx.com</b><br/><small>• High-frequency metrics<br/>• 30-day retention<br/>• Custom dashboards<br/>• Real-time alerts</small>"]
     end
 
     subgraph ANALYTICS ["📈 ANALYTICS VIEWS"]
@@ -628,19 +829,12 @@
 
     | Feature | Description | Capability |
     |---------|-------------|------------|
-    | **Comprehensive Metrics** | 1,070+ metrics/hour | Enterprise scale |
+    | **Comprehensive Metrics** | High-frequency collection | Enterprise scale |
     | **Real-time Visualization** | Live data streaming | Instant insights |
     | **Historical Analysis** | 30-day data retention | Trend analysis |
     | **Custom Dashboards** | Business and technical KPIs | Configurable views |
 
 
-
----
-
-<div style="text-align: center; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-<h1 style="margin: 0; font-size: 2.2em; font-weight: bold;">🚀 PART III: DEPLOYMENT & OPERATIONS</h1>
-<p style="margin: 10px 0 0 0; font-size: 1.1em; opacity: 0.9;">Production Environment • Health Monitoring • Access Points</p>
-</div>
 
 ---
 
