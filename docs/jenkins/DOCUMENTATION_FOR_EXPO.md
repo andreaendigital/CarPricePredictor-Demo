@@ -108,7 +108,7 @@ flowchart TD
 === "AWS RBAC Security"
 
     ```mermaid
-    %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#C6FA6B', 'primaryTextColor': '#000', 'lineColor': '#000'}}}%%
+    %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff', 'lineColor': '#374151'}}}%%
 
     flowchart TD
         subgraph Users
@@ -138,14 +138,15 @@ flowchart TD
         G3 --> P1
         G2 --> P2
 
-        style U4 fill:#ffeb3b,stroke:#7005A6,color:#000000
-        style G1 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
-        style G2 fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+        classDef users fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
+        classDef groups fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
+        classDef policies fill:#e8f5e8,stroke:#388e3c,stroke-width:3px
+        classDef service fill:#fff3e0,stroke:#f57c00,stroke-width:3px
 
-        linkStyle 0 stroke:#0d47a1,stroke-width:2px
-        linkStyle 1 stroke:#0d47a1,stroke-width:2px
-        linkStyle 2 stroke:#0d47a1,stroke-width:2px
-        linkStyle 3 stroke:#4caf50,stroke-width:2px
+        class U1,U2,U3 users
+        class U4 service
+        class G1,G2,G3 groups
+        class P1,P2 policies
     ```
 
     **Security Architecture:**
@@ -480,6 +481,39 @@ flowchart TD
     ```
 
     *The Dynamic Inventory step is crucial: because we're working with a dynamic IP address for the EC2 instance (a common setup in the free tier), the generate_inventory.sh script is indispensable. This script resolves the coupling by programmatically extracting the IP address from the Terraform output, creating the inventory.ini file that Ansible requires.*
+
+=== "PlatOps Pipeline"
+
+    ```mermaid
+    %%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#2563eb', 'primaryTextColor': '#ffffff', 'lineColor': '#374151'}}}%%
+
+    flowchart TD
+        subgraph PlatOps
+            direction TB
+            L1[🚀 Jenkins CI/CD<br/>Orchestration & Self-Service]
+            L2[🏗️ Terraform Modules<br/><b>Standardized Infrastructure</b>]
+            L3[⚙️ Ansible Roles<br/><b>Abstracted Configuration</b>]
+            L4[📊 Observability Stack<br/><b>Integrated Metrics</b>]
+        end
+
+        A[Car Price Predictor Demo <br/> -Flask/XGBoost App-]
+
+        A --> L1
+        L1 --> L2
+        L1 --> L3
+        L1 --> L4
+        L4 --> O[Operational Readiness]
+
+        classDef platform fill:#e3f2fd,stroke:#1976d2,stroke-width:3px
+        classDef dev fill:#f3e5f5,stroke:#7b1fa2,stroke-width:3px
+        classDef ops fill:#e8f5e8,stroke:#388e3c,stroke-width:3px
+
+        class L1,L2,L3,L4 platform
+        class A dev
+        class O ops
+    ```
+
+    *As a team, we understand PlatOps as the evolution of DevOps focused on building and maintaining an Internal Developer Platform (IDP). While DevOps focuses on CI/CD practices, PlatOps focuses on the Platform team that builds the tooling, pipelines, templates, and infrastructure so that teams can focus on the application code. This is achieved through Infrastructure as a Product: our Terraform modules are not one-time-use scripts, but standardized building blocks (ec2/, rds/). The Jenkins pipeline acts as a self-service deployment API that abstracts the complexity, orchestrating Terraform, Ansible, and the telemetry configuration for sending metrics to the Splunk cloud.*
 
 **Deployment Process:**
 
