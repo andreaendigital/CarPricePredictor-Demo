@@ -1,5 +1,5 @@
-site_name: Car Price Prediction Platform
-site_description: Professional ML-powered automotive price prediction with enterprise DevOps
+site_name: AutoML Intelligence Platform
+site_description: Next-Generation AI-Powered Automotive Valuation & Market Intelligence Platform
 site_author: Enterprise AI Solutions Team
 site_url: https://andreaendigital.github.io/CarPricePredictor-Demo/
 
@@ -59,6 +59,7 @@ theme:
     repo: fontawesome/brands/github
     edit: material/pencil
     view: material/eye
+
 
 plugins:
   - search:
