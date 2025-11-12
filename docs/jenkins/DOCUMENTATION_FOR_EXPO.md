@@ -355,7 +355,7 @@ flowchart TD
           script {
             sh '''
               curl -X POST https://ingest.us1.signalfx.com/v2/datapoint \
-              -H "X-SF-Token: PZuf3J0L2Op_Qj9hpAJzlw" \
+              -H "X-SF-Token: ${SPLUNK_TOKEN}" \
               -H "Content-Type: application/json" \
               -d '{"gauge":[{"metric":"jenkins.pipeline.success","value":1,"dimensions":{"job":"''' + env.JOB_NAME + '''","build":"''' + env.BUILD_NUMBER + '''","result":"success"}}]}'
             '''
@@ -366,7 +366,7 @@ flowchart TD
           script {
             sh '''
               curl -X POST https://ingest.us1.signalfx.com/v2/datapoint \
-              -H "X-SF-Token: PZuf3J0L2Op_Qj9hpAJzlw" \
+              -H "X-SF-Token: ${SPLUNK_TOKEN}" \
               -H "Content-Type: application/json" \
               -d '{"gauge":[{"metric":"jenkins.pipeline.failure","value":1,"dimensions":{"job":"''' + env.JOB_NAME + '''","build":"''' + env.BUILD_NUMBER + '''","result":"failure"}}]}'
             '''
