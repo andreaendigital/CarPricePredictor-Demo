@@ -172,12 +172,7 @@ flowchart TD
 
 ---
 
-<div style="text-align: center; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-<h1 style="margin: 0; font-size: 2.2em; font-weight: bold;">📊 PART II: OBSERVABILITY & MONITORING FRAMEWORK</h1>
-<p style="margin: 10px 0 0 0; font-size: 1.1em; opacity: 0.9;">Splunk Cloud • High-frequency Metrics • Real-time Dashboards</p>
-</div>
 
----
 
 ## 🔄 Deployment Flow
 
@@ -571,12 +566,7 @@ flowchart TD
 
     *Complete observability framework with Splunk Cloud integration, multi-layer telemetry collection, and enterprise-grade monitoring capabilities.*
 
-<div style="text-align: center; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 20px; border-radius: 10px; margin: 20px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-<h1 style="margin: 0; font-size: 2.2em; font-weight: bold;">🚀 PART III: DEPLOYMENT & OPERATIONS</h1>
-<p style="margin: 10px 0 0 0; font-size: 1.1em; opacity: 0.9;">Production Environment • Health Monitoring • Access Points</p>
-</div>
 
----
 
 ### Data Collection Flow
 
@@ -835,40 +825,25 @@ flowchart TD
 - **Enterprise Analytics** - Complete operational awareness from **granular details to strategic insights**
 - **Operational Excellence** - Continuous monitoring enables **proactive management** and optimization
 
-=== "Backend Dashboard"
-
-    **Access**: Port 5002/dashboard | **URL**: http://13.220.64.167:5002/dashboard
-
-    | Feature | Description | Update Frequency |
-    |---------|-------------|------------------|
-    | **System Metrics** | CPU, Memory, Uptime | Real-time |
-    | **API Performance** | Total requests, ML predictions | Live tracking |
-    | **Real-time Updates** | Auto-refresh dashboard | Every 5 seconds |
-    | **Splunk Integration** | Direct link to observability platform | On-demand |
-
-=== "Frontend Dashboard"
-
-    **Access**: Port 3000/dashboard | **URL**: http://13.220.64.167:3000/dashboard
-
-    | Feature | Description | Update Frequency |
-    |---------|-------------|------------------|
-    | **Web Metrics** | User requests, predictions, publishes | Real-time |
-    | **System Performance** | CPU, Memory usage | Live monitoring |
-    | **User Activity** | Real-time interaction tracking | Instant |
-    | **Health Status** | Service connectivity monitoring | Continuous |
-
-=== "Splunk Observability"
-
-    **Access**: Enterprise Platform | **URL**: https://app.us1.signalfx.com
-
-    | Feature | Description | Capability |
-    |---------|-------------|------------|
-    | **Comprehensive Metrics** | High-frequency collection | Enterprise scale |
-    | **Real-time Visualization** | Live data streaming | Instant insights |
-    | **Historical Analysis** | 30-day data retention | Trend analysis |
-    | **Custom Dashboards** | Business and technical KPIs | Configurable views |
 
 
+
+
+---
+
+## 🔗 Integrations Jira/Jenkins
+
+=== "Jenkins"
+
+    ![Jenkins Integration](../assets/images/19.png)
+
+    *Jenkins CI/CD pipeline integration showing automated deployment workflow, build status, and pipeline execution for the Car Price Prediction Platform.*
+
+=== "Jira"
+
+    ![Jira Integration](../assets/images/20.png)
+
+    *Jira project management integration showing SCRUM methodology, ticket tracking, and development workflow coordination for enterprise project management.*
 
 ---
 
