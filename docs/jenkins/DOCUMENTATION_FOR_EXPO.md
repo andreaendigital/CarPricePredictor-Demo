@@ -158,7 +158,7 @@ flowchart TD
 
 === "Architecture AWS"
 
-    ![AWS Architecture](../assets/images/18.jpeg)
+    ![AWS Architecture](../assets/images/photo6.jpeg)
 
     *Complete AWS infrastructure architecture showing VPC networking, EC2 compute instances, security groups, load balancers, and integrated monitoring components for the Car Price Prediction Platform.*
 
