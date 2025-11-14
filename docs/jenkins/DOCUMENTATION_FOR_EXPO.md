@@ -158,7 +158,7 @@ flowchart TD
 
 === "Architecture AWS"
 
-    ![AWS Architecture](../assets/images/photo6.jpeg)
+    ![AWS Architecture](../../assets/images/photo6.png)
 
     *Complete AWS infrastructure architecture showing VPC networking, EC2 compute instances, security groups, load balancers, and integrated monitoring components for the Car Price Prediction Platform.*
 
@@ -258,7 +258,7 @@ flowchart TD
     - Health checks validate service connectivity
 
     ### 📸 Screenshots
-    ![Dashboard Preview](../assets/images/photo3.png)
+    ![Dashboard Preview](https://andreaendigital.github.io/CarPricePredictor-Demo/assets/images/photo3.png)
 
     **Reviewers**: @andrea @jose
     **JIRA**: [SCRUM-95](https://jira.company.com/browse/SCRUM-95)
@@ -428,7 +428,7 @@ flowchart TD
 
 === "Architecture Image"
 
-    ![Enterprise Architecture](../assets/images/photo1.png){: style="width: 60%; height: auto; display: block; margin: 0 auto;"}
+    ![Enterprise Architecture](https://andreaendigital.github.io/CarPricePredictor-Demo/assets/images/photo1.png){: style="width: 60%; height: auto; display: block; margin: 0 auto;"}
 
     *Professional visualization of the complete enterprise architecture with AWS cloud infrastructure, CI/CD pipeline, and observability platform.*
 
@@ -562,7 +562,7 @@ flowchart TD
 
 === "Observability Image"
 
-    ![Enterprise Observability](../assets/images/photo2.png)
+    ![Enterprise Observability](https://andreaendigital.github.io/CarPricePredictor-Demo/assets/images/photo2.png)
 
     *Complete observability framework with Splunk Cloud integration, multi-layer telemetry collection, and enterprise-grade monitoring capabilities.*
 
@@ -801,19 +801,19 @@ flowchart TD
 
 === "Backend Dashboard Image"
 
-    ![Backend Dashboard](../assets/images/photo3.png)
+    ![Backend Dashboard](https://andreaendigital.github.io/CarPricePredictor-Demo/assets/images/photo3.png)
 
     *Backend monitoring dashboard showing API performance, ML predictions, system health metrics, and real-time service status with 5-second auto-refresh.*
 
 === "Frontend Dashboard Image"
 
-    ![Frontend Dashboard](../assets/images/photo4.png)
+    ![Frontend Dashboard](https://andreaendigital.github.io/CarPricePredictor-Demo/assets/images/photo4.png)
 
     *Frontend monitoring dashboard showing user activity, web metrics, system performance, and real-time interaction tracking with live updates.*
 
 === "Splunk Example"
 
-    ![Splunk Example](../assets/images/photo5.png)
+    ![Splunk Example](https://andreaendigital.github.io/CarPricePredictor-Demo/assets/images/photo5.png)
 
     *Splunk Observability Cloud dashboard showing enterprise-grade monitoring with 1,070+ metrics per hour, real-time analytics, and comprehensive system visibility.*
 
@@ -835,13 +835,13 @@ flowchart TD
 
 === "Jenkins"
 
-    ![Jenkins Integration](../assets/images/19.png)
+    ![Jenkins Integration](https://andreaendigital.github.io/CarPricePredictor-Demo/assets/images/19.png)
 
     *Jenkins CI/CD pipeline integration showing automated deployment workflow, build status, and pipeline execution for the Car Price Prediction Platform.*
 
 === "Jira"
 
-    ![Jira Integration](../assets/images/20.png)
+    ![Jira Integration](https://andreaendigital.github.io/CarPricePredictor-Demo/assets/images/20.png)
 
     *Jira project management integration showing SCRUM methodology, ticket tracking, and development workflow coordination for enterprise project management.*
 
